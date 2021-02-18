@@ -8,7 +8,7 @@ In node.nc:
         Use documnetation (TOSSIM  http://cs.jhu.edu/~razvanm/wsn/tos-tutorial-tossim-with-notes.pdf) 
         to figure out what each function/command does (Alternate github link: https://github.com/tinyos/tinyos-main)
         
-        create 2 modules. 1 for flooding, 1 for neighbor discovery.
+        (Ask question) create 2 modules. 1 for flooding, 1 for neighbor discovery.
 
         add to module node "uses interface flooding" && "Uses interface neighbor discovery" (these
         modules will be created elsewhere, they are only called to be used here)
