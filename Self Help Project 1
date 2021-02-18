@@ -1,6 +1,8 @@
 In node.nc: 
         contains 2 parts: module and implementation
+    
         module = list all interfaces to be used in this portion's implementation
+    
         implementation = logic of your code
 
 
@@ -16,12 +18,53 @@ In node.nc:
 
 In nodeC.nc:
         contains 2 parts: configuration and implementation
+        
         configuration = declaring you are making a configuration file with name "______"
-        implementation = 
+        
+        implementation = location where you wire/link functions in |node.nc| to other functions. These 
+        functions might be built in functions or functions in our own created modules like neighbor discovery 
+        and flooding
+
 
 
     TO DO: 
-        Use structure 
+        Use structure of nodeC.nc as a template for every other function we are implimenting i.e.
+        neighbor discovery and flooding function.
+
+        EX from TA: add lines for neighbor discovery at end of implimentation in the form of "components
+        neighborDiscoveryC;" and "Node.neighborDiscovery -> neighborDiscoveryC;" (-> means "is wired to" timestamp 8:50)
+
+
+In lib:
+        contains 2 parts: interfaces and modules. 
+        all modules and configuration files and interfaces are in lib except main module and configuration (node and nodeC)
+
+        in module:
+                Begins with module scripts and related configure files for command handler and simple send
+
+                files that end with "P" EX: "CommandHandlerP.nc" are the modules
+
+                files that end with "C" Ex: "CommandHandlerC.nc" are the configuration files
+
+                communicate between the python files (or the simulators ) and the rest of the NesC code
+
+                follows similar structure as node.nc: has module and implementation. 
+                
+                !!! IMPORTANT !!! Within Module, need to declare the module provides it's own interface in all modules we will create
+                including neighbor discovery for both "P" and "C" files.
+                Ex: module CommandHandlerP{
+                    provides interface CommandHandler;
+                }
+
+                Within P (module) files, the implementation holds the logic and details/execution of the function. 
+
+                within C (config) files, within implementaion requires "components"
+
+
+
+                
+
+
 
 
 
