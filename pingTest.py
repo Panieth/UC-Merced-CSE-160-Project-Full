@@ -20,6 +20,11 @@ def main():
     s.addChannel(s.COMMAND_CHANNEL);
     s.addChannel(s.GENERAL_CHANNEL);
 
+    # Add the channels necessary for project 1
+    s.addChannel(s.FLOODING_CHANNEL);  #channel for the flooding implementation
+    s.addChannel(s.NEIGHBOR_CHANNEL);  #channel for the neighbor discovery implementation
+
+
     # After sending a ping, simulate a little to prevent collision.
     s.runTime(1);
     s.ping(2, 3, "Hello, World");
