@@ -1,27 +1,170 @@
-In node.nc: 
+How to read: 
+    TO DO list items are separated by a blank line. If the first line of a to do list item contains 
+    the characters >> this means the task is complete. If the first line contains the characters ?? this
+    means the task is incomplete.
+
+strategies for project 1:
+    Strategy for neighbor discovery:
+        have each node ping every other node.
+        if a node recieves a ping, send a ping reply
+        if source node recieves a reply, add the replying nodes to a list of neighbors for source node. 
+        sometime in this process include a print for sending ping, receiving ping, and listing neighbors.
+
+
+    Strategy for flooding:
+        have list of neighbors.
+        have source node. 
+        check neighbors to see if they have recieved a package for this flood?
+        send message from source node to all neighbors who have not recieved the package
+        repeat this process for all neighbors until all nodes have received the message?
+        if all neighbors have recieved package already, no send.
+        also no send back to neighbor you recieved from. 
+
+
+
+
+
+NESC ENVIRONMENT CODE FILES:
+
+
+    In node.nc: 
         contains 2 parts: module and implementation
+    
         module = list all interfaces to be used in this portion's implementation
+    
         implementation = logic of your code
 
 
-    TO DO: 
-        Use documnetation (TOSSIM  http://cs.jhu.edu/~razvanm/wsn/tos-tutorial-tossim-with-notes.pdf) 
-        to figure out what each function/command does (Alternate github link: https://github.com/tinyos/tinyos-main)
+        TO DO: 
+            Use documnetation (TOSSIM  http://cs.jhu.edu/~razvanm/wsn/tos-tutorial-tossim-with-notes.pdf) 
+            to figure out what each function/command does (Alternate github link: https://github.com/tinyos/tinyos-main)
         
-        create 2 modules. 1 for flooding, 1 for neighbor discovery.
+            (Ask question) create 2 modules. 1 for flooding, 1 for neighbor discovery.
 
-        add to module node "uses interface flooding" && "Uses interface neighbor discovery" (these
-        modules will be created elsewhere, they are only called to be used here)
+            add to module node "uses interface flooding" && "Uses interface neighbor discovery" (these
+            modules will be created elsewhere, they are only called to be used here)
 
 
-In nodeC.nc:
+    In nodeC.nc:
         contains 2 parts: configuration and implementation
+        
         configuration = declaring you are making a configuration file with name "______"
-        implementation = 
+        
+        implementation = location where you wire/link functions in |node.nc| to other functions. These 
+        functions might be built in functions or functions in our own created modules like neighbor discovery 
+        and flooding
 
 
-    TO DO: 
-        Use structure 
+
+        TO DO: 
+            Use structure of nodeC.nc as a template for every other function we are implimenting i.e.
+            neighbor discovery and flooding function.
+
+            EX from TA: add lines for neighbor discovery at end of implimentation in the form of "components
+            neighborDiscoveryC;" and "Node.neighborDiscovery -> neighborDiscoveryC;" (-> means "is wired to" timestamp 8:50)
+
+
+    In lib:
+        contains 2 parts: interfaces and modules. 
+        all modules and configuration files and interfaces are in lib except main module and configuration (node and nodeC)
+
+        in modules:
+                Begins with module scripts and related configure files for command handler and simple send
+
+                files that end with "P" EX: "CommandHandlerP.nc" are the modules
+
+                files that end with "C" Ex: "CommandHandlerC.nc" are the configuration files
+
+                communicate between the python files (or the simulators ) and the rest of the NesC code
+
+                follows similar structure as node.nc: has module and implementation. 
+                
+                !!! IMPORTANT !!! Within Module, need to declare the module provides it's own interface in all modules we will create
+                including neighbor discovery for both "P" and "C" files.
+                Ex: module CommandHandlerP{
+                    provides interface CommandHandler;
+                }
+
+                Within P (module) files, the implementation holds the logic and details/execution of the function. 
+
+                !!! IMPORTANT !!!within C (config) files, within implementaion requires "components" EX: components floodingP; flooding = floodingP;
+                follow up with the wiring 
+
+                TO DO: 
+                    Create our own flooding and neighbor discovery and place them within modules. EX: FloodingP and FloodingC
+
+                    May want to look into using simple send module code within our own modules we will create. "Do not need to change it, 
+                    just use it as one of your interfaces during(?) your modules"
+
+        
+        In interfaces: 
+                contains "related interfaces" for the provided CommandHandler and SimpleSend functions.
+                short files
+                do not need to deal with transport until project 3
+
+
+                TO DO: 
+                    Create the neighborDiscovery and flooding files in interfaces following the structure of the provided files. 
+
+
+    In dataStructures:
+        contains hashmap and list
+        hashmap is for functions that need to retrieve a value based on a key
+        
+        TO DO: 
+            look into these files to understand them better. (timestamp 19:00)
+
+
+    In includes:
+        contains headers used within our codes.
+
+
+    In noise:
+        contains noise models to be used in project 3/4
+
+
+    In topo:
+        contains network topologies in the .topo files
+        
+        these files show how nodes are linked together. first line states total number of nodes, the rest
+        show how the nodes are linked. EX: 1 2 -54.0 = node 1 links to node 2 and all of our nodes should 
+        be two way nodes. This means topology should include reverse links in the form of
+        2 1 -54.0 = node 2 links to node 1. the -54.0 value should not need to be changed and is included as a value for
+        link quality. We should not need to change that number. 
 
 
 
+SIMULATION CODE FILES:
+
+
+    TestSim.py:
+        you only need to make changes within the main() function of this file.
+        the commands in the .py program are transferred to the nesC program through the CommandHandler function 
+
+        TO DO:
+            Add related channels. both flooding and neighborDiscovery EX: s.addChannel(s.NEIGHBOR_CHANNEL). 
+            Channels are defined towards the beginning of this file.
+
+            Print out neighbors for a specific node. use function neighborDMP to do so. Defined in line 122
+            s.neighborDMP(node number);
+
+            may want to look into ping command playing with the source and destination nodes, and possibly find 
+            code for ping reply either in the TOOSIM or github references listed at the bottom of this doc.
+
+            
+
+
+
+
+
+
+    pingTest.py:
+        based off of test sim, but strictly deals with checking/reporting the ping between nodes
+
+
+REFERENCES:
+
+
+
+    (TOSSIM  http://cs.jhu.edu/~razvanm/wsn/tos-tutorial-tossim-with-notes.pdf) 
+    GITHUB: https://github.com/tinyos/tinyos-main
