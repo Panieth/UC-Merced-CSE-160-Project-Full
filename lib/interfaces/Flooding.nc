@@ -1,7 +1,10 @@
 //a file to provdide the interface for flooding
 
-//#include "../../includes/packet.h" no idea if we need this either 
+#include "../../includes/packet.h" 
 
 interface Flooding{
-   //command error_t send(pack msg, uint16_t dest ); no idea if we need this
+   
+   //provide interfaces to the two main functions to be used from floodingP.nc
+   command void sendPing(uint16_t destinationNode, uint8_t *payload);
+   command void flood(pack* message);
 }

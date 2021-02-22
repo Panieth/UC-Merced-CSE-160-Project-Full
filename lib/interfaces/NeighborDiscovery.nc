@@ -1,7 +1,13 @@
 //a file to provdide the interface for neighbor discovery
 
-//#include "../../includes/packet.h" no idea if we need this either 
+#include "../../includes/packet.h" 
 
 interface NeighborDiscovery{
-   //command error_t send(pack msg, uint16_t dest ); no idea if we need this
+   
+   command error_t start();
+
+   //provide interfaces for main functions of NeighborDiscoveryP.nc
+   command void discoveryPacketReceived(pack* message);
+   command void printAllNeighbors();
+
 }

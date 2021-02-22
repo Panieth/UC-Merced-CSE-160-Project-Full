@@ -1,7 +1,18 @@
 //a file for flooding implementation stuff
 
+//include neccesary files 
+#include "../../includes/channels.h"
+#include "../../includes/protocol.h"
+#include "../../includes/packet.h"
+#include <Timer.h>
+//#include "../../includes/channels.h"
+
 module FloodingP{  
     provides interface Flooding;
+
+    //declare interfaces being used
+    uses interface Hashmap<uint16_t> as PacketsSeen;
+    uses interface SimpleSend as Sender; 
 }
 
 implementation{
@@ -26,5 +37,18 @@ implementation{
 
         //send 1 packet to each neighbor
         //dont send to neighbor you received from
+
+    
+
+    //two main functions which can be used by other interfaces 
+    command void Flooding.sendPing(uint16_t destinationNode, uint8_t *payload){
+
+    }
+
+    command void Flooding.flood(pack* message){
+
+    }
+
+    //helper functions to assist above two functions
 
 }
