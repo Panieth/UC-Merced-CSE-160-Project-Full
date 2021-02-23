@@ -87,7 +87,7 @@ implementation{
         for(; i < call MapOfNeighbors.size(); i++){
 
             //if the key is valid then print the neighbor
-            if(makePack[i] != 0 && call MapOfNeighbors.get(mapKeys[i]) - call Timer.getNow() > 10000){
+            if(mapKeys[i] != 0 && ( ( (call MapOfNeighbors.get(mapKeys[i])) - (call Timer.getNow() ) ) > 10000) ){
                 //remove the neighbor 
                 dbg(NEIGHBOR_CHANNEL, "Removing the neighbor: %d\n ", mapKeys[i]);
                 call MapOfNeighbors.remove(mapKeys[i]);
