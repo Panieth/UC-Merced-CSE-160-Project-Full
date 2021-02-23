@@ -5,7 +5,7 @@
 #include "../../includes/protocol.h"
 #include "../../includes/packet.h"
 #include <Timer.h>
-//#include "../../includes/channels.h"
+#include "../../includes/channels.h"
 
 module NeighborDiscoveryP{  
     provides interface NeighborDiscovery;
@@ -59,7 +59,7 @@ implementation{
             //if the protocol message is already a ping reply then a neighbor has been discovered
 
             //insert the neighbor into the neighbor map, using time as a key
-            call MapOfNeighbors.insert(message->src, call Timer.getNow())
+            call MapOfNeighbors.insert(message->src, call Timer.getNow());
 
             //print the neighbor that has been found 
             dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", message->src);
