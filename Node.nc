@@ -11,6 +11,7 @@
 #include "includes/packet.h"
 #include "includes/CommandMsg.h"
 #include "includes/sendInfo.h"
+#include "includes/protocol.h"
 #include "includes/channels.h"
 
 module Node{
@@ -22,6 +23,10 @@ module Node{
    uses interface SimpleSend as Sender;
 
    uses interface CommandHandler;
+
+   //add interfaces for fooding and neighbor discovery 
+   uses interface Flooding;
+   uses interface NeighborDiscovery as NeighborDiscovery;
 }
 
 implementation{
@@ -34,6 +39,9 @@ implementation{
       call AMControl.start();
 
       dbg(GENERAL_CHANNEL, "Booted\n");
+
+      //begin neighbor discovery
+      call NeighborDiscovery.begin();
    }
 
    event void AMControl.startDone(error_t err){
@@ -48,22 +56,45 @@ implementation{
    event void AMControl.stopDone(error_t err){}
 
    event message_t* Receive.receive(message_t* msg, void* payload, uint8_t len){
-      dbg(GENERAL_CHANNEL, "Packet Received\n");
-      if(len==sizeof(pack)){
-         pack* myMsg=(pack*) payload;
-         dbg(GENERAL_CHANNEL, "Package Payload: %s\n", myMsg->payload);
-         return msg;
+      // dbg(GENERAL_CHANNEL, "Packet Received\n");
+      // if(len==sizeof(pack)){
+      //    pack* myMsg=(pack*) payload;
+      //    dbg(GENERAL_CHANNEL, "Package Payload: %s\n", myMsg->payload);
+      //    return msg;
+      // }
+      // dbg(GENERAL_CHANNEL, "Unknown Packet Type %d\n", len);
+      // return msg;
+      
+      //create the package 
+      pack* message = (pack*)payload;
+
+      //if the length does not match the packet then its unknown
+      if(len != sizeof(pack)){
+         dbg(GENERAL_CHANNEL, "Uknown packet type %d\n");
+      }else if(message->dest == 0){
+         //if message dest is 0 then run neighbor discovery 
+         call NeighborDiscovery.discoveryPacketReceived(message);
+      }else{
+         //otherwise flood 
+         call Flooding.flood(message);
       }
-      dbg(GENERAL_CHANNEL, "Unknown Packet Type %d\n", len);
-      return msg;
+      return message;
    }
 
 
    event void CommandHandler.ping(uint16_t destination, uint8_t *payload){
-      dbg(GENERAL_CHANNEL, "PING EVENT \n");
-      makePack(&sendPackage, TOS_NODE_ID, destination, 0, 0, 0, payload, PACKET_MAX_PAYLOAD_SIZE);
-      call Sender.send(sendPackage, destination);
+      //dbg(GENERAL_CHANNEL, "PING EVENT \n");
+      //makePack(&sendPackage, TOS_NODE_ID, destination, 0, 0, 0, payload, PACKET_MAX_PAYLOAD_SIZE);
+      //call Sender.send(sendPackage, destination);
+
+      call Flooding.sendPing(destination, payload);
    }
+
+   event void CommandHandler.printAllNeighbors(uint16_t node_addr){
+      
+      call NeighborDiscovery.printAllNeighbors();
+   }
+
 
    event void CommandHandler.printNeighbors(){}
 

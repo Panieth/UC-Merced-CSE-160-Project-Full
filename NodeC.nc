@@ -30,4 +30,11 @@ implementation {
 
     components CommandHandlerC;
     Node.CommandHandler -> CommandHandlerC;
+
+    //add components for flooding and neighbor discovery 
+    components FloodingC;
+    Node.Flooding -> FloodingC;
+
+    components NeighborDiscoveryC;
+    Node.NeighborDiscovery -> NeighborDiscoveryC;
 }

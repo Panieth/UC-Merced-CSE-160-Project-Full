@@ -52,7 +52,7 @@ implementation{
             dbg(NEIGHBOR_CHANNEL, "Sent Neighbor Discovery PING\n");
 
         }else if( (message->dest == 0) && (message->protocol == PROTOCOL_PINGREPLY)){
-            //if the protocol messsage is already a ping reply then a neighbor has been discovered
+            //if the protocol message is already a ping reply then a neighbor has been discovered
 
             //insert the neighbor into the neighbor map, using time as a key
             call MapOfNeighbors.insert(message->src, call Timer.getNow())
