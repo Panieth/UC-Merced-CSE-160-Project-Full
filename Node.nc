@@ -78,7 +78,7 @@ implementation{
          //otherwise flood 
          call Flooding.flood(message);
       }
-      return message;
+      return msg;
    }
 
 
@@ -90,13 +90,16 @@ implementation{
       call Flooding.sendPing(destination, payload);
    }
 
-   event void CommandHandler.printAllNeighbors(uint16_t node_addr){
+   // event void CommandHandler.printAllNeighbors(uint16_t node_addr){
       
+     // call NeighborDiscovery.printAllNeighbors();
+
+   // }
+
+
+   event void CommandHandler.printNeighbors(){
       call NeighborDiscovery.printAllNeighbors();
    }
-
-
-   event void CommandHandler.printNeighbors(){}
 
    event void CommandHandler.printRouteTable(){}
 
