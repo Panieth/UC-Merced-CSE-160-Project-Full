@@ -4,7 +4,7 @@
 
 interface NeighborDiscovery{
    
-   command error_t start();
+   command error_t begin();
 
    //provide interfaces for main functions of NeighborDiscoveryP.nc
    command void discoveryPacketReceived(pack* message);
