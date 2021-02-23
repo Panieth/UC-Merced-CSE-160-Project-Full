@@ -21,6 +21,9 @@ module NeighborDiscoveryP{
 implementation{
     //code for implementation goes here 
 
+    //declare package to send 
+    pack packageToSend;
+
     //funtion declarations needed 
      void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t Protocol, uint16_t seq, uint8_t *payload, uint8_t length);
 
