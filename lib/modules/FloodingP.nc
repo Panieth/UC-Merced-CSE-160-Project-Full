@@ -46,6 +46,9 @@ implementation{
     //a variable to store the current sequence number to be used for packets
     uint16_t currSequenceNum = 0;
 
+    //function declarations for helper functions 
+     void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t Protocol, uint16_t seq, uint8_t *payload, uint8_t length);
+     void payloadReceived(pack *message);
     //two main functions which can be used by other interfaces 
 
     //a function to handle the sending of flooding pings 
@@ -69,7 +72,7 @@ implementation{
         if(call PacketsSeen.contains(message->seq)){    //could also search for the src key
             //drop the packet
             dbg(FLOODING_CHANNEL, "Packet has been previously seen, Dropping it....\n");
-        }else if(message->destination == TOS_NODE_ID){
+        }else if(message->dest == TOS_NODE_ID){
             //if the destination node is currrent node then the packet has been recieved 
             payloadReceived(message);
         }else if(message->TTL == 0){
@@ -85,7 +88,7 @@ implementation{
             call PacketsSeen.insert(message->src, message->seq);
 
             //resend the packet
-            call Sender.send(message, AM_BROADCAST_ADDR);
+            call Sender.send(*message, AM_BROADCAST_ADDR);
 
             dbg(FLOODING_CHANNEL, "Packet has been forwarded...");
         }

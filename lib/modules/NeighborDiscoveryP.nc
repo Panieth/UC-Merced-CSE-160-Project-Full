@@ -21,6 +21,10 @@ module NeighborDiscoveryP{
 implementation{
     //code for implementation goes here 
 
+    //funtion declarations needed 
+     void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t Protocol, uint16_t seq, uint8_t *payload, uint8_t length);
+     
+
     //two main functions which can be used by other interfaces 
 
     //a function to start the neighbor discovery timer 
