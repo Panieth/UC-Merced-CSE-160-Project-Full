@@ -13,7 +13,7 @@ module NeighborDiscoveryP{
     //declare interfaces being used
     uses interface Random as Random;
     uses interface Timer<TMilli> as Timer;
-    uses interface Simplesend as Sender;
+    uses interface SimpleSend as Sender;
     uses interface Hashmap<uint16_t> as MapOfNeighbors;
     
 }
@@ -23,7 +23,7 @@ implementation{
 
     //funtion declarations needed 
      void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t Protocol, uint16_t seq, uint8_t *payload, uint8_t length);
-     
+
 
     //two main functions which can be used by other interfaces 
 
@@ -62,7 +62,7 @@ implementation{
             call MapOfNeighbors.insert(message->src, call Timer.getNow())
 
             //print the neighbor that has been found 
-            dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", message->src)
+            dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", message->src);
         }
     }
 
