@@ -102,7 +102,7 @@ implementation{
 
             dbg(FLOODING_CHANNEL, "Ping has been received!\n");
             //log the packet 
-            logpack(message);
+            logPack(message);
             //add the packet to the seen list
             call PacketsSeen.insert(message->src, message->seq);
 
@@ -114,7 +114,7 @@ implementation{
         }else if(message->protocol == PROTOCOL_PINGREPLY){
             dbg(FLOODING_CHANNEL, "Pingreply has been received!\n");
             //log the packet
-            logpack(message);
+            logPack(message);
             //add the packet to the seen list
             call PacketsSeen.insert(message->src, message->seq);
         }
