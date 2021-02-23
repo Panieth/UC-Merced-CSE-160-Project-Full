@@ -101,7 +101,7 @@ implementation{
         if(message->protocol == PROTOCOL_PING){
 
             dbg(FLOODING_CHANNEL, "Ping has been received!\n");
-            dbg(FLOODING_CHANNEL, "Package Payload: %s\n", myMsg->payload); //added to see payload contents
+            dbg(FLOODING_CHANNEL, "Package Payload: %s\n", message->payload); //added to see payload contents
             //log the packet 
             logPack(message);
             //add the packet to the seen list
