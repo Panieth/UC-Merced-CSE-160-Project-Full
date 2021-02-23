@@ -66,6 +66,36 @@ implementation{
         }
     }
 
+    event void Timer.fired(){
+        
+        //initialize iterator variable 
+        uint16_t i = 0;
+
+        //a variable to hold the payload 
+        uint8_t payload = 0;
+
+        //get the list of keys from the neigbor map
+        uint32_t* mapKeys = call MapOfNeighbors.getKeys();
+
+        //print neighbors 
+        call NeighborDiscovery.printAllNeighbors();
+
+        //remove any neighbors that are no longer responsive 
+        for(; i < call MapOfNeighbors.size(); i++){
+
+            //if the key is valid then print the neighbor
+            if(makePack[i] != 0 && call MapOfNeighbors.get(mapKeys[i]) - call Timer.getNow() > 10000){
+                //remove the neighbor 
+                dbg(NEIGHBOR_CHANNEL, "Removing the neighbor: %d\n ", mapKeys[i]);
+                call MapOfNeighbors.remove(mapKeys[i]);
+            }
+        }
+
+        //make a new packet and send a discovery packet
+        makePack(&packageToSend, TOS_NODE_ID, 0, 1, PROTOCOL_PING, 0, &payload, PACKET_MAX_PAYLOAD_SIZE);
+        call Sender.send(packageToSend, AM_BROADCAST_ADDR);
+    }
+
     command void NeighborDiscovery.printAllNeighbors(){
         
         //initialize iterator variable 
