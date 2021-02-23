@@ -5,7 +5,7 @@
 #include "../../includes/protocol.h"
 #include "../../includes/packet.h"
 #include <Timer.h>
-//#include "../../includes/channels.h"
+#include "../../includes/channels.h"
 
 module FloodingP{  
     provides interface Flooding;
@@ -107,7 +107,7 @@ implementation{
             call PacketsSeen.insert(message->src, message->seq);
 
             //make a new packet and send as ping reply
-            makePack(&packageToSend, message->dest, message->src, BETTER_TTL, PROTOCOL_PINGREPLY, currSequenceNum++, (uint8_t*)message->payload, PACKET_MAX_PAYLOAD_SIZE);
+            makePack(&packageToSend, message->dest, message->src, MAX_TTL, PROTOCOL_PINGREPLY, currSequenceNum++, (uint8_t*)message->payload, PACKET_MAX_PAYLOAD_SIZE);
             call Sender.send(packageToSend, AM_BROADCAST_ADDR);
             dbg(FLOODING_CHANNEL, "Sent Pingreply!");
 
