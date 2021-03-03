@@ -37,7 +37,7 @@ def main():
     #s.ping(1, 10, "Hi!");
     s.runTime(10);
 
-    s.ping(1, 8, "Please work");
+    s.ping(1, 4, "Please work");
     s.runTime(20);
 
 if __name__ == '__main__':

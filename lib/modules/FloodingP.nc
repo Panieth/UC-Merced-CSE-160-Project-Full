@@ -55,10 +55,10 @@ implementation{
     command void Flooding.sendPing(uint16_t destinationNode, uint8_t *payload){
 
         //make relevant print statements to the debug channel 
-        dbg(FLOODING_CHANNEL, "Ping event started\n");
-        dbg(FLOODING_CHANNEL, "From sender: %d\n", TOS_NODE_ID);
-        dbg(FLOODING_CHANNEL, "To destination: %d\n", destinationNode);
-        
+        dbg(FLOODING_CHANNEL, "Ping event started:\n");
+        dbg(FLOODING_CHANNEL, "     From sender: %d\n", TOS_NODE_ID);
+        dbg(FLOODING_CHANNEL, "     To destination: %d\n", destinationNode);
+        dbg(FLOODING_CHANNEL, "     Package Payload: %s\n", payload); //added to see payload contents    
 
         //make a packet for this ping and send it
         makePack(&packageToSend, TOS_NODE_ID, destinationNode, 22, PROTOCOL_PING, currSequenceNum, payload, PACKET_MAX_PAYLOAD_SIZE);
@@ -102,7 +102,8 @@ implementation{
         if(message->protocol == PROTOCOL_PING){
 
             dbg(FLOODING_CHANNEL, "Ping has been received!\n");
-            dbg(FLOODING_CHANNEL, "Package Payload: %s\n", message->payload); //added to see payload contents
+            dbg(FLOODING_CHANNEL, "     From node: %d\n", message->src);
+            dbg(FLOODING_CHANNEL, "     Package Payload: %s\n", message->payload); //added to see payload contents
             //log the packet 
             logPack(message);
             //add the packet to the seen list
