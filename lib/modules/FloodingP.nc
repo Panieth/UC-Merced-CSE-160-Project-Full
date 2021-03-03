@@ -83,10 +83,10 @@ implementation{
             //at this point the message must be forwarded 
 
             //decrement the time to live
-            message->TTL --;
+            message->TTL = message->TTL - 1;
 
             //insert the packet into the seen list
-            call PacketsSeen.insert(message->src, message->seq);
+            call PacketsSeen.insert(message->src, message->seq); //////////////////////
 
             //resend the packet
             call Sender.send(*message, AM_BROADCAST_ADDR);
