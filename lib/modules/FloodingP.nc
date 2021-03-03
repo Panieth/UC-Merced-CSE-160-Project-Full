@@ -58,6 +58,7 @@ implementation{
         dbg(FLOODING_CHANNEL, "Ping event started\n");
         dbg(FLOODING_CHANNEL, "From sender: %d\n", TOS_NODE_ID);
         dbg(FLOODING_CHANNEL, "To destination: %d\n", destinationNode);
+        
 
         //make a packet for this ping and send it
         makePack(&packageToSend, TOS_NODE_ID, destinationNode, 22, PROTOCOL_PING, currSequenceNum, payload, PACKET_MAX_PAYLOAD_SIZE);
