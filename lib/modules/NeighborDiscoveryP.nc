@@ -36,7 +36,7 @@ implementation{
         call Timer.startPeriodic((uint16_t) (call Random.rand16() % 1000) + 10000);
 
         //print its stated using the debug channel 
-        dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery has been Started!\n");
+        //dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery has been Started!\n");
 
     }
     
@@ -56,7 +56,7 @@ implementation{
             //send the packet 
             call Sender.send(*message, AM_BROADCAST_ADDR);
             //print such in the channel
-            dbg(NEIGHBOR_CHANNEL, "Sent Neighbor Discovery PING\n");
+            //dbg(NEIGHBOR_CHANNEL, "Sent Neighbor Discovery PING\n");
 
         }else if( (message->dest == 0) && (message->protocol == PROTOCOL_PINGREPLY)){
             //if the protocol message is already a ping reply then a neighbor has been discovered
@@ -65,7 +65,7 @@ implementation{
             call MapOfNeighbors.insert(message->src, call Timer.getNow());
 
             //print the neighbor that has been found 
-            dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", message->src);
+            //dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", message->src);
         }
     }
 
@@ -89,7 +89,7 @@ implementation{
             //if the key is valid then print the neighbor
             if(mapKeys[i] != 0 && ( ( (call MapOfNeighbors.get(mapKeys[i])) - (call Timer.getNow() ) ) > 10000) ){
                 //remove the neighbor 
-                dbg(NEIGHBOR_CHANNEL, "Removing the neighbor: %d\n ", mapKeys[i]);
+                //dbg(NEIGHBOR_CHANNEL, "Removing the neighbor: %d\n ", mapKeys[i]);
                 call MapOfNeighbors.remove(mapKeys[i]);
             }
         }

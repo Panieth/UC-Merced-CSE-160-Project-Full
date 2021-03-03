@@ -27,12 +27,17 @@ def main():
 
     # After sending a ping, simulate a little to prevent collision.
     s.runTime(1);
-    s.ping(2, 5, "Hello, World");
+    #s.ping(2, 5, "Hello, World");
+    s.moteOff(4);
     s.runTime(10);
+
     #s.neighborDMP(2);
     #s.runTime(10);
+
     #s.ping(1, 10, "Hi!");
-    #s.runTime(1);
+    s.runTime(10);
+
+    s.ping(1, 8, "Please work");
 
 if __name__ == '__main__':
     main()
