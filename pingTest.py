@@ -38,6 +38,7 @@ def main():
     s.runTime(10);
 
     s.ping(1, 8, "Please work");
+    s.runTime(20);
 
 if __name__ == '__main__':
     main()

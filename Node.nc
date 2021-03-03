@@ -20,7 +20,7 @@ module Node{
    uses interface SplitControl as AMControl;
    uses interface Receive;
 
-   uses interface SimpleSend as Sender;
+   //uses interface SimpleSend as Sender;
 
    uses interface CommandHandler;
 

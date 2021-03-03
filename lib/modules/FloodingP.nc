@@ -70,7 +70,7 @@ implementation{
 
     command void Flooding.flood(pack* message){
         //check if the packet has already been seen 
-        if(call PacketsSeen.contains(message->seq)){    //could also search for the src key
+        if(call PacketsSeen.contains(message->src)){    //could also search for the seq key
             //drop the packet
             dbg(FLOODING_CHANNEL, "Packet has been previously seen, Dropping it....\n");
         }else if(message->dest == TOS_NODE_ID){
@@ -91,7 +91,7 @@ implementation{
             //resend the packet
             call Sender.send(*message, AM_BROADCAST_ADDR);
 
-            dbg(FLOODING_CHANNEL, "Packet has been forwarded...");
+            dbg(FLOODING_CHANNEL, "Packet has been forwarded...\n");
         }
     }
 
