@@ -1,8 +1,8 @@
 # a file to implement the testing of DVR component for project 2
+from TestSim import TestSim
 
 def main():
 
-  main():
     # Get simulation ready to run.
     s = TestSim()
 
@@ -64,6 +64,7 @@ def main():
 
     #s.routeDMP(5)
     #s.runTime(20)
+
 if __name__ == '__main__':
     main()
 

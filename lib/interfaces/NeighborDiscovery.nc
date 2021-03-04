@@ -10,4 +10,7 @@ interface NeighborDiscovery{
    command void discoveryPacketReceived(pack* message);
    command void printAllNeighbors();
 
+   //interfaces to provide neighbor information to other services such as DVR
+   command uint32_t* getNeighbors();
+   command uint16_t getNumNeighbors();
 }

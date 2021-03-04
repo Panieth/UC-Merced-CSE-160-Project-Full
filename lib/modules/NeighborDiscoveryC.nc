@@ -26,4 +26,8 @@ implementation{
     components new HashmapC(uint16_t, 20);
     NeighborDiscoveryP.MapOfNeighbors -> HashmapC;
 
+    //add components necessary for project 2
+    components DistanceVectorRoutingC;
+    NeighborDiscoveryP.DistanceVectorRouting -> DistanceVectorRoutingC;
+
 }

@@ -7,6 +7,8 @@
 #include <Timer.h>
 #include "../../includes/channels.h"
 
+#define NEIGHBOR_DISCOVERY_TTL 5
+
 module NeighborDiscoveryP{  
     provides interface NeighborDiscovery;
 
@@ -15,6 +17,9 @@ module NeighborDiscoveryP{
     uses interface Timer<TMilli> as Timer;
     uses interface SimpleSend as Sender;
     uses interface Hashmap<uint16_t> as MapOfNeighbors;
+
+    //additional interface for project 2
+    uses interface DistanceVectorRouting as DistanceVectorRouting;
     
 }
 
@@ -61,11 +66,20 @@ implementation{
         }else if( (message->dest == 0) && (message->protocol == PROTOCOL_PINGREPLY)){
             //if the protocol message is already a ping reply then a neighbor has been discovered
 
-            //insert the neighbor into the neighbor map, using time as a key
-            call MapOfNeighbors.insert(message->src, call Timer.getNow());
+            
+            //call MapOfNeighbors.insert(message->src, call Timer.getNow());
 
             //print the neighbor that has been found 
-            //dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", message->src);
+            dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", message->src);
+
+            //changes made for DVR implementation project 2
+            //if the neighbor is found then call DVR and let it know a new neighbor has been found
+            if(! call MapOfNeighbors.contains(message->src)){
+                call DistanceVectorRouting.foundNeighbor();
+            }
+
+            //insert the neighbor into the neighbor map, using neighbor discovery TTL as a key
+            call MapOfNeighbors.insert(message->src, NEIGHBOR_DISCOVERY_TTL);
         }
     }
 
@@ -85,12 +99,21 @@ implementation{
 
         //remove any neighbors that are no longer responsive 
         for(; i < call MapOfNeighbors.size(); i++){
-
+            if(mapKeys[i] == 0){
+                continue;
+            }
             //if the key is valid then print the neighbor
-            if(mapKeys[i] != 0 && ( ( (call MapOfNeighbors.get(mapKeys[i])) - (call Timer.getNow() ) ) > 10000) ){
+            if(call MapOfNeighbors.get(mapKeys[i]) == 0 ){
                 //remove the neighbor 
                 //dbg(NEIGHBOR_CHANNEL, "Removing the neighbor: %d\n ", mapKeys[i]);
+
+                //tell dvr the neighbor has been lost
+                call DistanceVectorRouting.lostNeighbor(mapKeys[i]);
                 call MapOfNeighbors.remove(mapKeys[i]);
+            }else{
+
+                //otherwise insert
+                call MapOfNeighbors.insert(mapKeys[i], call MapOfNeighbors.get(mapKeys[i] - 1));
             }
         }
 
@@ -117,6 +140,20 @@ implementation{
                 dbg(NEIGHBOR_CHANNEL, "    %d is a Neighbor\n ", mapKeys[i]);
             }
         }
+    }
+
+    //new functions to send neighbor inormation for purposes of DVR
+
+    //a function to give the neighbors to DVR
+    command uint32_t* NeighborDiscovery.getNeighbors(){
+        //return the keys to the neighbor map
+        return call MapOfNeighbors.getKeys();
+    }
+
+    //a function to give the number of neighbors to DVR
+    command uint16_t NeighborDiscovery.getNumNeighbors(){
+        //simply return the size of the neighbor list size
+        return call MapOfNeighbors.size();
     }
 
     //helper functions to assist above two functions

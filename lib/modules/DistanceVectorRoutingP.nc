@@ -1,4 +1,4 @@
-#include "../../includes/dv_strategy.h"
+#include "../../includes/DVR.h"
 #include "../../includes/channels.h"
 #include "../../includes/protocol.h"
 #include "../../includes/packet.h"
@@ -37,7 +37,7 @@ implementation {
 
     //a structure to store the parameters for a given route
     typedef struct{
-        uint8_t destination;
+        uint8_t dest;
         uint8_t nextHop;
         uint8_t cost;
         uint8_t ttl;
@@ -64,18 +64,19 @@ implementation {
 
     //declaration for all extra functions not used as interfaces
     void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t Protocol, uint16_t seq, void *payload, uint8_t length);
-    void initializeTable();
+    void initializeInitializeTable();
     uint8_t findHop(uint8_t destination);
     void addRoute(uint8_t destination, uint8_t nextNode, uint8_t cost, uint8_t ttl);
     void RemoveRoute(uint8_t routeNum);
     void updateTTLS();
     void update();
+    void inputNeighbor();
 
     //command to begin the DVR process
     command error_t DistanceVectorRouting.begin(){
         
         //initialize the routing table
-        initializeTable();
+        initializeInitializeTable();
 
         //start the timer
         call Timer.startOneShot(40000);
@@ -99,7 +100,7 @@ implementation {
             
 
             // Input neighbors into the routing table, if not there
-            inputNeighbors();
+            inputNeighbor();
 
             // pass/return the updated table
             update();
@@ -110,18 +111,18 @@ implementation {
 
 
 
-command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *payload) {
+command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *payload) {
 
         //make the package
-        makePack(&PackToRoute, TOS_NODE_ID, destination, MAX_TTL, PROTOCOL_PING, 0, payload, PACKET_MAX_PAYLOAD_SIZE);
+        makePack(&packToRoute, TOS_NODE_ID, destination, MAX_TTL, PROTOCOL_PING, 0, payload, PACKET_MAX_PAYLOAD_SIZE);
 
         //send message to the debug channel
         dbg(ROUTING_CHANNEL, "PING FROM %d TO %d\n", TOS_NODE_ID, destination);
 
         //logging the sent pack
-        logPack(&PackToRoute);
+        logPack(&packToRoute);
 
-        call DistanceVectorRouting.route(&PackToRoute);
+        call DistanceVectorRouting.route(&packToRoute);
     }
 
 
@@ -218,7 +219,7 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
                     // If route cost not infinite, we should update the TTL
                     if (initializeTable[j].cost != MAX_COST){
 
-                        initializeTable[j].ttl = DV_TTL;
+                        initializeTable[j].ttl = DVR_TTL;
 
                     }
 
@@ -233,7 +234,7 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
             // If route is not in table AND there is space AND it is not a split horizon packet AND the route cost is not infinite -> add it
             if (!routePresent && routeCount != MAX_NUM_ROUTES && receivedRoutes[i].nextHop != 0 && receivedRoutes[i].cost != MAX_COST) {
 
-                addRoute(receivedRoutes[i].dest, myMsg->src, receivedRoutes[i].cost + 1, DV_TTL);
+                addRoute(receivedRoutes[i].dest, myMsg->src, receivedRoutes[i].cost + 1, DVR_TTL);
 
                 routesAdded = TRUE;
 
@@ -283,15 +284,15 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
     //if syntax was inconsistent. Found neighbor is an example of this. you wrote it with a capital f but lost neighbor starts
     //with a lowercase l. Just thought I'd let you know. 
 
-    command void DistanceVectorRouting.FoundNeighbor() {
+    command void DistanceVectorRouting.foundNeighbor() {
 
         // Neighbor found, update routing table and trigger DV update
-        inputNeighbors();
+        inputNeighbor();
 
     }
 
 
-    command void DistanceVectorRouting.printinitializeTable() {
+    command void DistanceVectorRouting.printRoutingTable() {
 
         uint8_t i;
 
@@ -312,9 +313,9 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
     //if it's never used/called maybe we can just scrap this one?
 
     //initiailize the initial table
-    void initilizeinitializeTable() {
+    void initializeInitializeTable() {
 
-        addRoute(TOS_NODE_ID, TOS_NODE_ID, 0, DV_TTL);
+        addRoute(TOS_NODE_ID, TOS_NODE_ID, 0, DVR_TTL);
 
     }
 
@@ -381,7 +382,7 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
 
     }
 
-    void updateTTLs() {
+    void updateTTLS() {
 
         //Initialize variables
         uint8_t i;
@@ -413,11 +414,11 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
 
 
     //vargas this is the less big one but still kinda specific
-    void inputNeighbors() {
+    void inputNeighbor() {
         
         //variable initialization
         uint32_t* neighbors = call NeighborDiscovery.getNeighbors();
-        uint16_t neighborsListSize = call NeighborDiscovery.getNeighborListSize();
+        uint16_t neighborsListSize = call NeighborDiscovery.getNumNeighbors();
         uint8_t i, j;
         bool routeFound = FALSE, newNeighborfound = FALSE;
 
@@ -430,7 +431,7 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
 
                     initializeTable[j].nextHop = neighbors[i];
                     initializeTable[j].cost = 1;
-                    initializeTable[j].ttl = DV_TTL;
+                    initializeTable[j].ttl = DVR_TTL;
 
                     routeFound = TRUE;
 
@@ -443,7 +444,7 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
             // Add neighbor if it is not already present, and we have the space for it
             if (!routeFound && routeCount != MAX_NUM_ROUTES) {
 
-                addRoute(neighbors[i], neighbors[i], 1, DV_TTL);   
+                addRoute(neighbors[i], neighbors[i], 1, DVR_TTL);   
 
                 newNeighborfound = TRUE;
 
@@ -477,7 +478,7 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
         //setting up variables as necessary for the function
         // Send routes to all neighbors one at a time. Use split horizon, poison reverse
         uint32_t* neighbors = call NeighborDiscovery.getNeighbors();
-        uint16_t neighborsListSize = call NeighborDiscovery.getNeighborListSize();
+        uint16_t neighborsListSize = call NeighborDiscovery.getNumNeighbors();
         uint8_t i = 0, j = 0, counter = 0;
         uint8_t temp;
         Route packetRoutes[5];
@@ -527,12 +528,12 @@ command void DistanceVectorRouting.sendping(uint16_t destination, uint8_t *paylo
                 if (counter == 5 || j == routeCount-1) {
 
                     // make the packet to be sent
-                    makePack(&PackToRoute, TOS_NODE_ID, neighbors[i], 1, PROTOCOL_DV, 0, &packetRoutes, sizeof(packetRoutes));
+                    makePack(&packToRoute, TOS_NODE_ID, neighbors[i], 1, PROTOCOL_DV, 0, &packetRoutes, sizeof(packetRoutes));
 
                     // Send out packet
                     //vargas, this is using sender.send. dont know if that matters. Not sure if that means simple send
                     //or if it uses our flooding send, or a differnet send. 
-                    call Sender.send(PackToRoute, neighbors[i]);
+                    call Sender.send(packToRoute, neighbors[i]);
 
                     // Zero out array
                     while (counter > 0) {

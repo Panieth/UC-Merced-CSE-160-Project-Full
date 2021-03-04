@@ -122,6 +122,9 @@ class TestSim:
     def neighborDMP(self, destination):
         self.sendCMD(self.CMD_NEIGHBOR_DUMP, destination, "neighbor command");
 
+    def printMessage(self, source, msg):
+        self.sendCMD(self.CMD_PRINT_MESSAGE, source, msg)
+
     def routeDMP(self, destination):
         self.sendCMD(self.CMD_ROUTE_DUMP, destination, "routing command");
 

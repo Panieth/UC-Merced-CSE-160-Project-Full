@@ -21,8 +21,11 @@ def main():
     s.addChannel(s.GENERAL_CHANNEL);
 
     # Add the channels necessary for project 1
-    s.addChannel(s.FLOODING_CHANNEL);  #channel for the flooding implementation
+    #s.addChannel(s.FLOODING_CHANNEL);  #channel for the flooding implementation
     #s.addChannel(s.NEIGHBOR_CHANNEL);  #channel for the neighbor discovery implementation
+
+    #add channels for project 2
+    s.addChannel(s.ROUTING_CHANNEL);
 
 
     # After sending a ping, simulate a little to prevent collision.

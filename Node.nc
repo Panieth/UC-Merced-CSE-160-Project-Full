@@ -108,7 +108,7 @@ implementation{
       //call Flooding.sendPing(destination, payload);
 
       //now use the DVR send ping function instead,
-      call DistanceVectorRouting.sendPing(destinationNode, payload);
+      call DistanceVectorRouting.sendPing(destination, payload);
    }
 
    event void CommandHandler.printNeighbors(){
