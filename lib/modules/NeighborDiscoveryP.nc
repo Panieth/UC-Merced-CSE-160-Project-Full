@@ -36,7 +36,7 @@ implementation{
         call Timer.startPeriodic((uint16_t) (call Random.rand16() % 1000) + 10000);
 
         //print its stated using the debug channel 
-        //dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery has been Started!\n");
+        dbg(NEIGHBOR_CHANNEL, "Neighbor Discovery has been Started!\n");
 
     }
     
@@ -108,13 +108,13 @@ implementation{
         uint32_t* mapKeys = call MapOfNeighbors.getKeys();
 
         //proceed to print the neighbors 
-        //dbg(NEIGHBOR_CHANNEL, "Printing all the neigbors...\n");
+        dbg(NEIGHBOR_CHANNEL, "Printing all the neigbors...\n");
         for(; i < call MapOfNeighbors.size(); i++){
 
             //if the key is valid then print the neighbor
             if(mapKeys[i] != 0){
                 //print the relevant node 
-                //dbg(NEIGHBOR_CHANNEL, "    %d is a Neighbor\n ", mapKeys[i]);
+                dbg(NEIGHBOR_CHANNEL, "    %d is a Neighbor\n ", mapKeys[i]);
             }
         }
     }

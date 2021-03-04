@@ -92,7 +92,7 @@ implementation{
             call Sender.send(*message, AM_BROADCAST_ADDR);
 
             dbg(FLOODING_CHANNEL, "Packet has been forwarded...\n");
-            dbg(FLOODING_CHANNEL, "     TTL: %d\n", message->TTL);
+            //dbg(FLOODING_CHANNEL, "     TTL: %d\n", message->TTL);
         }
     }
 
