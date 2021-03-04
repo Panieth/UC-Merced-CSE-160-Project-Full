@@ -24,9 +24,10 @@ module Node{
 
    uses interface CommandHandler;
 
-   //add interfaces for fooding and neighbor discovery 
+   //add interfaces for fooding and neighbor discovery and DVR
    uses interface Flooding;
    uses interface NeighborDiscovery as NeighborDiscovery;
+   uses interface DistanceVectorRouting as DistanceVectorRouting;
 }
 
 implementation{
@@ -42,6 +43,9 @@ implementation{
 
       //begin neighbor discovery
       call NeighborDiscovery.begin();
+
+      //begin distance vector routing
+      call DistanceVectorRouting.begin();
    }
 
    event void AMControl.startDone(error_t err){
@@ -56,6 +60,8 @@ implementation{
    event void AMControl.stopDone(error_t err){}
 
    event message_t* Receive.receive(message_t* msg, void* payload, uint8_t len){
+      //first implementation using basic simplesend
+
       // dbg(GENERAL_CHANNEL, "Packet Received\n");
       // if(len==sizeof(pack)){
       //    pack* myMsg=(pack*) payload;
@@ -74,9 +80,21 @@ implementation{
       }else if(message->dest == 0){
          //if message dest is 0 then run neighbor discovery 
          call NeighborDiscovery.discoveryPacketReceived(message);
+      }else if(message->protocol == PROTOCOL_DV){
+         
+         //if the packet was already routed check for any updates
+         call DistanceVectorRouting.checkForUpdates(message);
+
       }else{
-         //otherwise flood 
-         call Flooding.flood(message);
+         
+         //call Flooding.flood(message);
+
+         //no longer using flooding so commented it out
+         //now we will handle the traversal of the packet
+         //using distance vector routing 
+
+         call DistanceVectorRouting.route(message);
+
       }
       return msg;
    }
@@ -86,15 +104,26 @@ implementation{
       //dbg(GENERAL_CHANNEL, "PING EVENT \n");
       //makePack(&sendPackage, TOS_NODE_ID, destination, 0, 0, 0, payload, PACKET_MAX_PAYLOAD_SIZE);
       //call Sender.send(sendPackage, destination);
+      //no longer using flooding 
+      //call Flooding.sendPing(destination, payload);
 
-      call Flooding.sendPing(destination, payload);
+      //now use the DVR send ping function instead,
+      call DistanceVectorRouting.sendPing(destinationNode, payload);
    }
 
    event void CommandHandler.printNeighbors(){
       call NeighborDiscovery.printAllNeighbors();
    }
 
-   event void CommandHandler.printRouteTable(){}
+   event void CommandHandler.printRouteTable(){
+      //call the print route table from DVR component
+      call DistanceVectorRouting.printRoutingTable();
+   }
+
+   event void CommandHandler.printMessage(uint8_t *payload) {
+         //print the payload 
+        dbg(GENERAL_CHANNEL, "%s\n", payload);
+    }
 
    event void CommandHandler.printLinkState(){}
 
