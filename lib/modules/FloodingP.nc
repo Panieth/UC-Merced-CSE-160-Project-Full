@@ -70,7 +70,7 @@ implementation{
 
     command void Flooding.flood(pack* message){
         //check if the packet has already been seen 
-        if(call PacketsSeen.contains(message->src)){    //could also search for the seq key
+        if( call PacketsSeen.contains(message->src) ){    //could also search for the seq key
             //drop the packet
             dbg(FLOODING_CHANNEL, "Packet has been previously seen, Dropping it....\n");
         }else if(message->dest == TOS_NODE_ID){
@@ -92,6 +92,7 @@ implementation{
             call Sender.send(*message, AM_BROADCAST_ADDR);
 
             dbg(FLOODING_CHANNEL, "Packet has been forwarded...\n");
+            dbg(FLOODING_CHANNEL, "     TTL: %d\n", message->TTL);
         }
     }
 
@@ -101,7 +102,7 @@ implementation{
     void payloadReceived(pack *message){
         if(message->protocol == PROTOCOL_PING){
 
-            dbg(FLOODING_CHANNEL, "Ping has been received!\n");
+            dbg(FLOODING_CHANNEL, "Ping has been received!---------------------------------------------------\n");
             dbg(FLOODING_CHANNEL, "     From node: %d\n", message->src);
             dbg(FLOODING_CHANNEL, "     Package Payload: %s\n", message->payload); //added to see payload contents
             //log the packet 
@@ -110,9 +111,10 @@ implementation{
             call PacketsSeen.insert(message->src, message->seq);
 
             //make a new packet and send as ping reply
-            makePack(&packageToSend, message->dest, message->src, MAX_TTL, PROTOCOL_PINGREPLY, currSequenceNum++, (uint8_t*)message->payload, PACKET_MAX_PAYLOAD_SIZE);
+            currSequenceNum = currSequenceNum + 1;
+            makePack(&packageToSend, message->dest, message->src, MAX_TTL, PROTOCOL_PINGREPLY, currSequenceNum, (uint8_t*)message->payload, PACKET_MAX_PAYLOAD_SIZE);
             call Sender.send(packageToSend, AM_BROADCAST_ADDR);
-            dbg(FLOODING_CHANNEL, "Sent Pingreply!");
+            dbg(FLOODING_CHANNEL, "Sent Pingreply!\n");
 
         }else if(message->protocol == PROTOCOL_PINGREPLY){
             dbg(FLOODING_CHANNEL, "Pingreply has been received!\n");
