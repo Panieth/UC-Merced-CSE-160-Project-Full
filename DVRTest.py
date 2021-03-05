@@ -10,7 +10,7 @@ def main():
     s.runTime(1)
 
     # Load the the layout of the network.
-    s.loadTopo("DVR.topo")
+    s.loadTopo("example.topo")
 
     # Add a noise model to all of the motes.
     s.loadNoise("no_noise.txt")
@@ -47,23 +47,23 @@ def main():
     s.ping(2, 7, "Work pls")
     s.runTime(20)
 
-    #s.printMessage(3, "Mote 3 signing off...")
-    #s.runTime(5)
+    s.printMessage(3, "Mote 3 signing off...")
+    s.runTime(5)
 
-    #s.moteOff(3)
-    #s.runTime(40)
+    s.moteOff(3)
+    s.runTime(40)
 
-    #s.ping(2, 4, "Still works?")
-    #s.runTime(20)
+    s.ping(2, 4, "Still works?")
+    s.runTime(20)
 
-    #s.routeDMP(2)
-    #s.runTime(20)
+    s.routeDMP(2)
+    s.runTime(20)
 
-    #s.routeDMP(4)
-    #s.runTime(20)
+    s.routeDMP(4) #used to be 4
+    s.runTime(20)
 
-    #s.routeDMP(5)
-    #s.runTime(20)
+    s.routeDMP(5)
+    s.runTime(20)
 
 if __name__ == '__main__':
     main()

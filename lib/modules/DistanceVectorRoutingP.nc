@@ -12,14 +12,6 @@
 #define STRATEGY STRATEGY_SPLIT_HORIZON
 
 
-
-//Vargas: stragetgy poison reverse is commeneted out on other file. not sure if we need it to make things work 
-//but it is referenced in line 500ish inside of update method
-//also, you have "start" to be refrenced as "begin", but I wasn't sure if that included things like Timer.startOneshot
-//and if they should be changed to Timer.beginOneShot. If so, you might wanna double check those as well
-
-
-
 module DistanceVectorRoutingP{
 
     //declare interface Provided
@@ -47,20 +39,14 @@ implementation {
     uint16_t routeCount = 0;
 
 
-
-
-//Hey Vargas, just waneted to let you know that i am changing all the 
-//"routingTable" variables to "initializeTable". If that's not what it's
-//supposed to be according to the note you gave me, now you know what to 
-//conrtol + f to look for
-
-
-
     //a variable to store the routing table for the given node
     Route initializeTable[MAX_NUM_ROUTES];
 
     //the package we are trying to route 
     pack packToRoute;
+
+    //a variable to save the cost of the route associated with packet above
+    uint16_t routeCost = 0; 
 
     //declaration for all extra functions not used as interfaces
     void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t Protocol, uint16_t seq, void *payload, uint8_t length);
@@ -71,6 +57,7 @@ implementation {
     void updateTTLS();
     void update();
     void inputNeighbor();
+    uint8_t getCost(nx_uint16_t destination);
 
     //command to begin the DVR process
     command error_t DistanceVectorRouting.begin(){
@@ -80,7 +67,7 @@ implementation {
 
         //start the timer
         call Timer.startOneShot(40000);
-        dbg(ROUTING_CHANNEL, "DVR started for node %u", TOS_NODE_ID);
+        dbg(ROUTING_CHANNEL, "DVR started for node %u\n", TOS_NODE_ID);
     }
     
     event void Timer.fired() {
@@ -92,13 +79,7 @@ implementation {
 
             // Update TTL
             updateTTLS();
-
             
-            //Vargas, this one (inputNeighbors)interacts with Neighbor discovery, and honestly i dunno how the calls for that work
-            //so you might have to edit the input Neighbors function and rename it, or however you want to handle it
-            
-            
-
             // Input neighbors into the routing table, if not there
             inputNeighbor();
 
@@ -108,9 +89,7 @@ implementation {
     }
 
 
-
-
-
+//a function to send a ping using distance vector routing 
 command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *payload) {
 
         //make the package
@@ -126,56 +105,72 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
     }
 
 
-    command void DistanceVectorRouting.route(pack* myMsg) {
+    //a function to route a packet using the relevant routing data 
+    command void DistanceVectorRouting.route(pack* message) {
         //initialize variable to store next destination
         uint8_t nextHop;
 
         //if destination is correct, print message and return
-        if (myMsg->dest == TOS_NODE_ID) {
+        if (message->dest == TOS_NODE_ID) {
 
-            dbg(ROUTING_CHANNEL, "Packet has reached destination %d!!!\n", TOS_NODE_ID);
+            //print out info about the packet received 
+            dbg(ROUTING_CHANNEL, "Packet has reached destination %d!!!----------------------------------\n", TOS_NODE_ID);
+            dbg(ROUTING_CHANNEL, "     From node: %d\n", message->src);
+            dbg(ROUTING_CHANNEL, "     Payload: %s\n", message->payload);
 
             return;
         }
 
         //if destination is not correct, find the next hop for the message
-        nextHop = findHop(myMsg->dest);
-
-//Hey Vargas, just a suggestion, but maybe use case statements here?
-//Case 0 = no route, case default = routing through kind of thing
-//i dunno. Just a suggestion  ¯\_(ツ)_/¯
+        nextHop = findHop(message->dest);
 
         //drop packet if a route cannot be found
         if (nextHop == 0) {
 
             dbg(ROUTING_CHANNEL, "No route to destination. Dropping packet...\n");
 
-            logPack(myMsg);
+            //log the package 
+            logPack(message);
 
         } else {
 
             //spit out next node the packet is heading through
-            dbg(ROUTING_CHANNEL, "Node %d routing packet through %d\n", TOS_NODE_ID, nextHop);
+            //dbg(ROUTING_CHANNEL, "Node %d routing packet through %d\n", TOS_NODE_ID, nextHop);
 
-            logPack(myMsg);
+            uint16_t cost = getCost(message->dest);
+            dbg(ROUTING_CHANNEL, "Routing Packet - src: %d, dest: %d, seq: %d, next hop: %d, cost: %d\n", message->src, message->dest, message->seq, nextHop,  cost);
 
-            call Sender.send(*myMsg, nextHop);
+            //log the package 
+            logPack(message);
+
+            //send the package to the designated next hop
+            call Sender.send(*message, nextHop);
 
         }
     }
 
+    //a function that gets the cost for the hop that will lead to the desired desination
+    uint8_t getCost(nx_uint16_t destination){
+        uint8_t i;
 
-//Vargas, not sure how this one is called. The only time "checkForUpdates" 
-//appears is here. Still no idea how nesC works.  ¯\_(ツ)_/¯ If that's not important feel
-//free to ignore this 
+        //iterate over routes in the routing table until the destination is found
+        //then return the cost to get to that destination
+        for(i = 0; i < routeCount; i++){
+            if(initializeTable[i].dest == destination){
+                return initializeTable[i].cost;
+            }
+        }
+    }
 
-    // Update the table if needed
-    command void DistanceVectorRouting.checkForUpdates(pack* myMsg) {
+    // a function to check if updates are needed 
+    command void DistanceVectorRouting.checkForUpdates(pack* message) {
 
         //initializing variables
         uint16_t i, j;
+        //bools to store relevant conditions 
         bool routePresent = FALSE, routesAdded = FALSE;
-        Route* receivedRoutes = (Route*) myMsg->payload;
+        //routes recieved in an update packet 
+        Route* receivedRoutes = (Route*) message->payload;
 
         // For each of up to 5 routes, process the routes
         for (i = 0; i < 5; i++) {
@@ -187,6 +182,7 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
 
             }
 
+            //iterate over all the routes 
             for (j = 0; j < routeCount; j++) {
 
                 if (receivedRoutes[i].dest == initializeTable[j].dest) {
@@ -196,7 +192,7 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
                     // If more optimal route found update
                     if (receivedRoutes[i].nextHop != 0) {
 
-                        if (initializeTable[j].nextHop == myMsg->src) {
+                        if (initializeTable[j].nextHop == message->src) {
 
                             initializeTable[j].cost = (receivedRoutes[i].cost + 1 < MAX_COST) ? receivedRoutes[i].cost + 1 : MAX_COST;
 
@@ -205,7 +201,7 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
 
                         } else if (receivedRoutes[i].cost + 1 < MAX_COST && receivedRoutes[i].cost + 1 < initializeTable[j].cost) {
 
-                            initializeTable[j].nextHop = myMsg->src;
+                            initializeTable[j].nextHop = message->src;
 
                             initializeTable[j].cost = receivedRoutes[i].cost + 1;
 
@@ -223,35 +219,36 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
 
                     }
 
+                    //a route is present
                     routePresent = TRUE;
                     break;
                 }
 
             }
 
-            //Vargas, any idea wtf a split horizon packet is? I don't. Crash course me on it ASAP
-
             // If route is not in table AND there is space AND it is not a split horizon packet AND the route cost is not infinite -> add it
             if (!routePresent && routeCount != MAX_NUM_ROUTES && receivedRoutes[i].nextHop != 0 && receivedRoutes[i].cost != MAX_COST) {
 
-                addRoute(receivedRoutes[i].dest, myMsg->src, receivedRoutes[i].cost + 1, DVR_TTL);
-
+                addRoute(receivedRoutes[i].dest, message->src, receivedRoutes[i].cost + 1, DVR_TTL);
+                
+                //mark that there is a route to add 
                 routesAdded = TRUE;
 
             }
 
+            //at this point there is no route present
             routePresent = FALSE;
 
         }
 
+        //if there is a route to add then run the update function
         if (routesAdded) {
-
             update();
-
         }
 
     }
 
+    //a fuction to handle a lost neighbor 
     command void DistanceVectorRouting.lostNeighbor(uint16_t lostNeighbor) {
 
         // Neighbor lost, update routing table and trigger DV update
@@ -268,6 +265,7 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
         dbg(ROUTING_CHANNEL, "Neighbor discovery has lost neighbor %u. Distance is now infinite!\n", lostNeighbor);
         for (i = 1; i < routeCount; i++) {
 
+            //when a neighbor is nost the cost has to be set to infinity 
             if (initializeTable[i].dest == lostNeighbor || initializeTable[i].nextHop == lostNeighbor) {
 
                 initializeTable[i].cost = MAX_COST;
@@ -276,55 +274,114 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
 
         }
 
+        //run the update function to take care of the lost neighbor updates 
         update();
     }
 
-    //hey vargas, just as a general note, if something doesn't work, check the capitalization. I copied them exactly as you 
-    //wrote them in the note. So if something on the note was capitalized, but it's not supposed to be, I capitalized it even
-    //if syntax was inconsistent. Found neighbor is an example of this. you wrote it with a capital f but lost neighbor starts
-    //with a lowercase l. Just thought I'd let you know. 
-
+    //a function to handle when a neigbor is found 
     command void DistanceVectorRouting.foundNeighbor() {
 
-        // Neighbor found, update routing table and trigger DV update
-        inputNeighbor();
+       //call to input the neighbors
+       inputNeighbor();
 
     }
 
-
+    
+    //a function to print the parameters of the routing table 
     command void DistanceVectorRouting.printRoutingTable() {
 
         uint8_t i;
 
+        //anounce table is being printed
+        dbg(ROUTING_CHANNEL, "Routing Table at node %d:\n",TOS_NODE_ID);
+
         //print the routing info headers
-        dbg(ROUTING_CHANNEL, "DEST  HOP  COST  TTL\n");
+        //dbg(ROUTING_CHANNEL, "DEST  HOP  COST  TTL\n");
+        dbg(ROUTING_CHANNEL, "DEST  HOP  COST\n");
 
         //print the table
         for (i = 0; i < routeCount; i++) {
 
-            dbg(ROUTING_CHANNEL, "%4d%5d%6d%5d\n", initializeTable[i].dest, initializeTable[i].nextHop, initializeTable[i].cost, initializeTable[i].ttl);
+            //dbg(ROUTING_CHANNEL, "%4d%5d%6d%5d\n", initializeTable[i].dest, initializeTable[i].nextHop, initializeTable[i].cost, initializeTable[i].ttl);
+            
+            dbg(ROUTING_CHANNEL, "%4d%5d%6d\n", initializeTable[i].dest, initializeTable[i].nextHop, initializeTable[i].cost);
+        }
+    }
+
+    void inputNeighbor(){
+         //variable initialization
+        uint32_t* neighbors = call NeighborDiscovery.getNeighbors(); //grab neighbor information from neighbor discovery interface 
+        uint16_t numNeighbors = call NeighborDiscovery.getNumNeighbors();
+        uint8_t i, j;
+        bool routeFound = FALSE, newNeighborfound = FALSE;
+
+        //iterate over the entire neighbor list provided 
+        for (i = 0; i < numNeighbors; i++) {
+
+            //iterate over the routes
+            for (j = 1; j < routeCount; j++) {
+
+                // If the neighbor is found in the table, update the table entry
+                if (neighbors[i] == initializeTable[j].dest) {
+
+                    initializeTable[j].nextHop = neighbors[i];
+                    initializeTable[j].cost = 1; //since neighbors cost between them is one
+                    initializeTable[j].ttl = DVR_TTL;
+
+                    //indicate a new route has been found
+                    routeFound = TRUE;
+
+                    break;
+
+                }
+
+            }
+
+            // Add neighbor if it is not already present in the routes, and we have the space for it
+            if (!routeFound && routeCount != MAX_NUM_ROUTES) {
+
+                //add and indicate a new neighbor route was found
+                addRoute(neighbors[i], neighbors[i], 1, DVR_TTL);   
+                newNeighborfound = TRUE;
+
+            } else if (routeCount == MAX_NUM_ROUTES) {
+
+                //if max capacity reached, print error message 
+                dbg(ROUTING_CHANNEL, "Routing table full. Cannot add entry for node: %u\n", neighbors[i]);
+
+            }
+            //at this point no route has been found
+            routeFound = FALSE;
+
+        }
+
+        //if a new neighbor rout was found and needs to be added then
+        if (newNeighborfound) {
+
+            //update DVR system
+            update();
 
         }
     }
 
-    //vargas, this has "initilize" incorrectly spelled (should be "initialize"). No idea if that matters or not, but 
-    //if we change it to be correct that's one more thing that's different about our code. Just dont know if changing 
-    //it will break anything. Also, i dont see it used anywhere other than here. Once again no idea how NesC works. So
-    //if it's never used/called maybe we can just scrap this one?
 
     //initiailize the initial table
     void initializeInitializeTable() {
 
+        //add the first route to the table 
         addRoute(TOS_NODE_ID, TOS_NODE_ID, 0, DVR_TTL);
 
     }
 
+    //a function to return the hop to be taken given the destination
     uint8_t findHop(uint8_t dest) {
 
         uint16_t i;
 
+        //iterate over the routes 
         for (i = 1; i < routeCount; i++) {
 
+            //if the destination at i eqials the destination then return the next hop parameter
             if (initializeTable[i].dest == dest) {
 
                 return (initializeTable[i].cost == MAX_COST) ? 0 : initializeTable[i].nextHop;
@@ -333,6 +390,7 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
 
         }
 
+        //at this point there is no next hop, return 0
         return 0;
 
     }
@@ -340,8 +398,10 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
     // Add route to current list
     void addRoute(uint8_t dest, uint8_t nextHop, uint8_t cost, uint8_t ttl) {
 
+        //if there is room to add a route 
         if (routeCount != MAX_NUM_ROUTES) {
 
+            //initialize the route with appropriate parameters and increment the count 
             initializeTable[routeCount].dest = dest;
             initializeTable[routeCount].nextHop = nextHop;
             initializeTable[routeCount].cost = cost;
@@ -354,10 +414,7 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
         //dbg(ROUTING_CHANNEL, "Added entry in routing table for node: %u\n", dest);
     }
 
-    //vargas i changed "idx" to "id" if this breaks anything this might by why. 
-    //also might want to consider changing the comments on this section. I wasn't 
-    //sure what to say here
-
+    // a function to remove a given route 
     void RemoveRoute(uint8_t id) {
 
         uint8_t j;
@@ -377,11 +434,13 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
         initializeTable[j-1].nextHop = 0;
         initializeTable[j-1].cost = MAX_COST;
         initializeTable[j-1].ttl = 0;
-        //vargas potential change to --routeCount?
+
+        //decrement route count
         routeCount--;        
 
     }
 
+    //a function to update the TTL's of the table 
     void updateTTLS() {
 
         //Initialize variables
@@ -394,7 +453,7 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
             // If table entry is valid we should decrease the TTL
             if (initializeTable[i].ttl != 0) {
                 
-                //vargas, potential change to --initializeTable[i].ttl?
+                //decrease the ttl
                 initializeTable[i].ttl--;
 
             }
@@ -403,8 +462,8 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
 
                 dbg(ROUTING_CHANNEL, "Route stale, removing: %u\n", initializeTable[i].dest);
 
+                //remove route and update table 
                 RemoveRoute(i);
-
                 update();
             }
 
@@ -413,60 +472,6 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
     }
 
 
-    //vargas this is the less big one but still kinda specific
-    void inputNeighbor() {
-        
-        //variable initialization
-        uint32_t* neighbors = call NeighborDiscovery.getNeighbors();
-        uint16_t neighborsListSize = call NeighborDiscovery.getNumNeighbors();
-        uint8_t i, j;
-        bool routeFound = FALSE, newNeighborfound = FALSE;
-
-        for (i = 0; i < neighborsListSize; i++) {
-
-            for (j = 1; j < routeCount; j++) {
-
-                // If the neighbor is found in the table, update the table entry
-                if (neighbors[i] == initializeTable[j].dest) {
-
-                    initializeTable[j].nextHop = neighbors[i];
-                    initializeTable[j].cost = 1;
-                    initializeTable[j].ttl = DVR_TTL;
-
-                    routeFound = TRUE;
-
-                    break;
-
-                }
-
-            }
-
-            // Add neighbor if it is not already present, and we have the space for it
-            if (!routeFound && routeCount != MAX_NUM_ROUTES) {
-
-                addRoute(neighbors[i], neighbors[i], 1, DVR_TTL);   
-
-                newNeighborfound = TRUE;
-
-            } else if (routeCount == MAX_NUM_ROUTES) {
-
-                dbg(ROUTING_CHANNEL, "Routing table full. Cannot add entry for node: %u\n", neighbors[i]);
-
-            }
-
-            routeFound = FALSE;
-
-        }
-        if (newNeighborfound) {
-
-            update();
-
-        }
-
-    }
-
-    //vargas this the big one. I did minor editing but nothing significant. this is the biggest threat
-    //to secure covert operations. 
     
     // Skip the route for split horizon
     // Alter route table for poison reverse, keeping values in temp vars
@@ -478,87 +483,94 @@ command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *paylo
         //setting up variables as necessary for the function
         // Send routes to all neighbors one at a time. Use split horizon, poison reverse
         uint32_t* neighbors = call NeighborDiscovery.getNeighbors();
-        uint16_t neighborsListSize = call NeighborDiscovery.getNumNeighbors();
-        uint8_t i = 0, j = 0, counter = 0;
+        uint16_t numNeighbors = call NeighborDiscovery.getNumNeighbors();
+        uint8_t i = 0, j = 0, tempRouteCounter = 0;
         uint8_t temp;
-        Route packetRoutes[5];
-        bool isSwapped = FALSE;
+        //routes to be sent to neighboring nodes 
+        Route routesToSend[5];
+        bool valuesSwapped = FALSE;
 
-        // Zero out the array
+        // Zero out the routes declared above 
         for (i = 0; i < 5; i++) {
 
-                packetRoutes[i].dest = 0;
-                packetRoutes[i].nextHop = 0;
-                packetRoutes[i].cost = 0;
-                packetRoutes[i].ttl = 0;
+                routesToSend[i].dest = 0;
+                routesToSend[i].nextHop = 0;
+                routesToSend[i].cost = 0;
+                routesToSend[i].ttl = 0;
 
         }
 
         // Send to every neighbor
-        for (i = 0; i < neighborsListSize; i++) {
+        for (i = 0; i < numNeighbors; i++) {
 
+            //while we have space to add routes 
             while (j < routeCount) {
 
-                //vargas no idea wtf this means
-                // Split Horizon/Poison Reverse
+                
+                // Split Horizon/Poison Reverse 
                 if (neighbors[i] == initializeTable[j].nextHop && STRATEGY == STRATEGY_SPLIT_HORIZON) {
 
+                    //temporarily cache the next hop
                     temp = initializeTable[j].nextHop;
 
+                    //set the real value to zero
                     initializeTable[j].nextHop = 0;
 
-                    isSwapped = TRUE;
+                    //the values are currently swapped
+                    valuesSwapped = TRUE;
 
                 } else if (neighbors[i] == initializeTable[j].nextHop && STRATEGY == STRATEGY_POISON_REVERSE) {
 
+                    //temporarilt cache the cost
                     temp = initializeTable[j].cost;
 
+                    //set the real value to max cost
                     initializeTable[j].cost = MAX_COST;
-
-                    isSwapped = TRUE;
+                    
+                    //indicate values are swapped
+                    valuesSwapped = TRUE;
                 }
 
                 // Add route to array to be sent out
-                packetRoutes[counter].dest = initializeTable[j].dest;
-                packetRoutes[counter].nextHop = initializeTable[j].nextHop;
-                packetRoutes[counter].cost = initializeTable[j].cost;
-                counter++;
+                routesToSend[tempRouteCounter].dest = initializeTable[j].dest;
+                routesToSend[tempRouteCounter].nextHop = initializeTable[j].nextHop;
+                routesToSend[tempRouteCounter].cost = initializeTable[j].cost;
+                //increment temp route counter 
+                tempRouteCounter++;
 
                 // If our array is full or we have added all routes then we send out packet with routes
-                if (counter == 5 || j == routeCount-1) {
+                if (tempRouteCounter == 5 || j == routeCount-1) {
 
-                    // make the packet to be sent
-                    makePack(&packToRoute, TOS_NODE_ID, neighbors[i], 1, PROTOCOL_DV, 0, &packetRoutes, sizeof(packetRoutes));
+                    // make the packet to be sent, the payload being a pointer to the packet routes to be shared with neighbors
+                    makePack(&packToRoute, TOS_NODE_ID, neighbors[i], 1, PROTOCOL_DV, 0, &routesToSend, sizeof(routesToSend));
 
                     // Send out packet
-                    //vargas, this is using sender.send. dont know if that matters. Not sure if that means simple send
-                    //or if it uses our flooding send, or a differnet send. 
                     call Sender.send(packToRoute, neighbors[i]);
 
                     // Zero out array
-                    while (counter > 0) {
+                    while (tempRouteCounter > 0) {
 
-                        //vargas, possible use of --counter? or counter = counter -1?
-                        counter--;
-                        packetRoutes[counter].dest = 0;
-                        packetRoutes[counter].nextHop = 0;
-                        packetRoutes[counter].cost = 0;
+                        //reset all routes to zero as they have been sent already 
+                        tempRouteCounter = tempRouteCounter - 1;
+                        routesToSend[tempRouteCounter].dest = 0;
+                        routesToSend[tempRouteCounter].nextHop = 0;
+                        routesToSend[tempRouteCounter].cost = 0;
                     }
 
                 }
 
-                // Restore the table
-                if (isSwapped && STRATEGY == STRATEGY_SPLIT_HORIZON) {
+                // Restore the table, either cost or hop based on what was initially changed 
+                if (valuesSwapped && STRATEGY == STRATEGY_SPLIT_HORIZON) {
 
                     initializeTable[j].nextHop = temp;
 
-                } else if (isSwapped && STRATEGY == STRATEGY_POISON_REVERSE) {
+                } else if (valuesSwapped && STRATEGY == STRATEGY_POISON_REVERSE) {
 
                     initializeTable[j].cost = temp;
 
                 }
-
-                isSwapped = FALSE;
+                //nothing is swapped anymore
+                valuesSwapped = FALSE;
                 j++;
 
             }

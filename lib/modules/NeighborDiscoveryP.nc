@@ -113,7 +113,7 @@ implementation{
             }else{
 
                 //otherwise insert
-                call MapOfNeighbors.insert(mapKeys[i], call MapOfNeighbors.get(mapKeys[i] - 1));
+                call MapOfNeighbors.insert(mapKeys[i], call MapOfNeighbors.get(mapKeys[i]) - 1);
             }
         }
 

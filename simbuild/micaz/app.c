@@ -797,7 +797,7 @@ extern void *malloc(size_t __size) __attribute((__leaf__)) __attribute((__nothro
 #line 483
 extern void free(void *__ptr) __attribute((__leaf__)) __attribute((__nothrow__)) ;
 #line 742
-typedef int (*__compar_fn_t)(const void *arg_0x7faa04b33020, const void *arg_0x7faa04b33320);
+typedef int (*__compar_fn_t)(const void *arg_0x7ff93f512020, const void *arg_0x7ff93f512320);
 #line 780
 __extension__ 
 #line 797
@@ -818,7 +818,7 @@ extern double fabs(double __x) __attribute((__leaf__)) __attribute((__nothrow__)
 
 extern double floor(double __x) __attribute((__leaf__)) __attribute((__nothrow__)) __attribute((const)) ;
 #line 250
-extern double erfc(double arg_0x7faa04aab5e0) __attribute((__leaf__)) __attribute((__nothrow__)) ;
+extern double erfc(double arg_0x7ff93f48a5e0) __attribute((__leaf__)) __attribute((__nothrow__)) ;
 #line 326
 __extension__ 
 
@@ -1221,8 +1221,8 @@ typedef struct hashtable hashtable_t;
 #line 78
 struct hashtable *
 create_hashtable(unsigned int minsize, 
-unsigned int (*hashfunction)(void *arg_0x7faa0484e3a0), 
-int (*key_eq_fn)(void *arg_0x7faa0484eb70, void *arg_0x7faa0484ee30));
+unsigned int (*hashfunction)(void *arg_0x7ff93f22d3a0), 
+int (*key_eq_fn)(void *arg_0x7ff93f22db70, void *arg_0x7ff93f22de30));
 #line 103
 #line 102
 int 
@@ -1258,7 +1258,7 @@ typedef struct sim_log_channel {
 } sim_log_channel_t;
 
 enum __nesc_unnamed4272 {
-  SIM_LOG_OUTPUT_COUNT = 244U
+  SIM_LOG_OUTPUT_COUNT = 247U
 };
 
 sim_log_output_t outputs[SIM_LOG_OUTPUT_COUNT];
@@ -1838,7 +1838,7 @@ struct tm;
 
 struct tm;
 # 46 "/opt/tinyos-main/tos/lib/tossim/randomlib.h"
-static inline void RandomInitialise(int arg_0x7faa0463bc00, int arg_0x7faa0463be80);
+static inline void RandomInitialise(int arg_0x7ff93f01ac00, int arg_0x7ff93f01ae80);
 static double RandomUniform(void );
 # 51 "/opt/tinyos-main/tos/lib/tossim/sim_noise.c"
 int numCase1 = 0;
@@ -4210,11 +4210,11 @@ static error_t PlatformC__Init__init(void );
 # 67 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t SimSchedulerBasicP__TaskBasic__postTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7faa0450f020);
+uint8_t arg_0x7ff93eeee020);
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SimSchedulerBasicP__TaskBasic__default__runTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7faa0450f020);
+uint8_t arg_0x7ff93eeee020);
 # 57 "/opt/tinyos-main/tos/interfaces/Scheduler.nc"
 static void SimSchedulerBasicP__Scheduler__init(void );
 
@@ -4257,7 +4257,7 @@ static long long int SimMoteP__SimMote__getStartTime(void );
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t TossimActiveMessageC__AMSend__send(
 # 47 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7faa04346c70, 
+am_id_t arg_0x7ff93ed25c70, 
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -4280,7 +4280,7 @@ message_t *
 
 TossimActiveMessageC__Snoop__default__receive(
 # 49 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7faa0432ba50, 
+am_id_t arg_0x7ff93ed0aa50, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4327,7 +4327,7 @@ message_t *
 
 TossimActiveMessageC__Receive__default__receive(
 # 48 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7faa0432ce30, 
+am_id_t arg_0x7ff93ed0be30, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4606,19 +4606,19 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__f
 #line 83
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7faa03cc3950);
+uint8_t arg_0x7ff93e6a2950);
 # 98 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isOneShot(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7faa03cc3950);
+uint8_t arg_0x7ff93e6a2950);
 # 92 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isRunning(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7faa03cc3950);
+uint8_t arg_0x7ff93e6a2950);
 # 64 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7faa03cc3950, 
+uint8_t arg_0x7ff93e6a2950, 
 # 64 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 
@@ -4631,7 +4631,7 @@ uint32_t dt);
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7faa03cc3950, 
+uint8_t arg_0x7ff93e6a2950, 
 # 73 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 82 "/opt/tinyos-main/tos/lib/timer/Counter.nc"
@@ -4666,7 +4666,7 @@ error_t error);
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(
 # 48 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x7faa03c10b60, 
+am_id_t arg_0x7ff93e5efb60, 
 # 103 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -4679,7 +4679,7 @@ error_t error);
 # 75 "/opt/tinyos-main/tos/interfaces/Send.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__send(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7faa03c11940, 
+uint8_t arg_0x7ff93e5f0940, 
 # 67 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -4693,7 +4693,7 @@ uint8_t len);
 #line 100
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7faa03c11940, 
+uint8_t arg_0x7ff93e5f0940, 
 # 96 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -4953,7 +4953,7 @@ int sim_main_start_mote(void )   ;
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SimSchedulerBasicP__TaskBasic__runTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7faa0450f020);
+uint8_t arg_0x7ff93eeee020);
 
 
 
@@ -5141,7 +5141,7 @@ static am_addr_t TossimActiveMessageC__amAddress(void );
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static void TossimActiveMessageC__AMSend__sendDone(
 # 47 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7faa04346c70, 
+am_id_t arg_0x7ff93ed25c70, 
 # 103 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -5160,7 +5160,7 @@ message_t *
 
 TossimActiveMessageC__Snoop__receive(
 # 49 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7faa0432ba50, 
+am_id_t arg_0x7ff93ed0aa50, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5179,7 +5179,7 @@ message_t *
 
 TossimActiveMessageC__Receive__receive(
 # 48 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7faa0432ce30, 
+am_id_t arg_0x7ff93ed0be30, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -6153,7 +6153,7 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__s
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7faa03cc3950);
+uint8_t arg_0x7ff93e6a2950);
 #line 71
 enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4348 {
 #line 71
@@ -6299,7 +6299,7 @@ static inline void /*FloodingC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQu
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(
 # 48 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x7faa03c10b60, 
+am_id_t arg_0x7ff93e5efb60, 
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -6316,7 +6316,7 @@ uint8_t len);
 # 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7faa03c11940, 
+uint8_t arg_0x7ff93e5f0940, 
 # 96 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -6763,8 +6763,8 @@ static void DistanceVectorRoutingP__Timer__startPeriodic(uint32_t dt);
 
 
 static void DistanceVectorRoutingP__Timer__startOneShot(uint32_t dt);
-# 44 "lib/modules/DistanceVectorRoutingP.nc"
-#line 39
+# 36 "lib/modules/DistanceVectorRoutingP.nc"
+#line 31
 typedef struct DistanceVectorRoutingP____nesc_unnamed4355 {
   uint8_t dest;
   uint8_t nextHop;
@@ -6774,11 +6774,16 @@ typedef struct DistanceVectorRoutingP____nesc_unnamed4355 {
 
 
 uint16_t DistanceVectorRoutingP__routeCount[1000];
-#line 60
+
+
+
 DistanceVectorRoutingP__Route DistanceVectorRoutingP__initializeTable[1000][22];
 
 
 pack DistanceVectorRoutingP__packToRoute[1000];
+
+
+
 
 
 static void DistanceVectorRoutingP__makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t Protocol, uint16_t seq, void *payload, uint8_t length);
@@ -6789,6 +6794,7 @@ static inline void DistanceVectorRoutingP__RemoveRoute(uint8_t routeNum);
 static inline void DistanceVectorRoutingP__updateTTLS(void );
 static void DistanceVectorRoutingP__update(void );
 static void DistanceVectorRoutingP__inputNeighbor(void );
+static inline uint8_t DistanceVectorRoutingP__getCost(__nesc_nxbase_nx_uint16_t destination);
 
 
 static inline error_t DistanceVectorRoutingP__DistanceVectorRouting__begin(void );
@@ -6802,15 +6808,17 @@ static inline error_t DistanceVectorRoutingP__DistanceVectorRouting__begin(void 
 
 
 static inline void DistanceVectorRoutingP__Timer__fired(void );
-#line 114
+#line 93
 static inline void DistanceVectorRoutingP__DistanceVectorRouting__sendPing(uint16_t destination, uint8_t *payload);
-#line 129
-static void DistanceVectorRoutingP__DistanceVectorRouting__route(pack *myMsg);
-#line 173
-static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdates(pack *myMsg);
-#line 255
+#line 109
+static void DistanceVectorRoutingP__DistanceVectorRouting__route(pack *message);
+#line 153
+static inline uint8_t DistanceVectorRoutingP__getCost(__nesc_nxbase_nx_uint16_t destination);
+#line 166
+static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdates(pack *message);
+#line 252
 static inline void DistanceVectorRoutingP__DistanceVectorRouting__lostNeighbor(uint16_t lostNeighbor);
-#line 287
+#line 282
 static inline void DistanceVectorRoutingP__DistanceVectorRouting__foundNeighbor(void );
 
 
@@ -6819,26 +6827,29 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__foundNeighbor(
 
 
 
+
 static inline void DistanceVectorRoutingP__DistanceVectorRouting__printRoutingTable(void );
-#line 316
+#line 311
+static void DistanceVectorRoutingP__inputNeighbor(void );
+#line 369
 static inline void DistanceVectorRoutingP__initializeInitializeTable(void );
 
 
 
 
 
+
+
 static inline uint8_t DistanceVectorRoutingP__findHop(uint8_t dest);
-#line 341
+#line 399
 static void DistanceVectorRoutingP__addRoute(uint8_t dest, uint8_t nextHop, uint8_t cost, uint8_t ttl);
-#line 361
+#line 418
 static inline void DistanceVectorRoutingP__RemoveRoute(uint8_t id);
-#line 385
+#line 444
 static inline void DistanceVectorRoutingP__updateTTLS(void );
-#line 417
-static void DistanceVectorRoutingP__inputNeighbor(void );
-#line 476
+#line 481
 static void DistanceVectorRoutingP__update(void );
-#line 573
+#line 585
 static void DistanceVectorRoutingP__makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t protocol, uint16_t seq, void *payload, uint8_t length);
 # 97 "/opt/tinyos-main/tos/interfaces/Pool.nc"
 static 
@@ -7439,19 +7450,21 @@ inline static void Node__DistanceVectorRouting__route(pack *message){
 #line 11
 }
 #line 11
-# 173 "lib/modules/DistanceVectorRoutingP.nc"
-static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdates(pack *myMsg)
-#line 173
+# 166 "lib/modules/DistanceVectorRoutingP.nc"
+static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdates(pack *message)
+#line 166
 {
 
 
   uint16_t i;
-#line 176
+#line 169
   uint16_t j;
+
   bool routePresent = FALSE;
-#line 177
+#line 171
   bool routesAdded = FALSE;
-  DistanceVectorRoutingP__Route *receivedRoutes = (DistanceVectorRoutingP__Route *)myMsg->payload;
+
+  DistanceVectorRoutingP__Route *receivedRoutes = (DistanceVectorRoutingP__Route *)message->payload;
 
 
   for (i = 0; i < 5; i++) {
@@ -7463,6 +7476,7 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdate
         }
 
 
+
       for (j = 0; j < DistanceVectorRoutingP__routeCount[sim_node()]; j++) {
 
           if (receivedRoutes[i].dest == DistanceVectorRoutingP__initializeTable[sim_node()][j].dest) {
@@ -7472,7 +7486,7 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdate
 
               if (receivedRoutes[i].nextHop != 0) {
 
-                  if (DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop == __nesc_ntoh_uint16(myMsg->src.nxdata)) {
+                  if (DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop == __nesc_ntoh_uint16(message->src.nxdata)) {
 
                       DistanceVectorRoutingP__initializeTable[sim_node()][j].cost = receivedRoutes[i].cost + 1 < 17 ? receivedRoutes[i].cost + 1 : 17;
                     }
@@ -7481,7 +7495,7 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdate
 
                     if (receivedRoutes[i].cost + 1 < 17 && receivedRoutes[i].cost + 1 < DistanceVectorRoutingP__initializeTable[sim_node()][j].cost) {
 
-                        DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop = __nesc_ntoh_uint16(myMsg->src.nxdata);
+                        DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop = __nesc_ntoh_uint16(message->src.nxdata);
 
                         DistanceVectorRoutingP__initializeTable[sim_node()][j].cost = receivedRoutes[i].cost + 1;
                       }
@@ -7499,6 +7513,7 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdate
                 }
 
 
+
               routePresent = TRUE;
               break;
             }
@@ -7506,22 +7521,22 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__checkForUpdate
 
 
 
-
-
       if (!routePresent && DistanceVectorRoutingP__routeCount[sim_node()] != 22 && receivedRoutes[i].nextHop != 0 && receivedRoutes[i].cost != 17) {
 
-          DistanceVectorRoutingP__addRoute(receivedRoutes[i].dest, __nesc_ntoh_uint16(myMsg->src.nxdata), receivedRoutes[i].cost + 1, 4);
+          DistanceVectorRoutingP__addRoute(receivedRoutes[i].dest, __nesc_ntoh_uint16(message->src.nxdata), receivedRoutes[i].cost + 1, 4);
+
 
           routesAdded = TRUE;
         }
+
 
 
       routePresent = FALSE;
     }
 
 
-  if (routesAdded) {
 
+  if (routesAdded) {
       DistanceVectorRoutingP__update();
     }
 }
@@ -7563,9 +7578,9 @@ inline static void NeighborDiscoveryP__MapOfNeighbors__insert(uint32_t key, Neig
 #line 11
 }
 #line 11
-# 287 "lib/modules/DistanceVectorRoutingP.nc"
+# 282 "lib/modules/DistanceVectorRoutingP.nc"
 static inline void DistanceVectorRoutingP__DistanceVectorRouting__foundNeighbor(void )
-#line 287
+#line 282
 {
 
 
@@ -7892,13 +7907,13 @@ static inline message_t *TossimActiveMessageC__Receive__default__receive(am_id_t
 }
 
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7faa0432ce30, message_t * msg, void * payload, uint8_t len){
+inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7ff93ed0be30, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x7faa0432ce30) {
+  switch (arg_0x7ff93ed0be30) {
 #line 78
     case 6:
 #line 78
@@ -7914,7 +7929,7 @@ inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7
 #line 78
     default:
 #line 78
-      __nesc_result = TossimActiveMessageC__Receive__default__receive(arg_0x7faa0432ce30, msg, payload, len);
+      __nesc_result = TossimActiveMessageC__Receive__default__receive(arg_0x7ff93ed0be30, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -8333,7 +8348,7 @@ inline static error_t DistanceVectorRoutingP__Sender__send(pack msg, uint16_t de
 static inline bool /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__Pool__empty(void )
 #line 75
 {
-  sim_log_debug(233U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
+  sim_log_debug(236U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
   return /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()] == 0;
 }
 
@@ -8366,7 +8381,7 @@ static inline /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__pool_t
       if (/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__index[sim_node()] == 20) {
           /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__index[sim_node()] = 0;
         }
-      sim_log_debug(235U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
+      sim_log_debug(238U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
       return rval;
     }
   return (void *)0;
@@ -8406,7 +8421,7 @@ static inline error_t /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Qu
 #line 101
 {
   if (/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__size() < /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__maxSize()) {
-      sim_log_debug(243U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]);
+      sim_log_debug(246U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]);
       /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue[sim_node()][/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__tail[sim_node()]] = newVal;
       /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__tail[sim_node()]++;
       if (/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__tail[sim_node()] == 20) {
@@ -8475,14 +8490,16 @@ inline static uint16_t /*DistanceVectorRoutingC.SimpleSendC.SimpleSendP*/SimpleS
 #line 52
 }
 #line 52
-# 322 "lib/modules/DistanceVectorRoutingP.nc"
+# 377 "lib/modules/DistanceVectorRoutingP.nc"
 static inline uint8_t DistanceVectorRoutingP__findHop(uint8_t dest)
-#line 322
+#line 377
 {
 
   uint16_t i;
 
+
   for (i = 1; i < DistanceVectorRoutingP__routeCount[sim_node()]; i++) {
+
 
       if (DistanceVectorRoutingP__initializeTable[sim_node()][i].dest == dest) {
 
@@ -8492,7 +8509,23 @@ static inline uint8_t DistanceVectorRoutingP__findHop(uint8_t dest)
 
 
 
+
   return 0;
+}
+
+#line 153
+static inline uint8_t DistanceVectorRoutingP__getCost(__nesc_nxbase_nx_uint16_t destination)
+#line 153
+{
+  uint8_t i;
+
+
+
+  for (i = 0; i < DistanceVectorRoutingP__routeCount[sim_node()]; i++) {
+      if (DistanceVectorRoutingP__initializeTable[sim_node()][i].dest == destination) {
+          return DistanceVectorRoutingP__initializeTable[sim_node()][i].cost;
+        }
+    }
 }
 
 # 216 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
@@ -8503,13 +8536,13 @@ static inline message_t *TossimActiveMessageC__Snoop__default__receive(am_id_t i
 }
 
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * TossimActiveMessageC__Snoop__receive(am_id_t arg_0x7faa0432ba50, message_t * msg, void * payload, uint8_t len){
+inline static message_t * TossimActiveMessageC__Snoop__receive(am_id_t arg_0x7ff93ed0aa50, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = TossimActiveMessageC__Snoop__default__receive(arg_0x7faa0432ba50, msg, payload, len);
+    __nesc_result = TossimActiveMessageC__Snoop__default__receive(arg_0x7ff93ed0aa50, msg, payload, len);
 #line 78
 
 #line 78
@@ -8701,9 +8734,9 @@ static __inline  int8_t __nesc_hton_int8(void * target, int8_t value)
 }
 
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
-inline static void TossimActiveMessageC__AMSend__sendDone(am_id_t arg_0x7faa04346c70, message_t * msg, error_t error){
+inline static void TossimActiveMessageC__AMSend__sendDone(am_id_t arg_0x7ff93ed25c70, message_t * msg, error_t error){
 #line 110
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x7faa04346c70, msg, error);
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x7ff93ed25c70, msg, error);
 #line 110
 }
 #line 110
@@ -8847,20 +8880,26 @@ inline static void CommandHandlerP__CommandHandler__setTestClient(void ){
 #line 9
 }
 #line 9
-# 295 "lib/modules/DistanceVectorRoutingP.nc"
+# 291 "lib/modules/DistanceVectorRoutingP.nc"
 static inline void DistanceVectorRoutingP__DistanceVectorRouting__printRoutingTable(void )
-#line 295
+#line 291
 {
 
   uint8_t i;
 
 
-  sim_log_debug(226U, ROUTING_CHANNEL, "DEST  HOP  COST  TTL\n");
+  sim_log_debug(228U, ROUTING_CHANNEL, "Routing Table at node %d:\n", TOS_NODE_ID);
+
+
+
+  sim_log_debug(229U, ROUTING_CHANNEL, "DEST  HOP  COST\n");
 
 
   for (i = 0; i < DistanceVectorRoutingP__routeCount[sim_node()]; i++) {
 
-      sim_log_debug(227U, ROUTING_CHANNEL, "%4d%5d%6d%5d\n", DistanceVectorRoutingP__initializeTable[sim_node()][i].dest, DistanceVectorRoutingP__initializeTable[sim_node()][i].nextHop, DistanceVectorRoutingP__initializeTable[sim_node()][i].cost, DistanceVectorRoutingP__initializeTable[sim_node()][i].ttl);
+
+
+      sim_log_debug(230U, ROUTING_CHANNEL, "%4d%5d%6d\n", DistanceVectorRoutingP__initializeTable[sim_node()][i].dest, DistanceVectorRoutingP__initializeTable[sim_node()][i].nextHop, DistanceVectorRoutingP__initializeTable[sim_node()][i].cost);
     }
 }
 
@@ -8920,9 +8959,9 @@ inline static void CommandHandlerP__CommandHandler__printNeighbors(void ){
 #line 4
 }
 #line 4
-# 114 "lib/modules/DistanceVectorRoutingP.nc"
+# 93 "lib/modules/DistanceVectorRoutingP.nc"
 static inline void DistanceVectorRoutingP__DistanceVectorRouting__sendPing(uint16_t destination, uint8_t *payload)
-#line 114
+#line 93
 {
 
 
@@ -9647,9 +9686,9 @@ static inline void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__send
 }
 
 # 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
-inline static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x7faa03c11940, message_t * msg, error_t error){
+inline static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x7ff93e5f0940, message_t * msg, error_t error){
 #line 100
-  switch (arg_0x7faa03c11940) {
+  switch (arg_0x7ff93e5f0940) {
 #line 100
     case 0U:
 #line 100
@@ -9671,7 +9710,7 @@ inline static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint
 #line 100
     default:
 #line 100
-      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x7faa03c11940, msg, error);
+      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x7ff93e5f0940, msg, error);
 #line 100
       break;
 #line 100
@@ -10017,7 +10056,7 @@ static inline error_t /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3
         }
       /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__queue[sim_node()][emptyIndex] = newVal;
       /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]++;
-      sim_log_debug(236U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
+      sim_log_debug(239U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
       return SUCCESS;
     }
 }
@@ -10051,7 +10090,7 @@ static inline /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t /*
   /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t t = /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__head();
 
 #line 91
-  sim_log_debug(242U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]);
+  sim_log_debug(245U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]);
   if (!/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__empty()) {
       /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__head[sim_node()]++;
       if (/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__head[sim_node()] == 20) {
@@ -10173,19 +10212,19 @@ static inline error_t /*DistanceVectorRoutingC.SimpleSendC.SimpleSendP*/SimpleSe
 #line 133
         {
 
-          sim_log_debug(230U, GENERAL_CHANNEL, "The radio is busy, or something\n");
+          sim_log_debug(233U, GENERAL_CHANNEL, "The radio is busy, or something\n");
           return FAIL;
         }
     }
   else 
 #line 138
     {
-      sim_log_debug(231U, GENERAL_CHANNEL, "The radio is busy");
+      sim_log_debug(234U, GENERAL_CHANNEL, "The radio is busy");
       return EBUSY;
     }
 
 
-  sim_log_debug(232U, GENERAL_CHANNEL, "FAILED!?");
+  sim_log_debug(235U, GENERAL_CHANNEL, "FAILED!?");
   return FAIL;
 }
 
@@ -10240,9 +10279,9 @@ static inline void SimSchedulerBasicP__TaskBasic__default__runTask(uint8_t id)
 }
 
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
-inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7faa0450f020){
+inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7ff93eeee020){
 #line 75
-  switch (arg_0x7faa0450f020) {
+  switch (arg_0x7ff93eeee020) {
 #line 75
     case TossimPacketModelC__startDoneTask:
 #line 75
@@ -10318,7 +10357,7 @@ inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7faa0450
 #line 75
     default:
 #line 75
-      SimSchedulerBasicP__TaskBasic__default__runTask(arg_0x7faa0450f020);
+      SimSchedulerBasicP__TaskBasic__default__runTask(arg_0x7ff93eeee020);
 #line 75
       break;
 #line 75
@@ -10378,13 +10417,13 @@ inline static am_addr_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMPacket__dest
 }
 #line 78
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
-inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x7faa03c10b60, am_addr_t addr, message_t * msg, uint8_t len){
+inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x7ff93e5efb60, am_addr_t addr, message_t * msg, uint8_t len){
 #line 80
   unsigned char __nesc_result;
 #line 80
 
 #line 80
-  __nesc_result = TossimActiveMessageC__AMSend__send(arg_0x7faa03c10b60, addr, msg, len);
+  __nesc_result = TossimActiveMessageC__AMSend__send(arg_0x7ff93e5efb60, addr, msg, len);
 #line 80
 
 #line 80
@@ -11335,9 +11374,9 @@ inline static void NeighborDiscoveryP__MapOfNeighbors__remove(uint32_t key){
 #line 12
 }
 #line 12
-# 255 "lib/modules/DistanceVectorRoutingP.nc"
+# 252 "lib/modules/DistanceVectorRoutingP.nc"
 static inline void DistanceVectorRoutingP__DistanceVectorRouting__lostNeighbor(uint16_t lostNeighbor)
-#line 255
+#line 252
 {
 
 
@@ -11351,14 +11390,16 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__lostNeighbor(u
 
 
 
-  sim_log_debug(225U, ROUTING_CHANNEL, "Neighbor discovery has lost neighbor %u. Distance is now infinite!\n", lostNeighbor);
+  sim_log_debug(227U, ROUTING_CHANNEL, "Neighbor discovery has lost neighbor %u. Distance is now infinite!\n", lostNeighbor);
   for (i = 1; i < DistanceVectorRoutingP__routeCount[sim_node()]; i++) {
+
 
       if (DistanceVectorRoutingP__initializeTable[sim_node()][i].dest == lostNeighbor || DistanceVectorRoutingP__initializeTable[sim_node()][i].nextHop == lostNeighbor) {
 
           DistanceVectorRoutingP__initializeTable[sim_node()][i].cost = 17;
         }
     }
+
 
 
 
@@ -11408,7 +11449,7 @@ static inline void NeighborDiscoveryP__Timer__fired(void )
         {
 
 
-          NeighborDiscoveryP__MapOfNeighbors__insert(mapKeys[i], NeighborDiscoveryP__MapOfNeighbors__get(mapKeys[i] - 1));
+          NeighborDiscoveryP__MapOfNeighbors__insert(mapKeys[i], NeighborDiscoveryP__MapOfNeighbors__get(mapKeys[i]) - 1);
         }
     }
 
@@ -11439,9 +11480,9 @@ static inline void /*NeighborDiscoveryC.SimpleSendC.SimpleSendP*/SimpleSendP__1_
   /*NeighborDiscoveryC.SimpleSendC.SimpleSendP*/SimpleSendP__1__sendBufferTask__postTask();
 }
 
-# 361 "lib/modules/DistanceVectorRoutingP.nc"
+# 418 "lib/modules/DistanceVectorRoutingP.nc"
 static inline void DistanceVectorRoutingP__RemoveRoute(uint8_t id)
-#line 361
+#line 418
 {
 
   uint8_t j;
@@ -11462,12 +11503,14 @@ static inline void DistanceVectorRoutingP__RemoveRoute(uint8_t id)
   DistanceVectorRoutingP__initializeTable[sim_node()][j - 1].cost = 17;
   DistanceVectorRoutingP__initializeTable[sim_node()][j - 1].ttl = 0;
 
+
   DistanceVectorRoutingP__routeCount[sim_node()]--;
 }
 
 
+
 static inline void DistanceVectorRoutingP__updateTTLS(void )
-#line 385
+#line 444
 {
 
 
@@ -11487,10 +11530,10 @@ static inline void DistanceVectorRoutingP__updateTTLS(void )
 
       if (DistanceVectorRoutingP__initializeTable[sim_node()][i].ttl == 0) {
 
-          sim_log_debug(228U, ROUTING_CHANNEL, "Route stale, removing: %u\n", DistanceVectorRoutingP__initializeTable[sim_node()][i].dest);
+          sim_log_debug(232U, ROUTING_CHANNEL, "Route stale, removing: %u\n", DistanceVectorRoutingP__initializeTable[sim_node()][i].dest);
+
 
           DistanceVectorRoutingP__RemoveRoute(i);
-
           DistanceVectorRoutingP__update();
         }
     }
@@ -11539,9 +11582,9 @@ inline static bool DistanceVectorRoutingP__Timer__isOneShot(void ){
 #line 98
 }
 #line 98
-# 86 "lib/modules/DistanceVectorRoutingP.nc"
+# 73 "lib/modules/DistanceVectorRoutingP.nc"
 static inline void DistanceVectorRoutingP__Timer__fired(void )
-#line 86
+#line 73
 {
   if (DistanceVectorRoutingP__Timer__isOneShot()) {
 
@@ -11549,17 +11592,11 @@ static inline void DistanceVectorRoutingP__Timer__fired(void )
       DistanceVectorRoutingP__Timer__startPeriodic(30000 + (uint16_t )(DistanceVectorRoutingP__Random__rand16() % 5000));
     }
   else 
-#line 91
+#line 78
     {
 
 
       DistanceVectorRoutingP__updateTTLS();
-
-
-
-
-
-
 
 
       DistanceVectorRoutingP__inputNeighbor();
@@ -11597,9 +11634,9 @@ static inline void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 }
 
 # 83 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x7faa03cc3950){
+inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x7ff93e6a2950){
 #line 83
-  switch (arg_0x7faa03cc3950) {
+  switch (arg_0x7ff93e6a2950) {
 #line 83
     case 0U:
 #line 83
@@ -11633,7 +11670,7 @@ inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 #line 83
     default:
 #line 83
-      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x7faa03cc3950);
+      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x7ff93e6a2950);
 #line 83
       break;
 #line 83
@@ -12225,17 +12262,18 @@ inline static void DistanceVectorRoutingP__Timer__startOneShot(uint32_t dt){
 #line 73
 }
 #line 73
-# 316 "lib/modules/DistanceVectorRoutingP.nc"
+# 369 "lib/modules/DistanceVectorRoutingP.nc"
 static inline void DistanceVectorRoutingP__initializeInitializeTable(void )
-#line 316
+#line 369
 {
+
 
   DistanceVectorRoutingP__addRoute(TOS_NODE_ID, TOS_NODE_ID, 0, 4);
 }
 
-#line 76
+#line 63
 static inline error_t DistanceVectorRoutingP__DistanceVectorRouting__begin(void )
-#line 76
+#line 63
 {
 
 
@@ -12243,7 +12281,7 @@ static inline error_t DistanceVectorRoutingP__DistanceVectorRouting__begin(void 
 
 
   DistanceVectorRoutingP__Timer__startOneShot(40000);
-  sim_log_debug(220U, ROUTING_CHANNEL, "DVR started for node %u", TOS_NODE_ID);
+  sim_log_debug(220U, ROUTING_CHANNEL, "DVR started for node %u\n", TOS_NODE_ID);
 }
 
 # 9 "lib/interfaces/DistanceVectorRouting.nc"
@@ -14196,22 +14234,23 @@ static uint32_t RandomMlcgC__Random__rand32(void )
   return mlcg;
 }
 
-# 417 "lib/modules/DistanceVectorRoutingP.nc"
+# 311 "lib/modules/DistanceVectorRoutingP.nc"
 static void DistanceVectorRoutingP__inputNeighbor(void )
-#line 417
+#line 311
 {
 
-
   uint32_t *neighbors = DistanceVectorRoutingP__NeighborDiscovery__getNeighbors();
-  uint16_t neighborsListSize = DistanceVectorRoutingP__NeighborDiscovery__getNumNeighbors();
+  uint16_t numNeighbors = DistanceVectorRoutingP__NeighborDiscovery__getNumNeighbors();
   uint8_t i;
-#line 422
+#line 315
   uint8_t j;
   bool routeFound = FALSE;
-#line 423
+#line 316
   bool newNeighborfound = FALSE;
 
-  for (i = 0; i < neighborsListSize; i++) {
+
+  for (i = 0; i < numNeighbors; i++) {
+
 
       for (j = 1; j < DistanceVectorRoutingP__routeCount[sim_node()]; j++) {
 
@@ -14221,6 +14260,7 @@ static void DistanceVectorRoutingP__inputNeighbor(void )
               DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop = neighbors[i];
               DistanceVectorRoutingP__initializeTable[sim_node()][j].cost = 1;
               DistanceVectorRoutingP__initializeTable[sim_node()][j].ttl = 4;
+
 
               routeFound = TRUE;
 
@@ -14233,33 +14273,39 @@ static void DistanceVectorRoutingP__inputNeighbor(void )
 
       if (!routeFound && DistanceVectorRoutingP__routeCount[sim_node()] != 22) {
 
-          DistanceVectorRoutingP__addRoute(neighbors[i], neighbors[i], 1, 4);
 
+          DistanceVectorRoutingP__addRoute(neighbors[i], neighbors[i], 1, 4);
           newNeighborfound = TRUE;
         }
       else {
-#line 451
+#line 347
         if (DistanceVectorRoutingP__routeCount[sim_node()] == 22) {
 
-            sim_log_debug(229U, ROUTING_CHANNEL, "Routing table full. Cannot add entry for node: %u\n", neighbors[i]);
+
+            sim_log_debug(231U, ROUTING_CHANNEL, "Routing table full. Cannot add entry for node: %u\n", neighbors[i]);
           }
         }
 
       routeFound = FALSE;
     }
 
+
+
   if (newNeighborfound) {
+
 
       DistanceVectorRoutingP__update();
     }
 }
 
-#line 341
+#line 399
 static void DistanceVectorRoutingP__addRoute(uint8_t dest, uint8_t nextHop, uint8_t cost, uint8_t ttl)
-#line 341
+#line 399
 {
 
+
   if (DistanceVectorRoutingP__routeCount[sim_node()] != 22) {
+
 
       DistanceVectorRoutingP__initializeTable[sim_node()][DistanceVectorRoutingP__routeCount[sim_node()]].dest = dest;
       DistanceVectorRoutingP__initializeTable[sim_node()][DistanceVectorRoutingP__routeCount[sim_node()]].nextHop = nextHop;
@@ -14269,36 +14315,38 @@ static void DistanceVectorRoutingP__addRoute(uint8_t dest, uint8_t nextHop, uint
     }
 }
 
-#line 476
+#line 481
 static void DistanceVectorRoutingP__update(void )
-#line 476
+#line 481
 {
 
 
 
   uint32_t *neighbors = DistanceVectorRoutingP__NeighborDiscovery__getNeighbors();
-  uint16_t neighborsListSize = DistanceVectorRoutingP__NeighborDiscovery__getNumNeighbors();
+  uint16_t numNeighbors = DistanceVectorRoutingP__NeighborDiscovery__getNumNeighbors();
   uint8_t i = 0;
-#line 482
+#line 487
   uint8_t j = 0;
-#line 482
-  uint8_t counter = 0;
+#line 487
+  uint8_t tempRouteCounter = 0;
   uint8_t temp;
-  DistanceVectorRoutingP__Route packetRoutes[5];
-  bool isSwapped = FALSE;
+
+  DistanceVectorRoutingP__Route routesToSend[5];
+  bool valuesSwapped = FALSE;
 
 
   for (i = 0; i < 5; i++) {
 
-      packetRoutes[i].dest = 0;
-      packetRoutes[i].nextHop = 0;
-      packetRoutes[i].cost = 0;
-      packetRoutes[i].ttl = 0;
+      routesToSend[i].dest = 0;
+      routesToSend[i].nextHop = 0;
+      routesToSend[i].cost = 0;
+      routesToSend[i].ttl = 0;
     }
 
 
 
-  for (i = 0; i < neighborsListSize; i++) {
+  for (i = 0; i < numNeighbors; i++) {
+
 
       while (j < DistanceVectorRoutingP__routeCount[sim_node()]) {
 
@@ -14306,66 +14354,71 @@ static void DistanceVectorRoutingP__update(void )
 
           if (neighbors[i] == DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop && STRATEGY_SPLIT_HORIZON == STRATEGY_SPLIT_HORIZON) {
 
+
               temp = DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop;
+
 
               DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop = 0;
 
-              isSwapped = TRUE;
+
+              valuesSwapped = TRUE;
             }
           else {
-#line 512
+#line 522
             if (neighbors[i] == DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop && STRATEGY_SPLIT_HORIZON == STRATEGY_POISON_REVERSE) {
+
 
                 temp = DistanceVectorRoutingP__initializeTable[sim_node()][j].cost;
 
+
                 DistanceVectorRoutingP__initializeTable[sim_node()][j].cost = 17;
 
-                isSwapped = TRUE;
+
+                valuesSwapped = TRUE;
               }
             }
 
-          packetRoutes[counter].dest = DistanceVectorRoutingP__initializeTable[sim_node()][j].dest;
-          packetRoutes[counter].nextHop = DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop;
-          packetRoutes[counter].cost = DistanceVectorRoutingP__initializeTable[sim_node()][j].cost;
-          counter++;
+          routesToSend[tempRouteCounter].dest = DistanceVectorRoutingP__initializeTable[sim_node()][j].dest;
+          routesToSend[tempRouteCounter].nextHop = DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop;
+          routesToSend[tempRouteCounter].cost = DistanceVectorRoutingP__initializeTable[sim_node()][j].cost;
+
+          tempRouteCounter++;
 
 
-          if (counter == 5 || j == DistanceVectorRoutingP__routeCount[sim_node()] - 1) {
+          if (tempRouteCounter == 5 || j == DistanceVectorRoutingP__routeCount[sim_node()] - 1) {
 
 
-              DistanceVectorRoutingP__makePack(&DistanceVectorRoutingP__packToRoute[sim_node()], TOS_NODE_ID, neighbors[i], 1, PROTOCOL_DV, 0, &packetRoutes, sizeof packetRoutes);
-
-
+              DistanceVectorRoutingP__makePack(&DistanceVectorRoutingP__packToRoute[sim_node()], TOS_NODE_ID, neighbors[i], 1, PROTOCOL_DV, 0, &routesToSend, sizeof routesToSend);
 
 
               DistanceVectorRoutingP__Sender__send(DistanceVectorRoutingP__packToRoute[sim_node()], neighbors[i]);
 
 
-              while (counter > 0) {
+              while (tempRouteCounter > 0) {
 
 
-                  counter--;
-                  packetRoutes[counter].dest = 0;
-                  packetRoutes[counter].nextHop = 0;
-                  packetRoutes[counter].cost = 0;
+                  tempRouteCounter = tempRouteCounter - 1;
+                  routesToSend[tempRouteCounter].dest = 0;
+                  routesToSend[tempRouteCounter].nextHop = 0;
+                  routesToSend[tempRouteCounter].cost = 0;
                 }
             }
 
 
 
-          if (isSwapped && STRATEGY_SPLIT_HORIZON == STRATEGY_SPLIT_HORIZON) {
+          if (valuesSwapped && STRATEGY_SPLIT_HORIZON == STRATEGY_SPLIT_HORIZON) {
 
               DistanceVectorRoutingP__initializeTable[sim_node()][j].nextHop = temp;
             }
           else {
-#line 555
-            if (isSwapped && STRATEGY_SPLIT_HORIZON == STRATEGY_POISON_REVERSE) {
+#line 567
+            if (valuesSwapped && STRATEGY_SPLIT_HORIZON == STRATEGY_POISON_REVERSE) {
 
                 DistanceVectorRoutingP__initializeTable[sim_node()][j].cost = temp;
               }
             }
 
-          isSwapped = FALSE;
+          valuesSwapped = FALSE;
           j++;
         }
 
@@ -14378,7 +14431,7 @@ static void DistanceVectorRoutingP__update(void )
 
 
 static void DistanceVectorRoutingP__makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t protocol, uint16_t seq, void *payload, uint8_t length)
-#line 573
+#line 585
 {
   __nesc_hton_uint16(Package->src.nxdata, src);
   __nesc_hton_uint16(Package->dest.nxdata, dest);
@@ -14426,18 +14479,18 @@ static void /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__printQueue(v
   int j;
 
 #line 76
-  sim_log_debug(237U, "QueueC", "head <-");
+  sim_log_debug(240U, "QueueC", "head <-");
   for (i = /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__head[sim_node()]; i < /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__head[sim_node()] + /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]; i++) {
-      sim_log_debug_clear(238U, "QueueC", "[");
+      sim_log_debug_clear(241U, "QueueC", "[");
       for (j = 0; j < sizeof(/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t ); j++) {
           uint8_t v = ((uint8_t *)&/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue[sim_node()][i % 20])[j];
 
 #line 81
-          sim_log_debug_clear(239U, "QueueC", "%0.2hhx", v);
+          sim_log_debug_clear(242U, "QueueC", "%0.2hhx", v);
         }
-      sim_log_debug_clear(240U, "QueueC", "] ");
+      sim_log_debug_clear(243U, "QueueC", "] ");
     }
-  sim_log_debug_clear(241U, "QueueC", "<- tail\n");
+  sim_log_debug_clear(244U, "QueueC", "<- tail\n");
 }
 
 # 38 "lib/modules/SimpleSendP.nc"
@@ -14489,43 +14542,50 @@ static void /*NeighborDiscoveryC.HashmapC*/HashmapC__1__Hashmap__insert(uint32_t
   i < /*NeighborDiscoveryC.HashmapC*/HashmapC__1__HASH_MAX_SIZE[sim_node()]);
 }
 
-# 129 "lib/modules/DistanceVectorRoutingP.nc"
-static void DistanceVectorRoutingP__DistanceVectorRouting__route(pack *myMsg)
-#line 129
+# 109 "lib/modules/DistanceVectorRoutingP.nc"
+static void DistanceVectorRoutingP__DistanceVectorRouting__route(pack *message)
+#line 109
 {
 
   uint8_t nextHop;
 
 
-  if (__nesc_ntoh_uint16(myMsg->dest.nxdata) == TOS_NODE_ID) {
+  if (__nesc_ntoh_uint16(message->dest.nxdata) == TOS_NODE_ID) {
 
-      sim_log_debug(222U, ROUTING_CHANNEL, "Packet has reached destination %d!!!\n", TOS_NODE_ID);
+
+      sim_log_debug(222U, ROUTING_CHANNEL, "Packet has reached destination %d!!!----------------------------------\n", TOS_NODE_ID);
+      sim_log_debug(223U, ROUTING_CHANNEL, "     From node: %d\n", __nesc_ntoh_uint16(message->src.nxdata));
+      sim_log_debug(224U, ROUTING_CHANNEL, "     Payload: %s\n", message->payload);
 
       return;
     }
 
 
-  nextHop = DistanceVectorRoutingP__findHop(__nesc_ntoh_uint16(myMsg->dest.nxdata));
-
-
-
-
+  nextHop = DistanceVectorRoutingP__findHop(__nesc_ntoh_uint16(message->dest.nxdata));
 
 
   if (nextHop == 0) {
 
-      sim_log_debug(223U, ROUTING_CHANNEL, "No route to destination. Dropping packet...\n");
+      sim_log_debug(225U, ROUTING_CHANNEL, "No route to destination. Dropping packet...\n");
 
-      logPack(myMsg);
+
+      logPack(message);
     }
   else {
 
 
-      sim_log_debug(224U, ROUTING_CHANNEL, "Node %d routing packet through %d\n", TOS_NODE_ID, nextHop);
 
-      logPack(myMsg);
 
-      DistanceVectorRoutingP__Sender__send(*myMsg, nextHop);
+      uint16_t cost = DistanceVectorRoutingP__getCost(__nesc_ntoh_uint16(message->dest.nxdata));
+
+#line 141
+      sim_log_debug(226U, ROUTING_CHANNEL, "Routing Packet - src: %d, dest: %d, seq: %d, next hop: %d, cost: %d\n", __nesc_ntoh_uint16(message->src.nxdata), __nesc_ntoh_uint16(message->dest.nxdata), __nesc_ntoh_uint16(message->seq.nxdata), nextHop, cost);
+
+
+      logPack(message);
+
+
+      DistanceVectorRoutingP__Sender__send(*message, nextHop);
     }
 }
 
