@@ -90,7 +90,7 @@ implementation {
 
 
 //a function to send a ping using distance vector routing 
-command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *payload) {
+    command void DistanceVectorRouting.sendPing(uint16_t destination, uint8_t *payload) {
 
         //make the package
         makePack(&packToRoute, TOS_NODE_ID, destination, MAX_TTL, PROTOCOL_PING, 0, payload, PACKET_MAX_PAYLOAD_SIZE);
