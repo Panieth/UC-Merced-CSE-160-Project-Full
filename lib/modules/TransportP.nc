@@ -4,6 +4,8 @@
 #include "../../includes/packet.h"
 #include <Timer.h>
 
+//this section declares any global constants 
+
 module TransportP{
 
     //declare interface being provided 
@@ -17,6 +19,22 @@ module TransportP{
 }
 
 implementation{
+
+    //socket structure to store state of the socket
+    typedef struct{
+
+        //stores the sequence number of the socket
+        uint16_t sequenceNum;
+
+        socket_store_t stateFile; 
+
+
+    }socket_t;
+
+
+    //each node has to contain an array of sockets, one for each connection
+    socket_t connections[MAX_NUM_OF_SOCKETS];
+
 
     //main functions provided as an interface to other files
 
