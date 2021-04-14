@@ -31,7 +31,7 @@ implementation {
     components CommandHandlerC;
     Node.CommandHandler -> CommandHandlerC;
 
-    //add components for flooding and neighbor discovery 
+    //add components for flooding, neighbor discovery, DVR and transport
     components FloodingC;
     Node.Flooding -> FloodingC;
 
@@ -40,4 +40,7 @@ implementation {
 
     components DistanceVectorRoutingC;
     Node.DistanceVectorRouting -> DistanceVectorRoutingC;
+
+    components TransportC;
+    Node.Transport -> TransportC;
 }

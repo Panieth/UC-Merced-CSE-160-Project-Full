@@ -20,20 +20,28 @@ module TransportP{
 
 implementation{
 
+
     //socket structure to store state of the socket
-    typedef struct{
+    // typedef struct{
 
-        //stores the sequence number of the socket
-        uint16_t sequenceNum;
+    //     //stores the sequence number of the socket
+    //     uint16_t sequenceNum;
 
-        socket_store_t stateFile; 
+    //     socket_store_t stateFile; 
 
 
-    }socket_t;
+    // }socket_t;
 
 
     //each node has to contain an array of sockets, one for each connection
     socket_t connections[MAX_NUM_OF_SOCKETS];
+
+
+    //what to do when the timer is fired
+    event void Timer.fired() {
+        
+
+    }
 
 
     //main functions provided as an interface to other files
@@ -64,12 +72,12 @@ implementation{
 
     }
 
-    command error_t Transport.read(socket_t fd, uint8_t *buff, uint16_t bufflen){
+    command uint16_t Transport.read(socket_t fd, uint8_t *buff, uint16_t bufflen){
 
 
     }
 
-    command error_t Transport.connect(socket_t fd, socket_addr){
+    command error_t Transport.connect(socket_t fd, socket_addr_t * addr){
 
 
     }

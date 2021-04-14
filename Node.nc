@@ -28,6 +28,7 @@ module Node{
    uses interface Flooding;
    uses interface NeighborDiscovery as NeighborDiscovery;
    uses interface DistanceVectorRouting as DistanceVectorRouting;
+   uses interface Transport as Transport; 
 }
 
 implementation{
@@ -135,7 +136,7 @@ implementation{
    }
 
    event void CommandHandler.setTestClient(){
-      
+
 
    }
 
