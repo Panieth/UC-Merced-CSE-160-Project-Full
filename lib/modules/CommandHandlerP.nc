@@ -74,7 +74,7 @@ implementation{
                 break;
 
             case CMD_TEST_SERVER:
-                dbg(COMMAND_CHANNEL, "Command Type: Client\n");
+                dbg(COMMAND_CHANNEL, "Command Type: Server\n"); //used to say Client\n
                 signal CommandHandler.setTestServer();
                 break;
 

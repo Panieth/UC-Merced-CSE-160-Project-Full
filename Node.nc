@@ -129,9 +129,15 @@ implementation{
 
    event void CommandHandler.printDistanceVector(){}
 
-   event void CommandHandler.setTestServer(){}
+   event void CommandHandler.setTestServer(){
 
-   event void CommandHandler.setTestClient(){}
+
+   }
+
+   event void CommandHandler.setTestClient(){
+      
+
+   }
 
    event void CommandHandler.setAppServer(){}
 
