@@ -16,6 +16,7 @@ class TestSim:
     CMD_PRINT_MESSAGE = 7
     CMD_TEST_CLIENT = 4
     CMD_TEST_SERVER = 5
+    CMD_KILL = 6
 
     # CHANNELS - see includes/channels.h
     COMMAND_CHANNEL="command";
@@ -136,12 +137,15 @@ class TestSim:
         self.t.addChannel(channelName, out);
 
     #commands for project 3
-    def testServer(self, address):
-        self.sendCMD(self.CMD_TEST_SERVER, address, "server command")
+    def testServer(self, source, port):
+        self.sendCMD(self.CMD_TEST_SERVER, source, "{0}".format(chr(port)))
 
-    def testClient(self, address):
-        self.sendCMD(self.CMD_TEST_CLIENT, address, "client command")
+    def testClient(self, source, srcPort, destination, destPort, num_bytes_to_transfer):
+        self.sendCMD(self.CMD_TEST_CLIENT, source, "{0}{1}{2}{3}".format(chr(srcPort), chr(destination), chr(destPort), chr(num_bytes_to_transfer)))
 
+    def clientClose(self, client_addr, srcPort, destination, destPort):
+        self.sendCMD(self.CMD_KILL, client_addr, "{0}{1}{2}".format(chr(srcPort), chr(destination), chr(destPort)))
+        
 
 def main():
     s = TestSim();

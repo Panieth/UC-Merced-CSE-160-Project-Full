@@ -21,15 +21,21 @@ def main():
     s.addChannel(s.GENERAL_CHANNEL);
     s.addChannel(s.TRANSPORT_CHANNEL);
 
-    # After sending a ping, simulate a little to prevent collision.
+    # define ports and motes
+    goodMote = 1;
+    goodPort = 42;
+    otherGoodMote = 7;
+    otherGoodPort = 99;
 
     s.runTime(300);
-    s.testServer(1);
+    s.testServer(otherGoodMote, otherGoodPort);
     s.runTime(60);
 
-    s.testClient(4);
+    s.testClient(4, 15, goodMote, goodPort, 150);
     s.runTime(1);
-    s.runTime(1000);
+    s.runTime(100);
+
+    s.clientClose(4, 15, goodMote, goodPort)
 
 
 

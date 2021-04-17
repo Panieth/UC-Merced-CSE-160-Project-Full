@@ -130,14 +130,59 @@ implementation{
 
    event void CommandHandler.printDistanceVector(){}
 
-   event void CommandHandler.setTestServer(){
+   event void CommandHandler.setTestServer(uint8_t port){
 
+      //grab a socket if there is one available 
+      // fd = call Transport.socket();
+
+      // //if there was a socket available, create the connection
+      // if(*fd != NULL){
+
+      //    //create the address for the socket and set it equal to current node
+      //    socket_addr_t socketAddress;
+      //    socketAddress->port = (nx_uint8_t) TOS_NODE_ID; 
+
+      //    //bind the socket to that address 
+      //    call Transport.bind(fd, socketAddress);
+
+      //    //start the timer 
+      //    call TransportTimer.startOneShot(40000);
+
+      // }
+
+      //print about the listening
+      dbg(TRANSPORT_CHANNEL, "   Node %u is now listening on port %u\n", TOS_NODE_ID, port);
 
    }
 
-   event void CommandHandler.setTestClient(){
+   event void CommandHandler.setTestClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer){
 
+      //grab a socket if there is one available
+      // fd = call Transport.socket();
 
+      // //if there was a socket available then proceed
+      // if(fd != NULL){
+
+      //    //grab the socket adddress to be the current node ID
+      //    socket_addr_t socketAddress;
+      //    socketAddress->port = (nx_uint8_t) TOS_NODE_ID; 
+
+      //    //bind the socket to the address
+      //    call Transport.bind(fd, socketAddress);
+
+      //    socket_addr_t serverAddress = 
+
+      // }
+
+      //print about potential connection being created
+      dbg(TRANSPORT_CHANNEL, "   Node %u is creating a connection on port %u to port %u on node %u, and will transfer %u bytes\n",TOS_NODE_ID, srcPort, destPort, destination, num_bytes_to_transfer);
+
+   }
+
+   event void CommandHandler.clientClose(uint8_t srcPort, uint8_t destination, uint8_t destPort){
+
+      //print about the impending connection close
+      dbg(COMMAND_CHANNEL, "  Node %u is closing the connection on port %u to port %u at node %u\n", TOS_NODE_ID, srcPort, destPort, destination);
    }
 
    event void CommandHandler.setAppServer(){}

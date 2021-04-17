@@ -48,6 +48,7 @@ implementation{
 
     command socket_t Transport.socket(){
 
+        //return NULL; 
 
     }
 
