@@ -34,7 +34,7 @@ implementation{
 
 
     //each node has to contain an array of sockets, one for each connection
-    socket_t connections[MAX_NUM_OF_SOCKETS];
+    socket_store_t connections[MAX_NUM_OF_SOCKETS];
 
 
     //what to do when the timer is fired

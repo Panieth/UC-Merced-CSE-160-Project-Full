@@ -153,6 +153,7 @@ implementation{
       //print about the listening
       dbg(TRANSPORT_CHANNEL, "   Node %u is now listening on port %u\n", TOS_NODE_ID, port);
 
+
    }
 
    event void CommandHandler.setTestClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer){
@@ -177,12 +178,16 @@ implementation{
       //print about potential connection being created
       dbg(TRANSPORT_CHANNEL, "   Node %u is creating a connection on port %u to port %u on node %u, and will transfer %u bytes\n",TOS_NODE_ID, srcPort, destPort, destination, num_bytes_to_transfer);
 
+      
+
    }
 
    event void CommandHandler.clientClose(uint8_t srcPort, uint8_t destination, uint8_t destPort){
 
       //print about the impending connection close
-      dbg(COMMAND_CHANNEL, "  Node %u is closing the connection on port %u to port %u at node %u\n", TOS_NODE_ID, srcPort, destPort, destination);
+      dbg(TRANSPORT_CHANNEL, "  Node %u is closing the connection on port %u to port %u at node %u\n", TOS_NODE_ID, srcPort, destPort, destination);
+
+
    }
 
    event void CommandHandler.setAppServer(){}
