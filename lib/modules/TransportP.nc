@@ -79,6 +79,8 @@ implementation{
 
     }
 
+
+
    /**
     * Bind a socket with an address.
     * @param
@@ -132,8 +134,40 @@ implementation{
 
     }
 
+
+
+   /**
+    * Checks to see if there are socket connections to connect to and
+    * if there is one, connect to it.
+    * @param
+    *    socket_t fd: file descriptor that is associated with the socket
+    *       that is attempting an accept. remember, only do on listen. 
+    * @side Server
+    * @return socket_t - returns a new socket if the connection is
+    *    accepted. this socket is a copy of the server socket but with
+    *    a destination associated with the destination address and port.
+    *    if not return a null socket.
+    */
     command socket_t Transport.accept(socket_t fd){
 
+        //a variable to iterate
+        uint8_t i;
+
+        //once again we will ensure that the socket is valid
+        if(fd > MAX_NUM_OF_SOCKETS || fd == 0){
+
+            //if fd is greater than the maximum possible sockets or it is
+            //equal to zero then the socket number is not valid
+            return 0; //return zero, an invalid socket_t
+
+        }
+
+        //iterate over all the potential sockets
+        for(i = 0; i < MAX_NUM_OF_SOCKETS; i++){
+
+            
+
+        }
 
     }
 
@@ -167,8 +201,45 @@ implementation{
 
     }
 
+
+
+   /**
+    * Listen to the socket and wait for a connection.
+    * @param
+    *    socket_t fd: file descriptor that is associated with the socket
+    *       that you are hard closing. 
+    * @side Server
+    * @return error_t - returns SUCCESS if you are able change the state 
+    *   to listen else FAIL.
+    */
     command error_t Transport.listen(socket_t fd){
 
+        //once again we will ensure that the socket is valid
+        if(fd > MAX_NUM_OF_SOCKETS || fd == 0){
+
+            //if fd is greater than the maximum possible sockets or it is
+            //equal to zero then the socket number is not valid
+            return FAIL;
+
+        }
+
+        //check to see if the socket is bound
+        if(connections[fd - 1].state == BOUND){
+
+            //now we can change the state to listening, since the 
+            //socket is bound
+            connections[fd - 1].state = LISTEN;
+
+            //because the state was changed to liste, returns success
+            return SUCCESS;
+
+        }else{
+
+            //if the state is not already bound then we cannot listen
+            //return failure
+            return FAIL;
+
+        }
 
     }
 
