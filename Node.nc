@@ -47,6 +47,9 @@ implementation{
 
       //begin distance vector routing
       call DistanceVectorRouting.begin();
+
+      //begin the transport layer service
+      call Transport.begin();
    }
 
    event void AMControl.startDone(error_t err){

@@ -23,6 +23,9 @@ module TransportP{
 
 implementation{
 
+    //declarations for helper functions to be used by commands
+    void initializeSocket(uint8_t fd);
+
     //a constant to store the maximum number of ports 
     #define MAX_NUM_OF_PORTS 256
 
@@ -31,6 +34,23 @@ implementation{
 
     //an array to store the status of the ports
     uint8_t ports[MAX_NUM_OF_PORTS];
+
+    //a function to set up and begin the Transport layer
+    command void Transport.begin(){
+
+        //a variable to iterate over the sockets
+        uint8_t i;
+
+        //iterate over all of the sockets and initialize them
+        for(i = 0; i < MAX_NUM_OF_SOCKETS; i++){
+
+            //initialize the current socket + 1;
+            initializeSocket(i + 1); //adding +1 due to the shifting of the indices
+                                    //which then allow us to use 0 as a fail signal
+
+        }
+
+    }
 
     //what to do when the timer is fired
     event void Timer.fired() {
@@ -196,8 +216,32 @@ implementation{
 
     }
 
+
+
+   /**
+    * A hard close, which is not graceful. This portion is optional.
+    * @param
+    *    socket_t fd: file descriptor that is associated with the socket
+    *       that you are hard closing. 
+    * @side Client/Server
+    * @return socket_t - returns SUCCESS if you are able to attempt
+    *    a closure with the fd passed, else return FAIL.
+    */
     command error_t Transport.release(socket_t fd){
 
+        //once again we will ensure that the socket is valid
+        if(fd > MAX_NUM_OF_SOCKETS || fd == 0){
+
+            //if fd is greater than the maximum possible sockets or it is
+            //equal to zero then the socket number is not valid
+            return FAIL;
+
+        }
+
+        //because our socket is valid, and we want to close in a non 
+        //graceful manner, simply initialize the socket again
+        initializeSocket(fd);
+        return SUCCESS;
 
     }
 
@@ -242,6 +286,58 @@ implementation{
         }
 
     }
+
+
+    //helper functions to assist the commands declared above
+
+    //a function to initialize, or reinitialize the given socket 
+    void initializeSocket(uint8_t fd){
+
+        //a variable to iterate and store temp numbers
+        uint8_t i;
+
+        //set every socket_store_t parameter to zero or to closed state
+
+        //set the flag and state to closed
+        connections[fd - 1].flag = 0;
+        connections[fd - 1].state = CLOSED;
+
+        //destroy source port and addressess
+        connections[fd - 1].src.addr = 0;
+        connections[fd - 1].src.port = 0;
+
+        //destroy destination port and addressess
+        connections[fd - 1].dest.addr = 0;
+        connections[fd - 1].dest.addr = 0;
+
+        //iterate over the size of the socket buffers
+        for(i = 0; i < SOCKET_BUFFER_SIZE; i++){
+
+            //set current index of both buffers to zero
+            connections[fd - 1].sendBuff[i] = 0;
+            connections[fd - 1].rcvdBuff[i] = 0;
+
+        }
+
+        //set the RTT to an arbitrary large number 
+        connections[fd - 1].RTT = 750;
+
+        //there is no effective window yet so set it to 0
+        connections[fd - 1].effectiveWindow = 0;
+
+        //initialize sender variables
+        connections[fd - 1].lastWritten = 0;
+        connections[fd - 1].lastAck = 0;
+        connections[fd - 1].lastSent = 0;
+
+        //initialize receiver variables
+        connections[fd - 1].lastRead = 0;
+        connections[fd - 1].lastRcvd = 0;
+        connections[fd - 1].nextExpected = 0;
+
+
+    }
+
 
     //a function to make a packet, same as one given for project 1
     void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t protocol, uint16_t seq, void* payload, uint8_t length) {

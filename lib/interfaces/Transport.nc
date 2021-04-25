@@ -16,6 +16,10 @@
  */
 
 interface Transport{
+
+   //a function to set up and begin the transport layer
+   command void begin();
+
    /**
     * Get a socket if there is one available.
     * @Side Client/Server
