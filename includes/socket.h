@@ -14,6 +14,17 @@ enum socket_state{
     ESTABLISHED,
     SYN_SENT,
     SYN_RCVD,
+
+    //additional states needed to implement project 3 stuff
+    OPEN, //the connection will attempt to be established, connection can no longer be closed
+    BOUND, //socket was bound to a source, connection not yet established
+    FIN_WAIT_1,
+    FIN_WAIT_2,
+    CLOSING,
+    TIME_WAIT,
+    CLOSE_WAIT,
+    LAST_ACK
+
 };
 
 
@@ -34,7 +45,7 @@ typedef uint8_t socket_t;
 typedef struct socket_store_t{
     uint8_t flag;
     enum socket_state state;
-    socket_port_t src;
+    socket_addr_t src; //modified so we could also store addr and port
     socket_addr_t dest;
 
     // This is the sender portion.

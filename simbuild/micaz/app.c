@@ -797,7 +797,7 @@ extern void *malloc(size_t __size) __attribute((__leaf__)) __attribute((__nothro
 #line 483
 extern void free(void *__ptr) __attribute((__leaf__)) __attribute((__nothrow__)) ;
 #line 742
-typedef int (*__compar_fn_t)(const void *arg_0x7f8727b30020, const void *arg_0x7f8727b30320);
+typedef int (*__compar_fn_t)(const void *arg_0x7f1898396020, const void *arg_0x7f1898396320);
 #line 780
 __extension__ 
 #line 797
@@ -818,7 +818,7 @@ extern double fabs(double __x) __attribute((__leaf__)) __attribute((__nothrow__)
 
 extern double floor(double __x) __attribute((__leaf__)) __attribute((__nothrow__)) __attribute((const)) ;
 #line 250
-extern double erfc(double arg_0x7f8727aa85e0) __attribute((__leaf__)) __attribute((__nothrow__)) ;
+extern double erfc(double arg_0x7f189830e5e0) __attribute((__leaf__)) __attribute((__nothrow__)) ;
 #line 326
 __extension__ 
 
@@ -1221,8 +1221,8 @@ typedef struct hashtable hashtable_t;
 #line 78
 struct hashtable *
 create_hashtable(unsigned int minsize, 
-unsigned int (*hashfunction)(void *arg_0x7f872784b3a0), 
-int (*key_eq_fn)(void *arg_0x7f872784bb70, void *arg_0x7f872784be30));
+unsigned int (*hashfunction)(void *arg_0x7f18980b13a0), 
+int (*key_eq_fn)(void *arg_0x7f18980b1b70, void *arg_0x7f18980b1e30));
 #line 103
 #line 102
 int 
@@ -1258,7 +1258,7 @@ typedef struct sim_log_channel {
 } sim_log_channel_t;
 
 enum __nesc_unnamed4272 {
-  SIM_LOG_OUTPUT_COUNT = 265U
+  SIM_LOG_OUTPUT_COUNT = 271U
 };
 
 sim_log_output_t outputs[SIM_LOG_OUTPUT_COUNT];
@@ -1838,7 +1838,7 @@ struct tm;
 
 struct tm;
 # 46 "/opt/tinyos-main/tos/lib/tossim/randomlib.h"
-static inline void RandomInitialise(int arg_0x7f8727638c00, int arg_0x7f8727638e80);
+static inline void RandomInitialise(int arg_0x7f1897e9ec00, int arg_0x7f1897e9ee80);
 static double RandomUniform(void );
 # 51 "/opt/tinyos-main/tos/lib/tossim/sim_noise.c"
 int numCase1 = 0;
@@ -3873,8 +3873,19 @@ enum socket_state {
   LISTEN, 
   ESTABLISHED, 
   SYN_SENT, 
-  SYN_RCVD
+  SYN_RCVD, 
+
+
+  OPEN, 
+  BOUND, 
+  FIN_WAIT_1, 
+  FIN_WAIT_2, 
+  CLOSING, 
+  TIME_WAIT, 
+  CLOSE_WAIT, 
+  LAST_ACK
 };
+
 
 
 typedef nx_uint8_t nx_socket_port_t;
@@ -3884,7 +3895,7 @@ typedef uint8_t socket_port_t;
 
 
 
-#line 24
+#line 35
 typedef nx_struct socket_addr_t {
   nx_socket_port_t port;
   nx_uint16_t addr;
@@ -3893,12 +3904,12 @@ typedef nx_struct socket_addr_t {
 
 
 typedef uint8_t socket_t;
-#line 54
-#line 34
+#line 65
+#line 45
 typedef struct socket_store_t {
   uint8_t flag;
   enum socket_state state;
-  socket_port_t src;
+  socket_addr_t src;
   socket_addr_t dest;
 
 
@@ -4261,6 +4272,7 @@ typedef /*DistanceVectorRoutingC.SimpleSendC.PoolC*/PoolC__3__pool_t /*DistanceV
 typedef /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__pool_t /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__Pool__t;
 typedef sendInfo */*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t;
 typedef /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__t;
+typedef uint8_t TransportP__SocketMapping__t;
 typedef TMilli TransportP__Timer__precision_tag;
 typedef sendInfo /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__Pool__t;
 typedef sendInfo */*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__Queue__t;
@@ -4270,16 +4282,18 @@ typedef /*TransportC.SimpleSendC.PoolC*/PoolC__4__pool_t /*TransportC.SimpleSend
 typedef /*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__pool_t /*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__Pool__t;
 typedef sendInfo */*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t;
 typedef /*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t /*TransportC.SimpleSendC.QueueC*/QueueC__4__Queue__t;
+typedef uint8_t /*TransportC.SocketMapping*/HashmapC__2__t;
+typedef /*TransportC.SocketMapping*/HashmapC__2__t /*TransportC.SocketMapping*/HashmapC__2__Hashmap__t;
 # 62 "/opt/tinyos-main/tos/interfaces/Init.nc"
 static error_t PlatformC__Init__init(void );
 # 67 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t SimSchedulerBasicP__TaskBasic__postTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7f872750c020);
+uint8_t arg_0x7f1897d72020);
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SimSchedulerBasicP__TaskBasic__default__runTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7f872750c020);
+uint8_t arg_0x7f1897d72020);
 # 57 "/opt/tinyos-main/tos/interfaces/Scheduler.nc"
 static void SimSchedulerBasicP__Scheduler__init(void );
 
@@ -4322,7 +4336,7 @@ static long long int SimMoteP__SimMote__getStartTime(void );
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t TossimActiveMessageC__AMSend__send(
 # 47 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7f8727343c70, 
+am_id_t arg_0x7f1897ba9c70, 
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -4345,7 +4359,7 @@ message_t *
 
 TossimActiveMessageC__Snoop__default__receive(
 # 49 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7f8727328a50, 
+am_id_t arg_0x7f1897b8ea50, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4392,7 +4406,7 @@ message_t *
 
 TossimActiveMessageC__Receive__default__receive(
 # 48 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7f8727329e30, 
+am_id_t arg_0x7f1897b8fe30, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4672,19 +4686,19 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__f
 #line 83
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7f8726c9c950);
+uint8_t arg_0x7f1897502950);
 # 98 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isOneShot(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7f8726c9c950);
+uint8_t arg_0x7f1897502950);
 # 92 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isRunning(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7f8726c9c950);
+uint8_t arg_0x7f1897502950);
 # 64 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7f8726c9c950, 
+uint8_t arg_0x7f1897502950, 
 # 64 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 
@@ -4697,7 +4711,7 @@ uint32_t dt);
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7f8726c9c950, 
+uint8_t arg_0x7f1897502950, 
 # 73 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 82 "/opt/tinyos-main/tos/lib/timer/Counter.nc"
@@ -4732,7 +4746,7 @@ error_t error);
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(
 # 48 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x7f8726be8b60, 
+am_id_t arg_0x7f189744eb60, 
 # 103 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -4745,7 +4759,7 @@ error_t error);
 # 75 "/opt/tinyos-main/tos/interfaces/Send.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__send(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7f8726bea940, 
+uint8_t arg_0x7f1897450940, 
 # 67 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -4759,7 +4773,7 @@ uint8_t len);
 #line 100
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7f8726bea940, 
+uint8_t arg_0x7f1897450940, 
 # 96 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -5083,7 +5097,7 @@ int sim_main_start_mote(void )   ;
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SimSchedulerBasicP__TaskBasic__runTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7f872750c020);
+uint8_t arg_0x7f1897d72020);
 
 
 
@@ -5271,7 +5285,7 @@ static am_addr_t TossimActiveMessageC__amAddress(void );
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static void TossimActiveMessageC__AMSend__sendDone(
 # 47 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7f8727343c70, 
+am_id_t arg_0x7f1897ba9c70, 
 # 103 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -5290,7 +5304,7 @@ message_t *
 
 TossimActiveMessageC__Snoop__receive(
 # 49 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7f8727328a50, 
+am_id_t arg_0x7f1897b8ea50, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5309,7 +5323,7 @@ message_t *
 
 TossimActiveMessageC__Receive__receive(
 # 48 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7f8727329e30, 
+am_id_t arg_0x7f1897b8fe30, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -6286,7 +6300,7 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__s
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7f8726c9c950);
+uint8_t arg_0x7f1897502950);
 #line 71
 enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4349 {
 #line 71
@@ -6432,7 +6446,7 @@ static inline void /*FloodingC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQu
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(
 # 48 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x7f8726be8b60, 
+am_id_t arg_0x7f189744eb60, 
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -6449,7 +6463,7 @@ uint8_t len);
 # 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7f8726bea940, 
+uint8_t arg_0x7f1897450940, 
 # 96 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -7190,7 +7204,7 @@ static void /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__printQueue(v
 static inline /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__dequeue(void );
 #line 101
 static inline error_t /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__enqueue(/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t newVal);
-# 41 "lib/modules/TransportP.nc"
+# 36 "lib/modules/TransportP.nc"
 static inline void TransportP__Timer__fired(void );
 # 89 "/opt/tinyos-main/tos/interfaces/Pool.nc"
 static error_t /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__Pool__put(
@@ -7352,6 +7366,12 @@ static inline /*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t /*TransportC.S
 static inline void /*TransportC.SimpleSendC.QueueC*/QueueC__4__printQueue(void );
 #line 89
 static inline /*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t /*TransportC.SimpleSendC.QueueC*/QueueC__4__Queue__dequeue(void );
+# 23 "dataStructures/modules/HashmapC.nc"
+#line 20
+typedef struct /*TransportC.SocketMapping*/HashmapC__2__hashmapEntry {
+  uint32_t key;
+  /*TransportC.SocketMapping*/HashmapC__2__t value;
+} /*TransportC.SocketMapping*/HashmapC__2__hashmapEntry;
 # 80 "/opt/tinyos-main/tos/lib/tossim/heap.c"
 static inline void init_heap(heap_t *heap)
 #line 80
@@ -8202,13 +8222,13 @@ static inline message_t *TossimActiveMessageC__Receive__default__receive(am_id_t
 }
 
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7f8727329e30, message_t * msg, void * payload, uint8_t len){
+inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7f1897b8fe30, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x7f8727329e30) {
+  switch (arg_0x7f1897b8fe30) {
 #line 78
     case 6:
 #line 78
@@ -8224,7 +8244,7 @@ inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7
 #line 78
     default:
 #line 78
-      __nesc_result = TossimActiveMessageC__Receive__default__receive(arg_0x7f8727329e30, msg, payload, len);
+      __nesc_result = TossimActiveMessageC__Receive__default__receive(arg_0x7f1897b8fe30, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -8831,13 +8851,13 @@ static inline message_t *TossimActiveMessageC__Snoop__default__receive(am_id_t i
 }
 
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * TossimActiveMessageC__Snoop__receive(am_id_t arg_0x7f8727328a50, message_t * msg, void * payload, uint8_t len){
+inline static message_t * TossimActiveMessageC__Snoop__receive(am_id_t arg_0x7f1897b8ea50, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = TossimActiveMessageC__Snoop__default__receive(arg_0x7f8727328a50, msg, payload, len);
+    __nesc_result = TossimActiveMessageC__Snoop__default__receive(arg_0x7f1897b8ea50, msg, payload, len);
 #line 78
 
 #line 78
@@ -9029,9 +9049,9 @@ static __inline  int8_t __nesc_hton_int8(void * target, int8_t value)
 }
 
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
-inline static void TossimActiveMessageC__AMSend__sendDone(am_id_t arg_0x7f8727343c70, message_t * msg, error_t error){
+inline static void TossimActiveMessageC__AMSend__sendDone(am_id_t arg_0x7f1897ba9c70, message_t * msg, error_t error){
 #line 110
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x7f8727343c70, msg, error);
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x7f1897ba9c70, msg, error);
 #line 110
 }
 #line 110
@@ -10764,9 +10784,9 @@ static inline void SimSchedulerBasicP__TaskBasic__default__runTask(uint8_t id)
 }
 
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
-inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7f872750c020){
+inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7f1897d72020){
 #line 75
-  switch (arg_0x7f872750c020) {
+  switch (arg_0x7f1897d72020) {
 #line 75
     case TossimPacketModelC__startDoneTask:
 #line 75
@@ -10848,7 +10868,7 @@ inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7f872750
 #line 75
     default:
 #line 75
-      SimSchedulerBasicP__TaskBasic__default__runTask(arg_0x7f872750c020);
+      SimSchedulerBasicP__TaskBasic__default__runTask(arg_0x7f1897d72020);
 #line 75
       break;
 #line 75
@@ -10908,13 +10928,13 @@ inline static am_addr_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMPacket__dest
 }
 #line 78
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
-inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x7f8726be8b60, am_addr_t addr, message_t * msg, uint8_t len){
+inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x7f189744eb60, am_addr_t addr, message_t * msg, uint8_t len){
 #line 80
   unsigned char __nesc_result;
 #line 80
 
 #line 80
-  __nesc_result = TossimActiveMessageC__AMSend__send(arg_0x7f8726be8b60, addr, msg, len);
+  __nesc_result = TossimActiveMessageC__AMSend__send(arg_0x7f189744eb60, addr, msg, len);
 #line 80
 
 #line 80
@@ -12256,9 +12276,9 @@ static inline void /*DistanceVectorRoutingC.SimpleSendC.SimpleSendP*/SimpleSendP
   /*DistanceVectorRoutingC.SimpleSendC.SimpleSendP*/SimpleSendP__2__sendBufferTask__postTask();
 }
 
-# 41 "lib/modules/TransportP.nc"
+# 36 "lib/modules/TransportP.nc"
 static inline void TransportP__Timer__fired(void )
-#line 41
+#line 36
 {
 }
 
@@ -12290,9 +12310,9 @@ static inline void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 }
 
 # 83 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x7f8726c9c950){
+inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x7f1897502950){
 #line 83
-  switch (arg_0x7f8726c9c950) {
+  switch (arg_0x7f1897502950) {
 #line 83
     case 0U:
 #line 83
@@ -12338,7 +12358,7 @@ inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 #line 83
     default:
 #line 83
-      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x7f8726c9c950);
+      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x7f1897502950);
 #line 83
       break;
 #line 83
@@ -15591,9 +15611,9 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(ui
 }
 
 # 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
-static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x7f8726bea940, message_t * msg, error_t error){
+static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x7f1897450940, message_t * msg, error_t error){
 #line 100
-  switch (arg_0x7f8726bea940) {
+  switch (arg_0x7f1897450940) {
 #line 100
     case 0U:
 #line 100
@@ -15621,7 +15641,7 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg
 #line 100
     default:
 #line 100
-      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x7f8726bea940, msg, error);
+      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x7f1897450940, msg, error);
 #line 100
       break;
 #line 100
@@ -16974,6 +16994,8 @@ static int __nesc_nido_resolve(int __nesc_mote,
     return 0;
   }
 
+  /* Module HashmapC__2 */
+
   return -1;
 }
 /* Invoke static initialisers for mote '__nesc_mote' */
@@ -17164,5 +17186,7 @@ static void __nesc_nido_initialise(int __nesc_mote)
   memset((void *)&/*TransportC.SimpleSendC.QueueC*/QueueC__4__queue[__nesc_mote], 0, sizeof /*TransportC.SimpleSendC.QueueC*/QueueC__4__queue[__nesc_mote]);
   /*TransportC.SimpleSendC.QueueC*/QueueC__4__head[__nesc_mote] = 0;
   /*TransportC.SimpleSendC.QueueC*/QueueC__4__size[__nesc_mote] = 0;
+
+  /* Module HashmapC__2 */
 
 }
