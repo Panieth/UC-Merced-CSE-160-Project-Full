@@ -27,6 +27,14 @@ enum socket_state{
 
 };
 
+//enumerate the types of sockets
+enum type{
+
+    //there is both a client side and a server side
+    CLIENT,
+    SERVER
+
+};
 
 typedef nx_uint8_t nx_socket_port_t;
 typedef uint8_t socket_port_t;
@@ -45,8 +53,12 @@ typedef uint8_t socket_t;
 typedef struct socket_store_t{
     uint8_t flag;
     enum socket_state state;
+    enum type socketType;
     socket_addr_t src; //modified so we could also store addr and port
     socket_addr_t dest;
+
+    //an array to store the connections possible 
+    uint8_t connections[MAX_NUM_OF_SOCKETS - 1]; //cant connect to yourself, so minus 1 connections
 
     // This is the sender portion.
     uint8_t sendBuff[SOCKET_BUFFER_SIZE];
@@ -60,7 +72,7 @@ typedef struct socket_store_t{
     uint8_t lastRcvd;
     uint8_t nextExpected;
 
-    uint16_t RTT;
+    uint32_t RTT;
     uint8_t effectiveWindow;
 }socket_store_t;
 

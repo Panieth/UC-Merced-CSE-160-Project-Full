@@ -185,6 +185,7 @@ implementation{
 
         //a variable to iterate
         uint8_t i;
+        uint8_t chosenConnection;
 
         //once again we will ensure that the socket is valid
         if(fd > MAX_NUM_OF_SOCKETS || fd == 0){
@@ -198,9 +199,40 @@ implementation{
         //iterate over all the potential sockets
         for(i = 0; i < MAX_NUM_OF_SOCKETS; i++){
 
-            
+            //if we find a connection that is not empty then we can proceed to connect
+            if(connections[fd - 1].connections[i] != 0){
+
+                //chose the connection found at i
+                chosenConnection = connections[fd - 1].connections[i];
+
+                //move the connections in the socket to the left
+                for(i = i; i < MAX_NUM_OF_SOCKETS - 1; i++){
+
+                    if(connections[fd - 1].connections[i] == 0){
+
+                        break;
+
+                    }else{
+
+                        connections[fd -1].connections[i - 1] = connections[fd -1].connections[i];
+
+                    }
+
+                }
+
+                //now that we have moved the entries left
+                //set the remaining entry to zero
+                connections[fd - 1].connections[i - 1] = 0;
+
+                //we can now return the number corresponding to the connection
+                return (socket_t) chosenConnection;
+
+            }
 
         }
+
+        //if no connection was chosen above then we must now return failure
+        return 0;
 
     }
 
