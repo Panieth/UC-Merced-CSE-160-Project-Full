@@ -236,26 +236,95 @@ implementation{
 
     }
 
+
+
+   /**
+    * Write to the socket from a buffer. This data will eventually be
+    * transmitted through your TCP implimentation.
+    * @param
+    *    socket_t fd: file descriptor that is associated with the socket
+    *       that is attempting a write.
+    * @param
+    *    uint8_t *buff: the buffer data that you are going to wrte from.
+    * @param
+    *    uint16_t bufflen: The amount of data that you are trying to
+    *       submit.
+    * @Side For your project, only client side. This could be both though.
+    * @return uint16_t - return the amount of data you are able to write
+    *    from the pass buffer. This may be shorter then bufflen
+    */
     command uint16_t Transport.write(socket_t fd, uint8_t *buff, uint16_t bufflen){
 
 
     }
 
+
+
+   /**
+    * This will pass the packet so you can handle it internally. 
+    * @param
+    *    pack *package: the TCP packet that you are handling.
+    * @Side Client/Server 
+    * @return uint16_t - return SUCCESS if you are able to handle this
+    *    packet or FAIL if there are errors.
+    */
     command error_t Transport.receive(pack* package){
 
 
     }
 
+
+
+   /**
+    * Read from the socket and write this data to the buffer. This data
+    * is obtained from your TCP implimentation.
+    * @param
+    *    socket_t fd: file descriptor that is associated with the socket
+    *       that is attempting a read.
+    * @param
+    *    uint8_t *buff: the buffer that is being written.
+    * @param
+    *    uint16_t bufflen: the amount of data that can be written to the
+    *       buffer.
+    * @Side For your project, only server side. This could be both though.
+    * @return uint16_t - return the amount of data you are able to read
+    *    from the pass buffer. This may be shorter then bufflen
+    */
     command uint16_t Transport.read(socket_t fd, uint8_t *buff, uint16_t bufflen){
 
 
     }
 
+
+
+   /**
+    * Attempts a connection to an address.
+    * @param
+    *    socket_t fd: file descriptor that is associated with the socket
+    *       that you are attempting a connection with. 
+    * @param
+    *    socket_addr_t *addr: the destination address and port where
+    *       you will atempt a connection.
+    * @side Client
+    * @return socket_t - returns SUCCESS if you are able to attempt
+    *    a connection with the fd passed, else return FAIL.
+    */
     command error_t Transport.connect(socket_t fd, socket_addr_t * addr){
 
 
     }
 
+
+
+   /**
+    * Closes the socket.
+    * @param
+    *    socket_t fd: file descriptor that is associated with the socket
+    *       that you are closing. 
+    * @side Client/Server
+    * @return socket_t - returns SUCCESS if you are able to attempt
+    *    a closure with the fd passed, else return FAIL.
+    */
     command error_t Transport.close(socket_t fd){
 
 

@@ -143,7 +143,8 @@ implementation{
 
       //    //create the address for the socket and set it equal to current node
       //    socket_addr_t socketAddress;
-      //    socketAddress->port = (nx_uint8_t) TOS_NODE_ID; 
+      //    socketAddress.addr = (nx_uint8_t) TOS_NODE_ID; 
+      //    socketAddress.port = port;
 
       //    //bind the socket to that address 
       //    call Transport.bind(fd, socketAddress);
