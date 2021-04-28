@@ -41,6 +41,9 @@ implementation{
         //a variable to iterate over the sockets
         uint8_t i;
 
+        //start the timer but only to go once
+        call Timer.startOneShot(1024 * 60);
+
         //iterate over all of the sockets and initialize them
         for(i = 0; i < MAX_NUM_OF_SOCKETS; i++){
 
@@ -55,6 +58,16 @@ implementation{
     //what to do when the timer is fired
     event void Timer.fired() {
         
+        //upon first fired state we are starting tcp
+        if(call Timer.isOneShot()){
+
+            //state we began tcp for current node
+            dbg(TRANSPORT_CHANNEL, "Starting TCP for %u\n", TOS_NODE_ID);
+
+            //start a timer to go periodically
+            call Timer.startPeriodic((uint16_t)(call Random.rand16() % 1000) + 1024);
+
+        }
 
     }
 
