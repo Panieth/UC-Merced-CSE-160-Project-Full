@@ -14,6 +14,7 @@ module tcpP{
     //declare any interfaces used 
     uses interface Random as Random;
     uses interface Timer<TMilli> as Timer;
+    uses interface Timer<TMilli> as Timer2;
     uses interface SimpleSend as Sender;
     uses interface NeighborDiscovery as NeighborDiscovery;
     uses interface DistanceVectorRouting as DistanceVectorRouting;
@@ -24,9 +25,23 @@ module tcpP{
 
 implementation{
 
+    uint8_t accepted[10];
+
     //what to do when the timer is fired
     event void Timer.fired(){
+        /*
+        unit16_t newFd = accept(fd);
+        if (newFd != NULL_SOCKET){
+            accepted[newFd - 1] = newFd;
 
+            //debug(TRANSPORT_CHANNEL)
+
+        }
+        
+        //for all sockets added
+        //read data and print
+        */
+        //debug(TRANSPORT_CHANNEL)
 
     }
 

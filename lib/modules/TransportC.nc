@@ -24,6 +24,9 @@ implementation {
     components new TimerMilliC() as Timer;
     TransportP.Timer -> Timer;
 
+    components new TimerMilliC() as Timer;
+    TransportP.Timer -> Timer2;
+
     components new SimpleSendC(AM_PACK);
     TransportP.Sender -> SimpleSendC;
 
