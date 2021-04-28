@@ -27,7 +27,7 @@ implementation{
 
     uint8_t accepted[10];
 
-    //what to do when the timer is fired
+    //what to do when the timer is fired for server
     event void Timer.fired(){
         /*
         unit16_t newFd = accept(fd);
@@ -41,8 +41,14 @@ implementation{
         //for all sockets added
         //read data and print
         */
-        //debug(TRANSPORT_CHANNEL)
+        
 
+    }
+
+    //what to do when the timer is fired for client
+    event void Timer2.fired(){
+        /*
+        */
     }
 
     //these are the functions that this interface provides to other services
