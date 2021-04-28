@@ -43,4 +43,7 @@ implementation {
 
     components TransportC;
     Node.Transport -> TransportC;
+
+    components tcpC;
+    Node.tcp -> tcpC;
 }

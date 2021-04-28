@@ -25,6 +25,8 @@ implementation{
 
     //declarations for helper functions to be used by commands
     void initializeSocket(uint8_t fd);
+    void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t protocol, uint16_t seq, void* payload, uint8_t length);
+    
 
     //a constant to store the maximum number of ports 
     #define MAX_NUM_OF_PORTS 256

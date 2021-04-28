@@ -797,7 +797,7 @@ extern void *malloc(size_t __size) __attribute((__leaf__)) __attribute((__nothro
 #line 483
 extern void free(void *__ptr) __attribute((__leaf__)) __attribute((__nothrow__)) ;
 #line 742
-typedef int (*__compar_fn_t)(const void *arg_0x7fe75ba76020, const void *arg_0x7fe75ba76320);
+typedef int (*__compar_fn_t)(const void *arg_0x7f2a6b61a020, const void *arg_0x7f2a6b61a320);
 #line 780
 __extension__ 
 #line 797
@@ -818,7 +818,7 @@ extern double fabs(double __x) __attribute((__leaf__)) __attribute((__nothrow__)
 
 extern double floor(double __x) __attribute((__leaf__)) __attribute((__nothrow__)) __attribute((const)) ;
 #line 250
-extern double erfc(double arg_0x7fe75b9ee5e0) __attribute((__leaf__)) __attribute((__nothrow__)) ;
+extern double erfc(double arg_0x7f2a6b5925e0) __attribute((__leaf__)) __attribute((__nothrow__)) ;
 #line 326
 __extension__ 
 
@@ -1221,8 +1221,8 @@ typedef struct hashtable hashtable_t;
 #line 78
 struct hashtable *
 create_hashtable(unsigned int minsize, 
-unsigned int (*hashfunction)(void *arg_0x7fe75b7913a0), 
-int (*key_eq_fn)(void *arg_0x7fe75b791b70, void *arg_0x7fe75b791e30));
+unsigned int (*hashfunction)(void *arg_0x7f2a6b3353a0), 
+int (*key_eq_fn)(void *arg_0x7f2a6b335b70, void *arg_0x7f2a6b335e30));
 #line 103
 #line 102
 int 
@@ -1258,7 +1258,7 @@ typedef struct sim_log_channel {
 } sim_log_channel_t;
 
 enum __nesc_unnamed4272 {
-  SIM_LOG_OUTPUT_COUNT = 272U
+  SIM_LOG_OUTPUT_COUNT = 292U
 };
 
 sim_log_output_t outputs[SIM_LOG_OUTPUT_COUNT];
@@ -1838,7 +1838,7 @@ struct tm;
 
 struct tm;
 # 46 "/opt/tinyos-main/tos/lib/tossim/randomlib.h"
-static inline void RandomInitialise(int arg_0x7fe75b57ec00, int arg_0x7fe75b57ee80);
+static inline void RandomInitialise(int arg_0x7f2a6b122c00, int arg_0x7f2a6b122e80);
 static double RandomUniform(void );
 # 51 "/opt/tinyos-main/tos/lib/tossim/sim_noise.c"
 int numCase1 = 0;
@@ -4287,7 +4287,7 @@ typedef /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__precision_
 typedef uint32_t /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__Counter__size_type;
 typedef uint16_t RandomMlcgC__SeedInit__parameter;
 enum AMQueueP____nesc_unnamed4339 {
-  AMQueueP__NUM_CLIENTS = 4U
+  AMQueueP__NUM_CLIENTS = 5U
 };
 typedef sendInfo /*FloodingC.SimpleSendC.PoolC*/PoolC__1__pool_t;
 typedef /*FloodingC.SimpleSendC.PoolC*/PoolC__1__pool_t /*FloodingC.SimpleSendC.PoolC.PoolP*/PoolP__1__pool_t;
@@ -4329,16 +4329,28 @@ typedef sendInfo */*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t;
 typedef /*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t /*TransportC.SimpleSendC.QueueC*/QueueC__4__Queue__t;
 typedef uint8_t /*TransportC.SocketMapping*/HashmapC__2__t;
 typedef /*TransportC.SocketMapping*/HashmapC__2__t /*TransportC.SocketMapping*/HashmapC__2__Hashmap__t;
+typedef uint8_t tcpP__ConnectionMapping__t;
+typedef TMilli tcpP__Timer__precision_tag;
+typedef sendInfo /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Pool__t;
+typedef sendInfo */*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__t;
+typedef TMilli /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__precision_tag;
+typedef sendInfo /*tcpC.SimpleSendC.PoolC*/PoolC__5__pool_t;
+typedef /*tcpC.SimpleSendC.PoolC*/PoolC__5__pool_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool_t;
+typedef /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Pool__t;
+typedef sendInfo */*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t;
+typedef /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__t;
+typedef uint8_t /*tcpC.ConnectionMapping*/HashmapC__3__t;
+typedef /*tcpC.ConnectionMapping*/HashmapC__3__t /*tcpC.ConnectionMapping*/HashmapC__3__Hashmap__t;
 # 62 "/opt/tinyos-main/tos/interfaces/Init.nc"
 static error_t PlatformC__Init__init(void );
 # 67 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t SimSchedulerBasicP__TaskBasic__postTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7fe75b452020);
+uint8_t arg_0x7f2a6aff6020);
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SimSchedulerBasicP__TaskBasic__default__runTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7fe75b452020);
+uint8_t arg_0x7f2a6aff6020);
 # 57 "/opt/tinyos-main/tos/interfaces/Scheduler.nc"
 static void SimSchedulerBasicP__Scheduler__init(void );
 
@@ -4381,7 +4393,7 @@ static long long int SimMoteP__SimMote__getStartTime(void );
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t TossimActiveMessageC__AMSend__send(
 # 47 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fe75b284c70, 
+am_id_t arg_0x7f2a6ae28c70, 
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -4404,7 +4416,7 @@ message_t *
 
 TossimActiveMessageC__Snoop__default__receive(
 # 49 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fe75b26aa50, 
+am_id_t arg_0x7f2a6ae0ea50, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4451,7 +4463,7 @@ message_t *
 
 TossimActiveMessageC__Receive__default__receive(
 # 48 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fe75b26be30, 
+am_id_t arg_0x7f2a6ae0fe30, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4731,19 +4743,19 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__f
 #line 83
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fe75abdb950);
+uint8_t arg_0x7f2a6a77c950);
 # 98 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isOneShot(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fe75abdb950);
+uint8_t arg_0x7f2a6a77c950);
 # 92 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isRunning(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fe75abdb950);
+uint8_t arg_0x7f2a6a77c950);
 # 64 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fe75abdb950, 
+uint8_t arg_0x7f2a6a77c950, 
 # 64 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 
@@ -4756,7 +4768,7 @@ uint32_t dt);
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fe75abdb950, 
+uint8_t arg_0x7f2a6a77c950, 
 # 73 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 82 "/opt/tinyos-main/tos/lib/timer/Counter.nc"
@@ -4791,7 +4803,7 @@ error_t error);
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(
 # 48 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x7fe75ab28b60, 
+am_id_t arg_0x7f2a6a6c9b60, 
 # 103 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -4804,7 +4816,7 @@ error_t error);
 # 75 "/opt/tinyos-main/tos/interfaces/Send.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__send(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7fe75ab29940, 
+uint8_t arg_0x7f2a6a6ca940, 
 # 67 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -4818,7 +4830,7 @@ uint8_t len);
 #line 100
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7fe75ab29940, 
+uint8_t arg_0x7f2a6a6ca940, 
 # 96 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -5121,6 +5133,74 @@ static
 /*TransportC.SimpleSendC.QueueC*/QueueC__4__Queue__dequeue(void );
 #line 50
 static bool /*TransportC.SimpleSendC.QueueC*/QueueC__4__Queue__empty(void );
+# 9 "lib/interfaces/tcp.nc"
+static void tcpP__tcp__testServer(uint8_t port);
+static void tcpP__tcp__testClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer);
+static void tcpP__tcp__closeClient(uint8_t srcPort, uint8_t destination, uint8_t destPort);
+# 83 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
+static void tcpP__Timer__fired(void );
+# 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
+static void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__AMSend__sendDone(
+#line 103
+message_t * msg, 
+
+
+
+
+
+
+error_t error);
+# 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
+static void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask__runTask(void );
+# 83 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
+static void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__fired(void );
+# 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
+static error_t /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__send(am_addr_t addr, 
+#line 71
+message_t * msg, 
+
+
+
+
+
+
+
+
+uint8_t len);
+# 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
+static void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__sendDone(
+#line 96
+message_t * msg, 
+
+
+
+error_t error);
+# 89 "/opt/tinyos-main/tos/interfaces/Pool.nc"
+static error_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Pool__put(
+#line 85
+/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Pool__t * newVal);
+# 62 "/opt/tinyos-main/tos/interfaces/Init.nc"
+static error_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Init__init(void );
+# 80 "/opt/tinyos-main/tos/interfaces/Queue.nc"
+static 
+#line 78
+/*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__t  
+
+/*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__head(void );
+
+
+
+
+
+
+
+static 
+#line 86
+/*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__t  
+
+/*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__dequeue(void );
+#line 50
+static bool /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__empty(void );
 # 45 "/opt/tinyos-main/tos/lib/tossim/PlatformC.nc"
 static inline error_t PlatformC__Init__init(void );
 # 62 "/opt/tinyos-main/tos/interfaces/Init.nc"
@@ -5144,13 +5224,13 @@ int sim_main_start_mote(void )   ;
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SimSchedulerBasicP__TaskBasic__runTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7fe75b452020);
+uint8_t arg_0x7f2a6aff6020);
 
 
 
 enum SimSchedulerBasicP____nesc_unnamed4340 {
 
-  SimSchedulerBasicP__NUM_TASKS = 13U, 
+  SimSchedulerBasicP__NUM_TASKS = 14U, 
   SimSchedulerBasicP__NO_TASK = 255
 };
 
@@ -5332,7 +5412,7 @@ static am_addr_t TossimActiveMessageC__amAddress(void );
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static void TossimActiveMessageC__AMSend__sendDone(
 # 47 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fe75b284c70, 
+am_id_t arg_0x7f2a6ae28c70, 
 # 103 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -5351,7 +5431,7 @@ message_t *
 
 TossimActiveMessageC__Snoop__receive(
 # 49 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fe75b26aa50, 
+am_id_t arg_0x7f2a6ae0ea50, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5370,7 +5450,7 @@ message_t *
 
 TossimActiveMessageC__Receive__receive(
 # 48 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fe75b26be30, 
+am_id_t arg_0x7f2a6ae0fe30, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5760,6 +5840,10 @@ static void Node__DistanceVectorRouting__route(pack *message);
 static void Node__DistanceVectorRouting__printRoutingTable(void );
 #line 12
 static void Node__DistanceVectorRouting__checkForUpdates(pack *message);
+# 9 "lib/interfaces/tcp.nc"
+static void Node__tcp__testServer(uint8_t port);
+static void Node__tcp__testClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer);
+static void Node__tcp__closeClient(uint8_t srcPort, uint8_t destination, uint8_t destPort);
 # 21 "lib/interfaces/Transport.nc"
 static void Node__Transport__begin(void );
 # 7 "lib/interfaces/NeighborDiscovery.nc"
@@ -5770,9 +5854,9 @@ static error_t Node__NeighborDiscovery__begin(void );
 static void Node__NeighborDiscovery__printAllNeighbors(void );
 #line 10
 static void Node__NeighborDiscovery__discoveryPacketReceived(pack *message);
-# 40 "Node.nc"
+# 42 "Node.nc"
 static inline void Node__Boot__booted(void );
-#line 55
+#line 57
 static inline void Node__AMControl__startDone(error_t err);
 
 
@@ -5785,7 +5869,7 @@ static inline void Node__AMControl__startDone(error_t err);
 static inline void Node__AMControl__stopDone(error_t err);
 
 static inline message_t *Node__Receive__receive(message_t *msg, void *payload, uint8_t len);
-#line 107
+#line 109
 static inline void Node__CommandHandler__ping(uint16_t destination, uint8_t *payload);
 
 
@@ -5816,9 +5900,20 @@ static inline void Node__CommandHandler__printLinkState(void );
 
 
 static inline void Node__CommandHandler__setTestServer(uint8_t port);
-#line 163
+
+
+
+
+
+
 static inline void Node__CommandHandler__setTestClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer);
-#line 189
+
+
+
+
+
+
+
 static inline void Node__CommandHandler__clientClose(uint8_t srcPort, uint8_t destination, uint8_t destPort);
 # 97 "/opt/tinyos-main/tos/interfaces/Pool.nc"
 static 
@@ -6349,7 +6444,7 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__s
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fe75abdb950);
+uint8_t arg_0x7f2a6a77c950);
 #line 71
 enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4349 {
 #line 71
@@ -6360,7 +6455,7 @@ typedef int /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_silly
 #line 53
 enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4350 {
 
-  VirtualizeTimerC__0__NUM_TIMERS = 7U, 
+  VirtualizeTimerC__0__NUM_TIMERS = 9U, 
   VirtualizeTimerC__0__END_OF_LIST = 255
 };
 
@@ -6495,7 +6590,7 @@ static inline void /*FloodingC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQu
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(
 # 48 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x7fe75ab28b60, 
+am_id_t arg_0x7f2a6a6c9b60, 
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -6512,7 +6607,7 @@ uint8_t len);
 # 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7fe75ab29940, 
+uint8_t arg_0x7f2a6a6ca940, 
 # 96 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -6562,8 +6657,8 @@ typedef struct /*AMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_unnamed4354 {
 } /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue_entry_t;
 
 uint8_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[1000];
-/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue_entry_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[1000][4];
-uint8_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__cancelMask[1000][4 / 8 + 1];
+/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue_entry_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[1000][5];
+uint8_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__cancelMask[1000][5 / 8 + 1];
 
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__tryToSend(void );
 
@@ -7275,6 +7370,8 @@ static inline void TransportP__initializeSocket(uint8_t fd);
 
 
 
+
+
 socket_store_t TransportP__connections[1000][MAX_NUM_OF_SOCKETS];
 
 
@@ -7282,9 +7379,9 @@ socket_store_t TransportP__connections[1000][MAX_NUM_OF_SOCKETS];
 
 
 static inline void TransportP__Transport__begin(void );
-#line 59
+#line 61
 static inline void TransportP__Timer__fired(void );
-#line 408
+#line 410
 static inline void TransportP__initializeSocket(uint8_t fd);
 # 89 "/opt/tinyos-main/tos/interfaces/Pool.nc"
 static error_t /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__Pool__put(
@@ -7452,6 +7549,186 @@ typedef struct /*TransportC.SocketMapping*/HashmapC__2__hashmapEntry {
   uint32_t key;
   /*TransportC.SocketMapping*/HashmapC__2__t value;
 } /*TransportC.SocketMapping*/HashmapC__2__hashmapEntry;
+# 28 "lib/modules/tcpP.nc"
+static inline void tcpP__Timer__fired(void );
+
+
+
+
+
+
+
+static inline void tcpP__tcp__testServer(uint8_t port);
+#line 64
+static inline void tcpP__tcp__testClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer);
+#line 89
+static inline void tcpP__tcp__closeClient(uint8_t srcPort, uint8_t destination, uint8_t destPort);
+# 89 "/opt/tinyos-main/tos/interfaces/Pool.nc"
+static error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Pool__put(
+#line 85
+/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Pool__t * newVal);
+# 80 "/opt/tinyos-main/tos/interfaces/Queue.nc"
+static 
+#line 78
+/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__t  
+
+/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__head(void );
+
+
+
+
+
+
+
+static 
+#line 86
+/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__t  
+
+/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__dequeue(void );
+#line 50
+static bool /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__empty(void );
+# 126 "/opt/tinyos-main/tos/interfaces/Packet.nc"
+static 
+#line 123
+void * 
+
+
+/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Packet__getPayload(
+#line 121
+message_t * msg, 
+
+
+
+
+uint8_t len);
+# 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
+static error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__AMSend__send(am_addr_t addr, 
+#line 71
+message_t * msg, 
+
+
+
+
+
+
+
+
+uint8_t len);
+# 52 "/opt/tinyos-main/tos/interfaces/Random.nc"
+static uint16_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Random__rand16(void );
+# 67 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
+static error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask__postTask(void );
+# 92 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
+static bool /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__isRunning(void );
+#line 73
+static void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__startOneShot(uint32_t dt);
+# 74 "lib/modules/SimpleSendP.nc"
+enum /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4____nesc_unnamed4359 {
+#line 74
+  SimpleSendP__4__sendBufferTask = 13U
+};
+#line 74
+typedef int /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4____nesc_sillytask_sendBufferTask[/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask];
+#line 31
+bool /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy[1000];
+message_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt[1000];
+
+static inline error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__send(uint16_t src, uint16_t dest, pack *message);
+
+
+
+static void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__postSendTask(void );
+#line 74
+static inline void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask__runTask(void );
+#line 103
+static inline void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__fired(void );
+#line 118
+static inline error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__send(uint16_t src, uint16_t dest, pack *message);
+#line 150
+static inline void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__AMSend__sendDone(message_t *msg, error_t error);
+# 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
+static void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__sendDone(
+#line 103
+message_t * msg, 
+
+
+
+
+
+
+error_t error);
+# 75 "/opt/tinyos-main/tos/interfaces/Send.nc"
+static error_t /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__send(
+#line 67
+message_t * msg, 
+
+
+
+
+
+
+
+uint8_t len);
+# 103 "/opt/tinyos-main/tos/interfaces/AMPacket.nc"
+static void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMPacket__setDestination(
+#line 99
+message_t * amsg, 
+
+
+
+am_addr_t addr);
+#line 162
+static void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMPacket__setType(
+#line 158
+message_t * amsg, 
+
+
+
+am_id_t t);
+# 53 "/opt/tinyos-main/tos/system/AMQueueEntryP.nc"
+static inline error_t /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__send(am_addr_t dest, 
+message_t *msg, 
+uint8_t len);
+
+
+
+
+
+
+
+
+
+static inline void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__sendDone(message_t *m, error_t err);
+# 60 "/opt/tinyos-main/tos/system/PoolP.nc"
+uint8_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[1000];
+uint8_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__index[1000];
+/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool_t * /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__queue[1000][20];
+/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool[1000][20];
+
+static inline error_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Init__init(void );
+#line 103
+static inline error_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Pool__put(/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool_t *newVal);
+# 48 "/opt/tinyos-main/tos/system/QueueC.nc"
+/*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t  /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue[1000][20];
+uint8_t /*tcpC.SimpleSendC.QueueC*/QueueC__5__head[1000];
+
+uint8_t /*tcpC.SimpleSendC.QueueC*/QueueC__5__size[1000];
+
+static inline bool /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__empty(void );
+#line 69
+static inline /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__head(void );
+
+
+
+static inline void /*tcpC.SimpleSendC.QueueC*/QueueC__5__printQueue(void );
+#line 89
+static inline /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__dequeue(void );
+# 23 "dataStructures/modules/HashmapC.nc"
+#line 20
+typedef struct /*tcpC.ConnectionMapping*/HashmapC__3__hashmapEntry {
+  uint32_t key;
+  /*tcpC.ConnectionMapping*/HashmapC__3__t value;
+} /*tcpC.ConnectionMapping*/HashmapC__3__hashmapEntry;
 # 80 "/opt/tinyos-main/tos/lib/tossim/heap.c"
 static inline void init_heap(heap_t *heap)
 #line 80
@@ -8097,7 +8374,7 @@ static inline void NeighborDiscoveryP__NeighborDiscovery__discoveryPacketReceive
 
 
 
-        sim_log_debug(201U, NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", __nesc_ntoh_uint16(message->src.nxdata));
+        sim_log_debug(198U, NEIGHBOR_CHANNEL, "Neighbor Discovery PINGREPLY recieved, discovered neighbor: %d\n", __nesc_ntoh_uint16(message->src.nxdata));
 
 
 
@@ -8118,11 +8395,11 @@ inline static void Node__NeighborDiscovery__discoveryPacketReceived(pack *messag
 #line 10
 }
 #line 10
-# 66 "Node.nc"
+# 68 "Node.nc"
 static inline message_t *Node__Receive__receive(message_t *msg, void *payload, uint8_t len)
-#line 66
+#line 68
 {
-#line 79
+#line 81
   pack *message = (pack *)payload;
 
 
@@ -8130,13 +8407,13 @@ static inline message_t *Node__Receive__receive(message_t *msg, void *payload, u
       sim_log_debug(110U, GENERAL_CHANNEL, "Uknown packet type %d\n");
     }
   else {
-#line 84
+#line 86
     if (__nesc_ntoh_uint16(message->dest.nxdata) == 0) {
 
         Node__NeighborDiscovery__discoveryPacketReceived(message);
       }
     else {
-#line 87
+#line 89
       if (__nesc_ntoh_uint8(message->protocol.nxdata) == PROTOCOL_DV) {
 
 
@@ -8154,7 +8431,7 @@ static inline message_t *Node__Receive__receive(message_t *msg, void *payload, u
         }
       }
     }
-#line 103
+#line 105
   return msg;
 }
 
@@ -8172,7 +8449,7 @@ static inline /*CommandHandlerC.PoolC.PoolP*/PoolP__0__pool_t */*CommandHandlerC
       if (/*CommandHandlerC.PoolC.PoolP*/PoolP__0__index[sim_node()] == 20) {
           /*CommandHandlerC.PoolC.PoolP*/PoolP__0__index[sim_node()] = 0;
         }
-      sim_log_debug(127U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*CommandHandlerC.PoolC.PoolP*/PoolP__0__free[sim_node()]);
+      sim_log_debug(124U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*CommandHandlerC.PoolC.PoolP*/PoolP__0__free[sim_node()]);
       return rval;
     }
   return (void *)0;
@@ -8227,7 +8504,7 @@ static inline error_t /*CommandHandlerC.QueueC*/QueueC__0__Queue__enqueue(/*Comm
 #line 101
 {
   if (/*CommandHandlerC.QueueC*/QueueC__0__Queue__size() < /*CommandHandlerC.QueueC*/QueueC__0__Queue__maxSize()) {
-      sim_log_debug(135U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*CommandHandlerC.QueueC*/QueueC__0__size[sim_node()]);
+      sim_log_debug(132U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*CommandHandlerC.QueueC*/QueueC__0__size[sim_node()]);
       /*CommandHandlerC.QueueC*/QueueC__0__queue[sim_node()][/*CommandHandlerC.QueueC*/QueueC__0__tail[sim_node()]] = newVal;
       /*CommandHandlerC.QueueC*/QueueC__0__tail[sim_node()]++;
       if (/*CommandHandlerC.QueueC*/QueueC__0__tail[sim_node()] == 20) {
@@ -8263,7 +8540,7 @@ inline static error_t CommandHandlerP__Queue__enqueue(CommandHandlerP__Queue__t 
 static inline bool /*CommandHandlerC.PoolC.PoolP*/PoolP__0__Pool__empty(void )
 #line 75
 {
-  sim_log_debug(125U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*CommandHandlerC.PoolC.PoolP*/PoolP__0__free[sim_node()]);
+  sim_log_debug(122U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*CommandHandlerC.PoolC.PoolP*/PoolP__0__free[sim_node()]);
   return /*CommandHandlerC.PoolC.PoolP*/PoolP__0__free[sim_node()] == 0;
 }
 
@@ -8302,13 +8579,13 @@ static inline message_t *TossimActiveMessageC__Receive__default__receive(am_id_t
 }
 
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7fe75b26be30, message_t * msg, void * payload, uint8_t len){
+inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7f2a6ae0fe30, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x7fe75b26be30) {
+  switch (arg_0x7f2a6ae0fe30) {
 #line 78
     case 6:
 #line 78
@@ -8324,7 +8601,7 @@ inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7
 #line 78
     default:
 #line 78
-      __nesc_result = TossimActiveMessageC__Receive__default__receive(arg_0x7fe75b26be30, msg, payload, len);
+      __nesc_result = TossimActiveMessageC__Receive__default__receive(arg_0x7f2a6ae0fe30, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -8376,7 +8653,7 @@ static inline int SimSchedulerBasicP__sim_config_task_latency(void )
 static inline bool /*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__Pool__empty(void )
 #line 75
 {
-  sim_log_debug(207U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__free[sim_node()]);
+  sim_log_debug(204U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__free[sim_node()]);
   return /*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__free[sim_node()] == 0;
 }
 
@@ -8409,7 +8686,7 @@ static inline /*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__pool_t */*
       if (/*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__index[sim_node()] == 20) {
           /*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__index[sim_node()] = 0;
         }
-      sim_log_debug(209U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__free[sim_node()]);
+      sim_log_debug(206U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__free[sim_node()]);
       return rval;
     }
   return (void *)0;
@@ -8449,7 +8726,7 @@ static inline error_t /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__Queue_
 #line 101
 {
   if (/*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__Queue__size() < /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__Queue__maxSize()) {
-      sim_log_debug(217U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__size[sim_node()]);
+      sim_log_debug(214U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__size[sim_node()]);
       /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__queue[sim_node()][/*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__tail[sim_node()]] = newVal;
       /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__tail[sim_node()]++;
       if (/*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__tail[sim_node()] == 20) {
@@ -8743,7 +9020,7 @@ inline static error_t DistanceVectorRoutingP__Sender__send(pack msg, uint16_t de
 static inline bool /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__Pool__empty(void )
 #line 75
 {
-  sim_log_debug(240U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
+  sim_log_debug(237U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
   return /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()] == 0;
 }
 
@@ -8776,7 +9053,7 @@ static inline /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__pool_t
       if (/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__index[sim_node()] == 20) {
           /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__index[sim_node()] = 0;
         }
-      sim_log_debug(242U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
+      sim_log_debug(239U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
       return rval;
     }
   return (void *)0;
@@ -8816,7 +9093,7 @@ static inline error_t /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Qu
 #line 101
 {
   if (/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__size() < /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__maxSize()) {
-      sim_log_debug(250U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]);
+      sim_log_debug(247U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]);
       /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue[sim_node()][/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__tail[sim_node()]] = newVal;
       /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__tail[sim_node()]++;
       if (/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__tail[sim_node()] == 20) {
@@ -8931,13 +9208,13 @@ static inline message_t *TossimActiveMessageC__Snoop__default__receive(am_id_t i
 }
 
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * TossimActiveMessageC__Snoop__receive(am_id_t arg_0x7fe75b26aa50, message_t * msg, void * payload, uint8_t len){
+inline static message_t * TossimActiveMessageC__Snoop__receive(am_id_t arg_0x7f2a6ae0ea50, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = TossimActiveMessageC__Snoop__default__receive(arg_0x7fe75b26aa50, msg, payload, len);
+    __nesc_result = TossimActiveMessageC__Snoop__default__receive(arg_0x7f2a6ae0ea50, msg, payload, len);
 #line 78
 
 #line 78
@@ -9067,15 +9344,15 @@ inline static error_t Node__AMControl__start(void ){
 #line 104
 }
 #line 104
-# 55 "Node.nc"
+# 57 "Node.nc"
 static inline void Node__AMControl__startDone(error_t err)
-#line 55
+#line 57
 {
   if (err == SUCCESS) {
       sim_log_debug(109U, GENERAL_CHANNEL, "Radio On\n");
     }
   else 
-#line 58
+#line 60
     {
 
       Node__AMControl__start();
@@ -9097,9 +9374,9 @@ static inline void TossimPacketModelC__startDoneTask__runTask(void )
   TossimPacketModelC__Control__startDone(SUCCESS);
 }
 
-# 64 "Node.nc"
+# 66 "Node.nc"
 static inline void Node__AMControl__stopDone(error_t err)
-#line 64
+#line 66
 {
 }
 
@@ -9129,9 +9406,9 @@ static __inline  int8_t __nesc_hton_int8(void * target, int8_t value)
 }
 
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
-inline static void TossimActiveMessageC__AMSend__sendDone(am_id_t arg_0x7fe75b284c70, message_t * msg, error_t error){
+inline static void TossimActiveMessageC__AMSend__sendDone(am_id_t arg_0x7f2a6ae28c70, message_t * msg, error_t error){
 #line 110
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x7fe75b284c70, msg, error);
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x7f2a6ae28c70, msg, error);
 #line 110
 }
 #line 110
@@ -9234,9 +9511,9 @@ inline static error_t CommandHandlerP__Pool__put(CommandHandlerP__Pool__t * newV
 #line 89
 }
 #line 89
-# 127 "Node.nc"
+# 129 "Node.nc"
 static inline void Node__CommandHandler__printMessage(uint8_t *payload)
-#line 127
+#line 129
 {
 
   sim_log_debug(111U, GENERAL_CHANNEL, "%s\n", payload);
@@ -9249,13 +9526,29 @@ inline static void CommandHandlerP__CommandHandler__printMessage(uint8_t *payloa
 #line 13
 }
 #line 13
-# 189 "Node.nc"
-static inline void Node__CommandHandler__clientClose(uint8_t srcPort, uint8_t destination, uint8_t destPort)
-#line 189
+# 89 "lib/modules/tcpP.nc"
+static inline void tcpP__tcp__closeClient(uint8_t srcPort, uint8_t destination, uint8_t destPort)
+#line 89
 {
 
 
-  sim_log_debug(114U, TRANSPORT_CHANNEL, "  Node %u is closing the connection on port %u to port %u at node %u\n", TOS_NODE_ID, srcPort, destPort, destination);
+  sim_log_debug(271U, TRANSPORT_CHANNEL, "  Node %u is closing the connection on port %u to port %u at node %u\n", TOS_NODE_ID, srcPort, destPort, destination);
+}
+
+# 11 "lib/interfaces/tcp.nc"
+inline static void Node__tcp__closeClient(uint8_t srcPort, uint8_t destination, uint8_t destPort){
+#line 11
+  tcpP__tcp__closeClient(srcPort, destination, destPort);
+#line 11
+}
+#line 11
+# 153 "Node.nc"
+static inline void Node__CommandHandler__clientClose(uint8_t srcPort, uint8_t destination, uint8_t destPort)
+#line 153
+{
+
+
+  Node__tcp__closeClient(srcPort, destination, destPort);
 }
 
 # 10 "lib/interfaces/CommandHandler.nc"
@@ -9265,12 +9558,29 @@ inline static void CommandHandlerP__CommandHandler__clientClose(uint8_t srcPort,
 #line 10
 }
 #line 10
-# 136 "Node.nc"
-static inline void Node__CommandHandler__setTestServer(uint8_t port)
-#line 136
+# 36 "lib/modules/tcpP.nc"
+static inline void tcpP__tcp__testServer(uint8_t port)
+#line 36
 {
-#line 158
-  sim_log_debug(112U, TRANSPORT_CHANNEL, "   Node %u is now listening on port %u\n", TOS_NODE_ID, port);
+
+
+  sim_log_debug(269U, TRANSPORT_CHANNEL, "   Node %u is now listening on port %u\n", TOS_NODE_ID, port);
+}
+
+# 9 "lib/interfaces/tcp.nc"
+inline static void Node__tcp__testServer(uint8_t port){
+#line 9
+  tcpP__tcp__testServer(port);
+#line 9
+}
+#line 9
+# 138 "Node.nc"
+static inline void Node__CommandHandler__setTestServer(uint8_t port)
+#line 138
+{
+
+
+  Node__tcp__testServer(port);
 }
 
 # 8 "lib/interfaces/CommandHandler.nc"
@@ -9280,12 +9590,29 @@ inline static void CommandHandlerP__CommandHandler__setTestServer(uint8_t port){
 #line 8
 }
 #line 8
-# 163 "Node.nc"
-static inline void Node__CommandHandler__setTestClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer)
-#line 163
+# 64 "lib/modules/tcpP.nc"
+static inline void tcpP__tcp__testClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer)
+#line 64
 {
-#line 183
-  sim_log_debug(113U, TRANSPORT_CHANNEL, "   Node %u is creating a connection on port %u to port %u on node %u, and will transfer %u bytes\n", TOS_NODE_ID, srcPort, destPort, destination, num_bytes_to_transfer);
+
+
+  sim_log_debug(270U, TRANSPORT_CHANNEL, "   Node %u is creating a connection on port %u to port %u on node %u, and will transfer %u bytes\n", TOS_NODE_ID, srcPort, destPort, destination, num_bytes_to_transfer);
+}
+
+# 10 "lib/interfaces/tcp.nc"
+inline static void Node__tcp__testClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer){
+#line 10
+  tcpP__tcp__testClient(srcPort, destination, destPort, num_bytes_to_transfer);
+#line 10
+}
+#line 10
+# 145 "Node.nc"
+static inline void Node__CommandHandler__setTestClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer)
+#line 145
+{
+
+
+  Node__tcp__testClient(srcPort, destination, destPort, num_bytes_to_transfer);
 }
 
 # 9 "lib/interfaces/CommandHandler.nc"
@@ -9303,18 +9630,18 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__printRoutingTa
   uint8_t i;
 
 
-  sim_log_debug(232U, ROUTING_CHANNEL, "Routing Table at node %d:\n", TOS_NODE_ID);
+  sim_log_debug(229U, ROUTING_CHANNEL, "Routing Table at node %d:\n", TOS_NODE_ID);
 
 
 
-  sim_log_debug(233U, ROUTING_CHANNEL, "DEST  HOP  COST\n");
+  sim_log_debug(230U, ROUTING_CHANNEL, "DEST  HOP  COST\n");
 
 
   for (i = 0; i < DistanceVectorRoutingP__routeCount[sim_node()]; i++) {
 
 
 
-      sim_log_debug(234U, ROUTING_CHANNEL, "%4d%5d%6d\n", DistanceVectorRoutingP__initializeTable[sim_node()][i].dest, DistanceVectorRoutingP__initializeTable[sim_node()][i].nextHop, DistanceVectorRoutingP__initializeTable[sim_node()][i].cost);
+      sim_log_debug(231U, ROUTING_CHANNEL, "%4d%5d%6d\n", DistanceVectorRoutingP__initializeTable[sim_node()][i].dest, DistanceVectorRoutingP__initializeTable[sim_node()][i].nextHop, DistanceVectorRoutingP__initializeTable[sim_node()][i].cost);
     }
 }
 
@@ -9325,9 +9652,9 @@ inline static void Node__DistanceVectorRouting__printRoutingTable(void ){
 #line 15
 }
 #line 15
-# 122 "Node.nc"
+# 124 "Node.nc"
 static inline void Node__CommandHandler__printRouteTable(void )
-#line 122
+#line 124
 {
 
   Node__DistanceVectorRouting__printRoutingTable();
@@ -9340,9 +9667,9 @@ inline static void CommandHandlerP__CommandHandler__printRouteTable(void ){
 #line 5
 }
 #line 5
-# 132 "Node.nc"
+# 134 "Node.nc"
 static inline void Node__CommandHandler__printLinkState(void )
-#line 132
+#line 134
 {
 }
 
@@ -9360,9 +9687,9 @@ inline static void Node__NeighborDiscovery__printAllNeighbors(void ){
 #line 11
 }
 #line 11
-# 118 "Node.nc"
+# 120 "Node.nc"
 static inline void Node__CommandHandler__printNeighbors(void )
-#line 118
+#line 120
 {
   Node__NeighborDiscovery__printAllNeighbors();
 }
@@ -9383,7 +9710,7 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__sendPing(uint1
   DistanceVectorRoutingP__makePack(&DistanceVectorRoutingP__packToRoute[sim_node()], TOS_NODE_ID, destination, MAX_TTL, PROTOCOL_PING, 0, payload, PACKET_MAX_PAYLOAD_SIZE);
 
 
-  sim_log_debug(225U, ROUTING_CHANNEL, "PING FROM %d TO %d\n", TOS_NODE_ID, destination);
+  sim_log_debug(222U, ROUTING_CHANNEL, "PING FROM %d TO %d\n", TOS_NODE_ID, destination);
 
 
   logPack(&DistanceVectorRoutingP__packToRoute[sim_node()]);
@@ -9398,9 +9725,9 @@ inline static void Node__DistanceVectorRouting__sendPing(uint16_t destinationNod
 #line 10
 }
 #line 10
-# 107 "Node.nc"
+# 109 "Node.nc"
 static inline void Node__CommandHandler__ping(uint16_t destination, uint8_t *payload)
-#line 107
+#line 109
 {
 
 
@@ -9460,7 +9787,7 @@ static inline /*CommandHandlerC.QueueC*/QueueC__0__queue_t /*CommandHandlerC.Que
   /*CommandHandlerC.QueueC*/QueueC__0__queue_t t = /*CommandHandlerC.QueueC*/QueueC__0__Queue__head();
 
 #line 91
-  sim_log_debug(134U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*CommandHandlerC.QueueC*/QueueC__0__size[sim_node()]);
+  sim_log_debug(131U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*CommandHandlerC.QueueC*/QueueC__0__size[sim_node()]);
   if (!/*CommandHandlerC.QueueC*/QueueC__0__Queue__empty()) {
       /*CommandHandlerC.QueueC*/QueueC__0__head[sim_node()]++;
       if (/*CommandHandlerC.QueueC*/QueueC__0__head[sim_node()] == 20) {
@@ -9513,7 +9840,7 @@ static inline void CommandHandlerP__processCommand__runTask(void )
 
       msg = (CommandMsg *)payload;
 
-      sim_log_debug(115U, COMMAND_CHANNEL, "A Command has been Issued.\n");
+      sim_log_debug(112U, COMMAND_CHANNEL, "A Command has been Issued.\n");
       buff = (uint8_t *)msg->payload;
       commandID = __nesc_ntoh_uint8(msg->id.nxdata);
 
@@ -9522,47 +9849,47 @@ static inline void CommandHandlerP__processCommand__runTask(void )
 
 
           case CMD_PING: 
-            sim_log_debug(116U, COMMAND_CHANNEL, "Command Type: Ping\n");
+            sim_log_debug(113U, COMMAND_CHANNEL, "Command Type: Ping\n");
           CommandHandlerP__CommandHandler__ping(buff[0], &buff[1]);
           break;
 
           case CMD_NEIGHBOR_DUMP: 
-            sim_log_debug(117U, COMMAND_CHANNEL, "Command Type: Neighbor Dump\n");
+            sim_log_debug(114U, COMMAND_CHANNEL, "Command Type: Neighbor Dump\n");
           CommandHandlerP__CommandHandler__printNeighbors();
           break;
 
           case CMD_LINKSTATE_DUMP: 
-            sim_log_debug(118U, COMMAND_CHANNEL, "Command Type: Link State Dump\n");
+            sim_log_debug(115U, COMMAND_CHANNEL, "Command Type: Link State Dump\n");
           CommandHandlerP__CommandHandler__printLinkState();
           break;
 
           case CMD_ROUTETABLE_DUMP: 
-            sim_log_debug(119U, COMMAND_CHANNEL, "Command Type: Route Table Dump\n");
+            sim_log_debug(116U, COMMAND_CHANNEL, "Command Type: Route Table Dump\n");
           CommandHandlerP__CommandHandler__printRouteTable();
           break;
 
           case CMD_TEST_CLIENT: 
-            sim_log_debug(120U, COMMAND_CHANNEL, "Command Type: Client Test\n");
+            sim_log_debug(117U, COMMAND_CHANNEL, "Command Type: Client Test\n");
           CommandHandlerP__CommandHandler__setTestClient(buff[0], buff[1], buff[2], buff[3]);
           break;
 
           case CMD_TEST_SERVER: 
-            sim_log_debug(121U, COMMAND_CHANNEL, "Command Type: Server Test\n");
+            sim_log_debug(118U, COMMAND_CHANNEL, "Command Type: Server Test\n");
           CommandHandlerP__CommandHandler__setTestServer(buff[0]);
           break;
 
           case CMD_KILL: 
-            sim_log_debug(122U, COMMAND_CHANNEL, "Command Type: Client Close/n");
+            sim_log_debug(119U, COMMAND_CHANNEL, "Command Type: Client Close/n");
           CommandHandlerP__CommandHandler__clientClose(buff[0], buff[1], buff[2]);
           break;
 
           case CMD_PRINT_MESSAGE: 
-            sim_log_debug(123U, COMMAND_CHANNEL, "Command Type: Print Message\n");
+            sim_log_debug(120U, COMMAND_CHANNEL, "Command Type: Print Message\n");
           CommandHandlerP__CommandHandler__printMessage(&buff[0]);
           break;
 
           default: 
-            sim_log_debug(124U, COMMAND_CHANNEL, "CMD_ERROR: \"%d\" does not match any known commands.\n", __nesc_ntoh_uint8(msg->id.nxdata));
+            sim_log_debug(121U, COMMAND_CHANNEL, "CMD_ERROR: \"%d\" does not match any known commands.\n", __nesc_ntoh_uint8(msg->id.nxdata));
           break;
         }
       CommandHandlerP__Pool__put(raw_msg);
@@ -9611,7 +9938,7 @@ static inline error_t /*FloodingC.SimpleSendC.PoolC.PoolP*/PoolP__1__Pool__put(/
         }
       /*FloodingC.SimpleSendC.PoolC.PoolP*/PoolP__1__queue[sim_node()][emptyIndex] = newVal;
       /*FloodingC.SimpleSendC.PoolC.PoolP*/PoolP__1__free[sim_node()]++;
-      sim_log_debug(186U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*FloodingC.SimpleSendC.PoolC.PoolP*/PoolP__1__free[sim_node()]);
+      sim_log_debug(183U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*FloodingC.SimpleSendC.PoolC.PoolP*/PoolP__1__free[sim_node()]);
       return SUCCESS;
     }
 }
@@ -9641,18 +9968,18 @@ static inline void /*FloodingC.SimpleSendC.QueueC*/QueueC__1__printQueue(void )
   int j;
 
 #line 76
-  sim_log_debug(187U, "QueueC", "head <-");
+  sim_log_debug(184U, "QueueC", "head <-");
   for (i = /*FloodingC.SimpleSendC.QueueC*/QueueC__1__head[sim_node()]; i < /*FloodingC.SimpleSendC.QueueC*/QueueC__1__head[sim_node()] + /*FloodingC.SimpleSendC.QueueC*/QueueC__1__size[sim_node()]; i++) {
-      sim_log_debug_clear(188U, "QueueC", "[");
+      sim_log_debug_clear(185U, "QueueC", "[");
       for (j = 0; j < sizeof(/*FloodingC.SimpleSendC.QueueC*/QueueC__1__queue_t ); j++) {
           uint8_t v = ((uint8_t *)&/*FloodingC.SimpleSendC.QueueC*/QueueC__1__queue[sim_node()][i % 20])[j];
 
 #line 81
-          sim_log_debug_clear(189U, "QueueC", "%0.2hhx", v);
+          sim_log_debug_clear(186U, "QueueC", "%0.2hhx", v);
         }
-      sim_log_debug_clear(190U, "QueueC", "] ");
+      sim_log_debug_clear(187U, "QueueC", "] ");
     }
-  sim_log_debug_clear(191U, "QueueC", "<- tail\n");
+  sim_log_debug_clear(188U, "QueueC", "<- tail\n");
 }
 
 #line 69
@@ -9669,7 +9996,7 @@ static inline /*FloodingC.SimpleSendC.QueueC*/QueueC__1__queue_t /*FloodingC.Sim
   /*FloodingC.SimpleSendC.QueueC*/QueueC__1__queue_t t = /*FloodingC.SimpleSendC.QueueC*/QueueC__1__Queue__head();
 
 #line 91
-  sim_log_debug(192U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*FloodingC.SimpleSendC.QueueC*/QueueC__1__size[sim_node()]);
+  sim_log_debug(189U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*FloodingC.SimpleSendC.QueueC*/QueueC__1__size[sim_node()]);
   if (!/*FloodingC.SimpleSendC.QueueC*/QueueC__1__Queue__empty()) {
       /*FloodingC.SimpleSendC.QueueC*/QueueC__1__head[sim_node()]++;
       if (/*FloodingC.SimpleSendC.QueueC*/QueueC__1__head[sim_node()] == 20) {
@@ -9791,19 +10118,19 @@ static inline error_t /*FloodingC.SimpleSendC.SimpleSendP*/SimpleSendP__0__send(
 #line 133
         {
 
-          sim_log_debug(148U, GENERAL_CHANNEL, "The radio is busy, or something\n");
+          sim_log_debug(145U, GENERAL_CHANNEL, "The radio is busy, or something\n");
           return FAIL;
         }
     }
   else 
 #line 138
     {
-      sim_log_debug(149U, GENERAL_CHANNEL, "The radio is busy");
+      sim_log_debug(146U, GENERAL_CHANNEL, "The radio is busy");
       return EBUSY;
     }
 
 
-  sim_log_debug(150U, GENERAL_CHANNEL, "FAILED!?");
+  sim_log_debug(147U, GENERAL_CHANNEL, "FAILED!?");
   return FAIL;
 }
 
@@ -10053,7 +10380,7 @@ static inline void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__CancelTask__runTask
   message_t *msg;
 
 #line 129
-  for (i = 0; i < 4 / 8 + 1; i++) {
+  for (i = 0; i < 5 / 8 + 1; i++) {
       if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__cancelMask[sim_node()][i]) {
           for (mask = 1, j = 0; j < 8; j++) {
               if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__cancelMask[sim_node()][i] & mask) {
@@ -10107,7 +10434,7 @@ static inline error_t /*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__Po
         }
       /*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__queue[sim_node()][emptyIndex] = newVal;
       /*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__free[sim_node()]++;
-      sim_log_debug(210U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__free[sim_node()]);
+      sim_log_debug(207U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*NeighborDiscoveryC.SimpleSendC.PoolC.PoolP*/PoolP__2__free[sim_node()]);
       return SUCCESS;
     }
 }
@@ -10141,7 +10468,7 @@ static inline /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__queue_t /*Neig
   /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__queue_t t = /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__Queue__head();
 
 #line 91
-  sim_log_debug(216U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__size[sim_node()]);
+  sim_log_debug(213U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__size[sim_node()]);
   if (!/*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__Queue__empty()) {
       /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__head[sim_node()]++;
       if (/*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__head[sim_node()] == 20) {
@@ -10263,19 +10590,19 @@ static inline error_t /*NeighborDiscoveryC.SimpleSendC.SimpleSendP*/SimpleSendP_
 #line 133
         {
 
-          sim_log_debug(204U, GENERAL_CHANNEL, "The radio is busy, or something\n");
+          sim_log_debug(201U, GENERAL_CHANNEL, "The radio is busy, or something\n");
           return FAIL;
         }
     }
   else 
 #line 138
     {
-      sim_log_debug(205U, GENERAL_CHANNEL, "The radio is busy");
+      sim_log_debug(202U, GENERAL_CHANNEL, "The radio is busy");
       return EBUSY;
     }
 
 
-  sim_log_debug(206U, GENERAL_CHANNEL, "FAILED!?");
+  sim_log_debug(203U, GENERAL_CHANNEL, "FAILED!?");
   return FAIL;
 }
 
@@ -10362,7 +10689,7 @@ static inline error_t /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3
         }
       /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__queue[sim_node()][emptyIndex] = newVal;
       /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]++;
-      sim_log_debug(243U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
+      sim_log_debug(240U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__free[sim_node()]);
       return SUCCESS;
     }
 }
@@ -10396,7 +10723,7 @@ static inline /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t /*
   /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t t = /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__head();
 
 #line 91
-  sim_log_debug(249U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]);
+  sim_log_debug(246U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]);
   if (!/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__Queue__empty()) {
       /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__head[sim_node()]++;
       if (/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__head[sim_node()] == 20) {
@@ -10518,19 +10845,19 @@ static inline error_t /*DistanceVectorRoutingC.SimpleSendC.SimpleSendP*/SimpleSe
 #line 133
         {
 
-          sim_log_debug(237U, GENERAL_CHANNEL, "The radio is busy, or something\n");
+          sim_log_debug(234U, GENERAL_CHANNEL, "The radio is busy, or something\n");
           return FAIL;
         }
     }
   else 
 #line 138
     {
-      sim_log_debug(238U, GENERAL_CHANNEL, "The radio is busy");
+      sim_log_debug(235U, GENERAL_CHANNEL, "The radio is busy");
       return EBUSY;
     }
 
 
-  sim_log_debug(239U, GENERAL_CHANNEL, "FAILED!?");
+  sim_log_debug(236U, GENERAL_CHANNEL, "FAILED!?");
   return FAIL;
 }
 
@@ -10617,7 +10944,7 @@ static inline error_t /*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__Pool__put(
         }
       /*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__queue[sim_node()][emptyIndex] = newVal;
       /*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__free[sim_node()]++;
-      sim_log_debug(258U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__free[sim_node()]);
+      sim_log_debug(255U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__free[sim_node()]);
       return SUCCESS;
     }
 }
@@ -10647,18 +10974,18 @@ static inline void /*TransportC.SimpleSendC.QueueC*/QueueC__4__printQueue(void )
   int j;
 
 #line 76
-  sim_log_debug(259U, "QueueC", "head <-");
+  sim_log_debug(256U, "QueueC", "head <-");
   for (i = /*TransportC.SimpleSendC.QueueC*/QueueC__4__head[sim_node()]; i < /*TransportC.SimpleSendC.QueueC*/QueueC__4__head[sim_node()] + /*TransportC.SimpleSendC.QueueC*/QueueC__4__size[sim_node()]; i++) {
-      sim_log_debug_clear(260U, "QueueC", "[");
+      sim_log_debug_clear(257U, "QueueC", "[");
       for (j = 0; j < sizeof(/*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t ); j++) {
           uint8_t v = ((uint8_t *)&/*TransportC.SimpleSendC.QueueC*/QueueC__4__queue[sim_node()][i % 20])[j];
 
 #line 81
-          sim_log_debug_clear(261U, "QueueC", "%0.2hhx", v);
+          sim_log_debug_clear(258U, "QueueC", "%0.2hhx", v);
         }
-      sim_log_debug_clear(262U, "QueueC", "] ");
+      sim_log_debug_clear(259U, "QueueC", "] ");
     }
-  sim_log_debug_clear(263U, "QueueC", "<- tail\n");
+  sim_log_debug_clear(260U, "QueueC", "<- tail\n");
 }
 
 #line 69
@@ -10675,7 +11002,7 @@ static inline /*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t /*TransportC.S
   /*TransportC.SimpleSendC.QueueC*/QueueC__4__queue_t t = /*TransportC.SimpleSendC.QueueC*/QueueC__4__Queue__head();
 
 #line 91
-  sim_log_debug(264U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*TransportC.SimpleSendC.QueueC*/QueueC__4__size[sim_node()]);
+  sim_log_debug(261U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*TransportC.SimpleSendC.QueueC*/QueueC__4__size[sim_node()]);
   if (!/*TransportC.SimpleSendC.QueueC*/QueueC__4__Queue__empty()) {
       /*TransportC.SimpleSendC.QueueC*/QueueC__4__head[sim_node()]++;
       if (/*TransportC.SimpleSendC.QueueC*/QueueC__4__head[sim_node()] == 20) {
@@ -10797,19 +11124,19 @@ static inline error_t /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__send
 #line 133
         {
 
-          sim_log_debug(252U, GENERAL_CHANNEL, "The radio is busy, or something\n");
+          sim_log_debug(249U, GENERAL_CHANNEL, "The radio is busy, or something\n");
           return FAIL;
         }
     }
   else 
 #line 138
     {
-      sim_log_debug(253U, GENERAL_CHANNEL, "The radio is busy");
+      sim_log_debug(250U, GENERAL_CHANNEL, "The radio is busy");
       return EBUSY;
     }
 
 
-  sim_log_debug(254U, GENERAL_CHANNEL, "FAILED!?");
+  sim_log_debug(251U, GENERAL_CHANNEL, "FAILED!?");
   return FAIL;
 }
 
@@ -10858,15 +11185,294 @@ static inline void /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__sendBuf
     }
 }
 
+# 53 "/opt/tinyos-main/tos/system/QueueC.nc"
+static inline bool /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__empty(void )
+#line 53
+{
+  return /*tcpC.SimpleSendC.QueueC*/QueueC__5__size[sim_node()] == 0;
+}
+
+# 50 "/opt/tinyos-main/tos/interfaces/Queue.nc"
+inline static bool /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__empty(void ){
+#line 50
+  unsigned char __nesc_result;
+#line 50
+
+#line 50
+  __nesc_result = /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__empty();
+#line 50
+
+#line 50
+  return __nesc_result;
+#line 50
+}
+#line 50
+# 103 "/opt/tinyos-main/tos/system/PoolP.nc"
+static inline error_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Pool__put(/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool_t *newVal)
+#line 103
+{
+  if (/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[sim_node()] >= 20) {
+      return FAIL;
+    }
+  else {
+      uint16_t emptyIndex = /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__index[sim_node()] + /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[sim_node()];
+
+#line 109
+      if (emptyIndex >= 20) {
+          emptyIndex -= 20;
+        }
+      /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__queue[sim_node()][emptyIndex] = newVal;
+      /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[sim_node()]++;
+      sim_log_debug(278U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[sim_node()]);
+      return SUCCESS;
+    }
+}
+
+# 89 "/opt/tinyos-main/tos/interfaces/Pool.nc"
+inline static error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Pool__put(/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Pool__t * newVal){
+#line 89
+  unsigned char __nesc_result;
+#line 89
+
+#line 89
+  __nesc_result = /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Pool__put(newVal);
+#line 89
+
+#line 89
+  return __nesc_result;
+#line 89
+}
+#line 89
+# 73 "/opt/tinyos-main/tos/system/QueueC.nc"
+static inline void /*tcpC.SimpleSendC.QueueC*/QueueC__5__printQueue(void )
+#line 73
+{
+
+  int i;
+#line 75
+  int j;
+
+#line 76
+  sim_log_debug(279U, "QueueC", "head <-");
+  for (i = /*tcpC.SimpleSendC.QueueC*/QueueC__5__head[sim_node()]; i < /*tcpC.SimpleSendC.QueueC*/QueueC__5__head[sim_node()] + /*tcpC.SimpleSendC.QueueC*/QueueC__5__size[sim_node()]; i++) {
+      sim_log_debug_clear(280U, "QueueC", "[");
+      for (j = 0; j < sizeof(/*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t ); j++) {
+          uint8_t v = ((uint8_t *)&/*tcpC.SimpleSendC.QueueC*/QueueC__5__queue[sim_node()][i % 20])[j];
+
+#line 81
+          sim_log_debug_clear(281U, "QueueC", "%0.2hhx", v);
+        }
+      sim_log_debug_clear(282U, "QueueC", "] ");
+    }
+  sim_log_debug_clear(283U, "QueueC", "<- tail\n");
+}
+
+#line 69
+static inline /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__head(void )
+#line 69
+{
+  return /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue[sim_node()][/*tcpC.SimpleSendC.QueueC*/QueueC__5__head[sim_node()]];
+}
+
+#line 89
+static inline /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__dequeue(void )
+#line 89
+{
+  /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue_t t = /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__head();
+
+#line 91
+  sim_log_debug(284U, "QueueC", "%s: size is %hhu\n", __FUNCTION__, /*tcpC.SimpleSendC.QueueC*/QueueC__5__size[sim_node()]);
+  if (!/*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__empty()) {
+      /*tcpC.SimpleSendC.QueueC*/QueueC__5__head[sim_node()]++;
+      if (/*tcpC.SimpleSendC.QueueC*/QueueC__5__head[sim_node()] == 20) {
+#line 94
+        /*tcpC.SimpleSendC.QueueC*/QueueC__5__head[sim_node()] = 0;
+        }
+#line 95
+      /*tcpC.SimpleSendC.QueueC*/QueueC__5__size[sim_node()]--;
+      /*tcpC.SimpleSendC.QueueC*/QueueC__5__printQueue();
+    }
+  return t;
+}
+
+# 88 "/opt/tinyos-main/tos/interfaces/Queue.nc"
+inline static /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__t  /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__dequeue(void ){
+#line 88
+  struct sendInfo *__nesc_result;
+#line 88
+
+#line 88
+  __nesc_result = /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__dequeue();
+#line 88
+
+#line 88
+  return __nesc_result;
+#line 88
+}
+#line 88
+# 75 "/opt/tinyos-main/tos/interfaces/Send.nc"
+inline static error_t /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__send(message_t * msg, uint8_t len){
+#line 75
+  unsigned char __nesc_result;
+#line 75
+
+#line 75
+  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__send(4U, msg, len);
+#line 75
+
+#line 75
+  return __nesc_result;
+#line 75
+}
+#line 75
+# 162 "/opt/tinyos-main/tos/interfaces/AMPacket.nc"
+inline static void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMPacket__setType(message_t * amsg, am_id_t t){
+#line 162
+  TossimActiveMessageC__AMPacket__setType(amsg, t);
+#line 162
+}
+#line 162
+#line 103
+inline static void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMPacket__setDestination(message_t * amsg, am_addr_t addr){
+#line 103
+  TossimActiveMessageC__AMPacket__setDestination(amsg, addr);
+#line 103
+}
+#line 103
+# 53 "/opt/tinyos-main/tos/system/AMQueueEntryP.nc"
+static inline error_t /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__send(am_addr_t dest, 
+message_t *msg, 
+uint8_t len)
+#line 55
+{
+  /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMPacket__setDestination(msg, dest);
+  /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMPacket__setType(msg, 6);
+  return /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__send(msg, len);
+}
+
+# 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
+inline static error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__AMSend__send(am_addr_t addr, message_t * msg, uint8_t len){
+#line 80
+  unsigned char __nesc_result;
+#line 80
+
+#line 80
+  __nesc_result = /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__send(addr, msg, len);
+#line 80
+
+#line 80
+  return __nesc_result;
+#line 80
+}
+#line 80
+# 126 "/opt/tinyos-main/tos/interfaces/Packet.nc"
+inline static void * /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Packet__getPayload(message_t * msg, uint8_t len){
+#line 126
+  void *__nesc_result;
+#line 126
+
+#line 126
+  __nesc_result = TossimActiveMessageC__Packet__getPayload(msg, len);
+#line 126
+
+#line 126
+  return __nesc_result;
+#line 126
+}
+#line 126
+# 118 "lib/modules/SimpleSendP.nc"
+static inline error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__send(uint16_t src, uint16_t dest, pack *message)
+#line 118
+{
+  if (!/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy[sim_node()]) {
+
+
+
+      pack *msg = (pack *)/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Packet__getPayload(&/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt[sim_node()], sizeof(pack ));
+
+
+      *msg = *message;
+
+
+      if (/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__AMSend__send(dest, &/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt[sim_node()], sizeof(pack )) == SUCCESS) {
+
+          /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy[sim_node()] = TRUE;
+          return SUCCESS;
+        }
+      else 
+#line 133
+        {
+
+          sim_log_debug(272U, GENERAL_CHANNEL, "The radio is busy, or something\n");
+          return FAIL;
+        }
+    }
+  else 
+#line 138
+    {
+      sim_log_debug(273U, GENERAL_CHANNEL, "The radio is busy");
+      return EBUSY;
+    }
+
+
+  sim_log_debug(274U, GENERAL_CHANNEL, "FAILED!?");
+  return FAIL;
+}
+
+# 80 "/opt/tinyos-main/tos/interfaces/Queue.nc"
+inline static /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__t  /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__head(void ){
+#line 80
+  struct sendInfo *__nesc_result;
+#line 80
+
+#line 80
+  __nesc_result = /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__head();
+#line 80
+
+#line 80
+  return __nesc_result;
+#line 80
+}
+#line 80
+# 74 "lib/modules/SimpleSendP.nc"
+static inline void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask__runTask(void )
+#line 74
+{
+
+
+  if (!/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__empty() && !/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy[sim_node()]) {
+      sendInfo *info;
+
+
+
+
+      info = /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__head();
+
+
+      if (SUCCESS == /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__send(info->src, info->dest, & info->packet)) {
+
+          /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__dequeue();
+          /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Pool__put(info);
+        }
+    }
+
+
+
+
+  if (!/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Queue__empty()) {
+      /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__postSendTask();
+    }
+}
+
 # 221 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
 static inline void SimSchedulerBasicP__TaskBasic__default__runTask(uint8_t id)
 {
 }
 
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
-inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7fe75b452020){
+inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7f2a6aff6020){
 #line 75
-  switch (arg_0x7fe75b452020) {
+  switch (arg_0x7f2a6aff6020) {
 #line 75
     case TossimPacketModelC__startDoneTask:
 #line 75
@@ -10946,9 +11552,15 @@ inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7fe75b45
 #line 75
       break;
 #line 75
+    case /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask:
+#line 75
+      /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask__runTask();
+#line 75
+      break;
+#line 75
     default:
 #line 75
-      SimSchedulerBasicP__TaskBasic__default__runTask(arg_0x7fe75b452020);
+      SimSchedulerBasicP__TaskBasic__default__runTask(arg_0x7f2a6aff6020);
 #line 75
       break;
 #line 75
@@ -11008,13 +11620,13 @@ inline static am_addr_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMPacket__dest
 }
 #line 78
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
-inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x7fe75ab28b60, am_addr_t addr, message_t * msg, uint8_t len){
+inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x7f2a6a6c9b60, am_addr_t addr, message_t * msg, uint8_t len){
 #line 80
   unsigned char __nesc_result;
 #line 80
 
 #line 80
-  __nesc_result = TossimActiveMessageC__AMSend__send(arg_0x7fe75ab28b60, addr, msg, len);
+  __nesc_result = TossimActiveMessageC__AMSend__send(arg_0x7f2a6a6c9b60, addr, msg, len);
 #line 80
 
 #line 80
@@ -11597,20 +12209,20 @@ static inline void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__nextPacket(void )
   uint8_t i;
 
 #line 67
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] + 1) % 4;
-  for (i = 0; i < 4; i++) {
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] + 1) % 5;
+  for (i = 0; i < 5; i++) {
       if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[sim_node()][/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()]].msg == (void *)0 || 
       /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__cancelMask[sim_node()][/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] / 8] & (1 << /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] % 8)) 
         {
-          /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] + 1) % 4;
+          /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] + 1) % 5;
         }
       else {
           break;
         }
     }
-  if (i >= 4) {
+  if (i >= 5) {
 #line 78
-    /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = 4;
+    /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = 5;
     }
 }
 
@@ -11651,6 +12263,68 @@ inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__errorTask__postT
 #line 67
 }
 #line 67
+# 150 "lib/modules/SimpleSendP.nc"
+static inline void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__AMSend__sendDone(message_t *msg, error_t error)
+#line 150
+{
+
+  if (&/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt[sim_node()] == msg) {
+      /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy[sim_node()] = FALSE;
+      /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__postSendTask();
+    }
+}
+
+# 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
+inline static void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__sendDone(message_t * msg, error_t error){
+#line 110
+  /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__AMSend__sendDone(msg, error);
+#line 110
+}
+#line 110
+# 65 "/opt/tinyos-main/tos/system/AMQueueEntryP.nc"
+static inline void /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__sendDone(message_t *m, error_t err)
+#line 65
+{
+  /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__sendDone(m, err);
+}
+
+# 92 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
+inline static bool /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__isRunning(void ){
+#line 92
+  unsigned char __nesc_result;
+#line 92
+
+#line 92
+  __nesc_result = /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isRunning(8U);
+#line 92
+
+#line 92
+  return __nesc_result;
+#line 92
+}
+#line 92
+#line 73
+inline static void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__startOneShot(uint32_t dt){
+#line 73
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(8U, dt);
+#line 73
+}
+#line 73
+# 52 "/opt/tinyos-main/tos/interfaces/Random.nc"
+inline static uint16_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Random__rand16(void ){
+#line 52
+  unsigned short __nesc_result;
+#line 52
+
+#line 52
+  __nesc_result = RandomMlcgC__Random__rand16();
+#line 52
+
+#line 52
+  return __nesc_result;
+#line 52
+}
+#line 52
 # 150 "lib/modules/SimpleSendP.nc"
 static inline void /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__AMSend__sendDone(message_t *msg, error_t error)
 #line 150
@@ -12034,13 +12708,13 @@ static inline void /*NeighborDiscoveryC.HashmapC*/HashmapC__1__removeFromKeyList
   int j;
 
 #line 79
-  sim_log_debug(219U, HASHMAP_CHANNEL, "Removing entry %d\n", k);
+  sim_log_debug(216U, HASHMAP_CHANNEL, "Removing entry %d\n", k);
   for (i = 0; i < /*NeighborDiscoveryC.HashmapC*/HashmapC__1__numofVals[sim_node()]; i++) {
 
 
 
       if (/*NeighborDiscoveryC.HashmapC*/HashmapC__1__keys[sim_node()][i] == k) {
-          sim_log_debug(220U, HASHMAP_CHANNEL, "Key found at %d\n", i);
+          sim_log_debug(217U, HASHMAP_CHANNEL, "Key found at %d\n", i);
 
 
           for (j = i; j < /*NeighborDiscoveryC.HashmapC*/HashmapC__1__HASH_MAX_SIZE[sim_node()]; j++) {
@@ -12050,8 +12724,8 @@ static inline void /*NeighborDiscoveryC.HashmapC*/HashmapC__1__removeFromKeyList
                 break;
                 }
 #line 91
-              sim_log_debug(221U, HASHMAP_CHANNEL, "Moving %d to %d\n", j, j + 1);
-              sim_log_debug(222U, HASHMAP_CHANNEL, "Replacing %d with %d\n", /*NeighborDiscoveryC.HashmapC*/HashmapC__1__keys[sim_node()][j], /*NeighborDiscoveryC.HashmapC*/HashmapC__1__keys[sim_node()][j + 1]);
+              sim_log_debug(218U, HASHMAP_CHANNEL, "Moving %d to %d\n", j, j + 1);
+              sim_log_debug(219U, HASHMAP_CHANNEL, "Replacing %d with %d\n", /*NeighborDiscoveryC.HashmapC*/HashmapC__1__keys[sim_node()][j], /*NeighborDiscoveryC.HashmapC*/HashmapC__1__keys[sim_node()][j + 1]);
               /*NeighborDiscoveryC.HashmapC*/HashmapC__1__keys[sim_node()][j] = /*NeighborDiscoveryC.HashmapC*/HashmapC__1__keys[sim_node()][j + 1];
             }
 
@@ -12060,7 +12734,7 @@ static inline void /*NeighborDiscoveryC.HashmapC*/HashmapC__1__removeFromKeyList
           /*NeighborDiscoveryC.HashmapC*/HashmapC__1__keys[sim_node()][/*NeighborDiscoveryC.HashmapC*/HashmapC__1__numofVals[sim_node()]] = /*NeighborDiscoveryC.HashmapC*/HashmapC__1__EMPTY_KEY[sim_node()];
 
           /*NeighborDiscoveryC.HashmapC*/HashmapC__1__numofVals[sim_node()]--;
-          sim_log_debug(223U, "hashmap", "Done removing entry\n");
+          sim_log_debug(220U, "hashmap", "Done removing entry\n");
           return;
         }
     }
@@ -12118,7 +12792,7 @@ static inline void DistanceVectorRoutingP__DistanceVectorRouting__lostNeighbor(u
 
 
 
-  sim_log_debug(231U, ROUTING_CHANNEL, "Neighbor discovery has lost neighbor %u. Distance is now infinite!\n", lostNeighbor);
+  sim_log_debug(228U, ROUTING_CHANNEL, "Neighbor discovery has lost neighbor %u. Distance is now infinite!\n", lostNeighbor);
   for (i = 1; i < DistanceVectorRoutingP__routeCount[sim_node()]; i++) {
 
 
@@ -12258,7 +12932,7 @@ static inline void DistanceVectorRoutingP__updateTTLS(void )
 
       if (DistanceVectorRoutingP__initializeTable[sim_node()][i].ttl == 0) {
 
-          sim_log_debug(236U, ROUTING_CHANNEL, "Route stale, removing: %u\n", DistanceVectorRoutingP__initializeTable[sim_node()][i].dest);
+          sim_log_debug(233U, ROUTING_CHANNEL, "Route stale, removing: %u\n", DistanceVectorRoutingP__initializeTable[sim_node()][i].dest);
 
 
           DistanceVectorRoutingP__RemoveRoute(i);
@@ -12393,16 +13067,16 @@ inline static bool TransportP__Timer__isOneShot(void ){
 #line 98
 }
 #line 98
-# 59 "lib/modules/TransportP.nc"
+# 61 "lib/modules/TransportP.nc"
 static inline void TransportP__Timer__fired(void )
-#line 59
+#line 61
 {
 
 
   if (TransportP__Timer__isOneShot()) {
 
 
-      sim_log_debug(251U, TRANSPORT_CHANNEL, "Starting TCP for %u\n", TOS_NODE_ID);
+      sim_log_debug(248U, TRANSPORT_CHANNEL, "Starting TCP for %u\n", TOS_NODE_ID);
 
 
       TransportP__Timer__startPeriodic((uint16_t )(TransportP__Random__rand16() % 1000) + 1024);
@@ -12431,15 +13105,43 @@ static inline void /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__sendTim
   /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__sendBufferTask__postTask();
 }
 
+# 28 "lib/modules/tcpP.nc"
+static inline void tcpP__Timer__fired(void )
+#line 28
+{
+}
+
+# 67 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
+inline static error_t /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask__postTask(void ){
+#line 67
+  unsigned char __nesc_result;
+#line 67
+
+#line 67
+  __nesc_result = SimSchedulerBasicP__TaskBasic__postTask(/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask);
+#line 67
+
+#line 67
+  return __nesc_result;
+#line 67
+}
+#line 67
+# 103 "lib/modules/SimpleSendP.nc"
+static inline void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__fired(void )
+#line 103
+{
+  /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendBufferTask__postTask();
+}
+
 # 204 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
 static inline void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(uint8_t num)
 {
 }
 
 # 83 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x7fe75abdb950){
+inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x7f2a6a77c950){
 #line 83
-  switch (arg_0x7fe75abdb950) {
+  switch (arg_0x7f2a6a77c950) {
 #line 83
     case 0U:
 #line 83
@@ -12483,9 +13185,21 @@ inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 #line 83
       break;
 #line 83
+    case 7U:
+#line 83
+      tcpP__Timer__fired();
+#line 83
+      break;
+#line 83
+    case 8U:
+#line 83
+      /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__fired();
+#line 83
+      break;
+#line 83
     default:
 #line 83
-      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x7fe75abdb950);
+      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x7f2a6a77c950);
 #line 83
       break;
 #line 83
@@ -12559,7 +13273,7 @@ static inline void /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm
 static inline void HplAtm128Timer0AsyncP__cancel_compare(void )
 #line 577
 {
-  sim_log_debug(177U, "HplAtm128CompareC", "Cancelling compare at 0x%p\n", HplAtm128Timer0AsyncP__compare[sim_node()]);
+  sim_log_debug(174U, "HplAtm128CompareC", "Cancelling compare at 0x%p\n", HplAtm128Timer0AsyncP__compare[sim_node()]);
   if (HplAtm128Timer0AsyncP__compare[sim_node()] != (void *)0) {
       HplAtm128Timer0AsyncP__compare[sim_node()]->cancelled = 1;
       HplAtm128Timer0AsyncP__compare[sim_node()]->cleanup = sim_queue_cleanup_total;
@@ -12588,7 +13302,7 @@ static inline void HplAtm128Timer0AsyncP__cancel_overflow(void )
 {
   if (HplAtm128Timer0AsyncP__overflow[sim_node()] != (void *)0) {
       HplAtm128Timer0AsyncP__overflow[sim_node()]->cancelled = 1;
-      sim_log_debug(176U, "HplAtm128Timer0AsyncP", "Cancelling overflow %p.\n", HplAtm128Timer0AsyncP__overflow[sim_node()]);
+      sim_log_debug(173U, "HplAtm128Timer0AsyncP", "Cancelling overflow %p.\n", HplAtm128Timer0AsyncP__overflow[sim_node()]);
       HplAtm128Timer0AsyncP__overflow[sim_node()]->cleanup = sim_queue_cleanup_total;
     }
 }
@@ -12603,11 +13317,11 @@ static inline void HplAtm128Timer0AsyncP__timer0_overflow_handle(sim_event_t *ev
   else {
       if ((atm128RegFile[sim_node()][ATM128_TIMSK] & (1 << TOIE0)) != 0) {
           atm128RegFile[sim_node()][ATM128_TIFR] &= ~(1 << TOV0);
-          sim_log_debug(173U, "HplAtm128Timer0AsyncP", "Overflow interrupt at %s\n", sim_time_string());
+          sim_log_debug(170U, "HplAtm128Timer0AsyncP", "Overflow interrupt at %s\n", sim_time_string());
           INTERRUPT_16();
         }
       else {
-          sim_log_debug(174U, "HplAtm128Timer0AsyncP", "Setting overflow bit at %s\n", sim_time_string());
+          sim_log_debug(171U, "HplAtm128Timer0AsyncP", "Setting overflow bit at %s\n", sim_time_string());
           atm128RegFile[sim_node()][ATM128_TIFR] |= 1 << TOV0;
         }
       HplAtm128Timer0AsyncP__configure_overflow(evt);
@@ -12657,7 +13371,7 @@ static inline void HplAtm128Timer0AsyncP__Timer0__set(uint8_t newVal)
   uint8_t curVal = HplAtm128Timer0AsyncP__Timer0__get();
 
 #line 299
-  sim_log_debug(166U, "HplAtm128Timer0AsyncP", "HplAtm128Timer0AsyncP: Setting timer: %hhu\n", newVal);
+  sim_log_debug(163U, "HplAtm128Timer0AsyncP", "HplAtm128Timer0AsyncP: Setting timer: %hhu\n", newVal);
   if (newVal == curVal) {
       return;
     }
@@ -12684,7 +13398,7 @@ static inline void HplAtm128Timer0AsyncP__Timer0__set(uint8_t newVal)
 static inline void HplAtm128Timer0AsyncP__timer0_compare_handle(sim_event_t *evt)
 #line 187
 {
-  sim_log_debug(156U, "HplAtm128Timer0AsyncP", "Beginning compare 0x%p at %s\n", evt, sim_time_string());
+  sim_log_debug(153U, "HplAtm128Timer0AsyncP", "Beginning compare 0x%p at %s\n", evt, sim_time_string());
   if (evt->cancelled) {
       return;
     }
@@ -12693,21 +13407,21 @@ static inline void HplAtm128Timer0AsyncP__timer0_compare_handle(sim_event_t *evt
 
 #line 194
       sim_print_now(timeStr, 128);
-      sim_log_debug(157U, "HplAtm128Timer0AsyncP", "Handling compare at 0x%p @ %s\n", evt, sim_time_string());
+      sim_log_debug(154U, "HplAtm128Timer0AsyncP", "Handling compare at 0x%p @ %s\n", evt, sim_time_string());
 
       if ((atm128RegFile[sim_node()][ATM128_TCCR0] & (1 << WGM01)) != 0 && !((atm128RegFile[sim_node()][ATM128_TCCR0] & (1 << WGM00)) != 0)) {
-          sim_log_debug(158U, "HplAtm128Timer0AsyncP", "%s: CTC is set, clear timer.\n", __FUNCTION__);
+          sim_log_debug(155U, "HplAtm128Timer0AsyncP", "%s: CTC is set, clear timer.\n", __FUNCTION__);
           HplAtm128Timer0AsyncP__Timer0__set(0);
         }
       else {
-          sim_log_debug(159U, "HplAtm128Timer0AsyncP", "%s: TCCR is 0x%hhx, %i, %i\n", __FUNCTION__, * (volatile uint8_t *)&atm128RegFile[sim_node()][0x33], (int )((atm128RegFile[sim_node()][ATM128_TCCR0] & (1 << WGM01)) != 0), (int )((atm128RegFile[sim_node()][ATM128_TCCR0] & (1 << WGM00)) != 0));
+          sim_log_debug(156U, "HplAtm128Timer0AsyncP", "%s: TCCR is 0x%hhx, %i, %i\n", __FUNCTION__, * (volatile uint8_t *)&atm128RegFile[sim_node()][0x33], (int )((atm128RegFile[sim_node()][ATM128_TCCR0] & (1 << WGM01)) != 0), (int )((atm128RegFile[sim_node()][ATM128_TCCR0] & (1 << WGM00)) != 0));
         }
 
       if ((atm128RegFile[sim_node()][ATM128_TIMSK] & (1 << OCIE0)) != 0) {
-          sim_log_debug(160U, "HplAtm128Timer0AsyncP", "TIFR is %hhx\n", * (volatile uint8_t *)&atm128RegFile[sim_node()][0x36]);
+          sim_log_debug(157U, "HplAtm128Timer0AsyncP", "TIFR is %hhx\n", * (volatile uint8_t *)&atm128RegFile[sim_node()][0x36]);
           atm128RegFile[sim_node()][ATM128_TIFR] &= ~(1 << OCF0);
-          sim_log_debug(161U, "HplAtm128Timer0AsyncP", "TIFR is %hhx\n", * (volatile uint8_t *)&atm128RegFile[sim_node()][0x36]);
-          sim_log_debug(162U, "HplAtm128Timer0AsyncP", "Compare interrupt @ %s\n", timeStr);
+          sim_log_debug(158U, "HplAtm128Timer0AsyncP", "TIFR is %hhx\n", * (volatile uint8_t *)&atm128RegFile[sim_node()][0x36]);
+          sim_log_debug(159U, "HplAtm128Timer0AsyncP", "Compare interrupt @ %s\n", timeStr);
           INTERRUPT_15();
         }
       else {
@@ -12727,7 +13441,7 @@ static inline sim_event_t *HplAtm128Timer0AsyncP__allocate_compare(void )
   sim_event_t *newEvent = sim_queue_allocate_event();
 
 #line 225
-  sim_log_debug(163U, "HplAtm128Timer0AsyncP", "Allocated compare at 0x%p\n", newEvent);
+  sim_log_debug(160U, "HplAtm128Timer0AsyncP", "Allocated compare at 0x%p\n", newEvent);
   newEvent->handle = HplAtm128Timer0AsyncP__timer0_compare_handle;
   newEvent->cleanup = sim_queue_cleanup_none;
   return newEvent;
@@ -12942,7 +13656,7 @@ inline static void /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm
 static inline void HplAtm128Timer0AsyncP__Timer0Ctrl__setControl(Atm128TimerControl_t x)
 #line 364
 {
-  sim_log_debug(168U, "HplAtm128Timer0AsyncP", "Setting control to be 0x%hhx\n", x.flat);
+  sim_log_debug(165U, "HplAtm128Timer0AsyncP", "Setting control to be 0x%hhx\n", x.flat);
   * (volatile uint8_t *)&atm128RegFile[sim_node()][0x33] = x.flat;
 }
 
@@ -13058,6 +13772,21 @@ static inline error_t /*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__Init__init
   return SUCCESS;
 }
 
+#line 65
+static inline error_t /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Init__init(void )
+#line 65
+{
+  int i;
+
+#line 67
+  for (i = 0; i < 20; i++) {
+      /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__queue[sim_node()][i] = &/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool[sim_node()][i];
+    }
+  /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[sim_node()] = 20;
+  /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__index[sim_node()] = 0;
+  return SUCCESS;
+}
+
 # 62 "/opt/tinyos-main/tos/interfaces/Init.nc"
 inline static error_t SimMainP__SoftwareInit__init(void ){
 #line 62
@@ -13065,7 +13794,9 @@ inline static error_t SimMainP__SoftwareInit__init(void ){
 #line 62
 
 #line 62
-  __nesc_result = /*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__Init__init();
+  __nesc_result = /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__Init__init();
+#line 62
+  __nesc_result = ecombine(__nesc_result, /*TransportC.SimpleSendC.PoolC.PoolP*/PoolP__4__Init__init());
 #line 62
   __nesc_result = ecombine(__nesc_result, /*DistanceVectorRoutingC.SimpleSendC.PoolC.PoolP*/PoolP__3__Init__init());
 #line 62
@@ -13087,9 +13818,9 @@ inline static error_t SimMainP__SoftwareInit__init(void ){
 #line 62
 }
 #line 62
-# 408 "lib/modules/TransportP.nc"
+# 410 "lib/modules/TransportP.nc"
 static inline void TransportP__initializeSocket(uint8_t fd)
-#line 408
+#line 410
 {
 
 
@@ -13142,9 +13873,9 @@ inline static void TransportP__Timer__startOneShot(uint32_t dt){
 #line 73
 }
 #line 73
-# 39 "lib/modules/TransportP.nc"
+# 41 "lib/modules/TransportP.nc"
 static inline void TransportP__Transport__begin(void )
-#line 39
+#line 41
 {
 
 
@@ -13194,7 +13925,7 @@ static inline error_t DistanceVectorRoutingP__DistanceVectorRouting__begin(void 
 
 
   DistanceVectorRoutingP__Timer__startOneShot(40000);
-  sim_log_debug(224U, ROUTING_CHANNEL, "DVR started for node %u\n", TOS_NODE_ID);
+  sim_log_debug(221U, ROUTING_CHANNEL, "DVR started for node %u\n", TOS_NODE_ID);
 }
 
 # 9 "lib/interfaces/DistanceVectorRouting.nc"
@@ -13242,7 +13973,7 @@ static inline error_t NeighborDiscoveryP__NeighborDiscovery__begin(void )
   NeighborDiscoveryP__Timer__startPeriodic((uint16_t )(NeighborDiscoveryP__Random__rand16() % 1000) + 10000);
 
 
-  sim_log_debug(200U, NEIGHBOR_CHANNEL, "Neighbor Discovery has been Started!\n");
+  sim_log_debug(197U, NEIGHBOR_CHANNEL, "Neighbor Discovery has been Started!\n");
 }
 
 # 7 "lib/interfaces/NeighborDiscovery.nc"
@@ -13260,9 +13991,9 @@ inline static error_t Node__NeighborDiscovery__begin(void ){
 #line 7
 }
 #line 7
-# 40 "Node.nc"
+# 42 "Node.nc"
 static inline void Node__Boot__booted(void )
-#line 40
+#line 42
 {
   Node__AMControl__start();
 
@@ -14873,18 +15604,18 @@ static void /*CommandHandlerC.QueueC*/QueueC__0__printQueue(void )
   int j;
 
 #line 76
-  sim_log_debug(129U, "QueueC", "head <-");
+  sim_log_debug(126U, "QueueC", "head <-");
   for (i = /*CommandHandlerC.QueueC*/QueueC__0__head[sim_node()]; i < /*CommandHandlerC.QueueC*/QueueC__0__head[sim_node()] + /*CommandHandlerC.QueueC*/QueueC__0__size[sim_node()]; i++) {
-      sim_log_debug_clear(130U, "QueueC", "[");
+      sim_log_debug_clear(127U, "QueueC", "[");
       for (j = 0; j < sizeof(/*CommandHandlerC.QueueC*/QueueC__0__queue_t ); j++) {
           uint8_t v = ((uint8_t *)&/*CommandHandlerC.QueueC*/QueueC__0__queue[sim_node()][i % 20])[j];
 
 #line 81
-          sim_log_debug_clear(131U, "QueueC", "%0.2hhx", v);
+          sim_log_debug_clear(128U, "QueueC", "%0.2hhx", v);
         }
-      sim_log_debug_clear(132U, "QueueC", "] ");
+      sim_log_debug_clear(129U, "QueueC", "] ");
     }
-  sim_log_debug_clear(133U, "QueueC", "<- tail\n");
+  sim_log_debug_clear(130U, "QueueC", "<- tail\n");
 }
 
 # 205 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
@@ -14959,18 +15690,18 @@ static void /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__printQueue(void 
   int j;
 
 #line 76
-  sim_log_debug(211U, "QueueC", "head <-");
+  sim_log_debug(208U, "QueueC", "head <-");
   for (i = /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__head[sim_node()]; i < /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__head[sim_node()] + /*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__size[sim_node()]; i++) {
-      sim_log_debug_clear(212U, "QueueC", "[");
+      sim_log_debug_clear(209U, "QueueC", "[");
       for (j = 0; j < sizeof(/*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__queue_t ); j++) {
           uint8_t v = ((uint8_t *)&/*NeighborDiscoveryC.SimpleSendC.QueueC*/QueueC__2__queue[sim_node()][i % 20])[j];
 
 #line 81
-          sim_log_debug_clear(213U, "QueueC", "%0.2hhx", v);
+          sim_log_debug_clear(210U, "QueueC", "%0.2hhx", v);
         }
-      sim_log_debug_clear(214U, "QueueC", "] ");
+      sim_log_debug_clear(211U, "QueueC", "] ");
     }
-  sim_log_debug_clear(215U, "QueueC", "<- tail\n");
+  sim_log_debug_clear(212U, "QueueC", "<- tail\n");
 }
 
 # 38 "lib/modules/SimpleSendP.nc"
@@ -15037,7 +15768,7 @@ static uint8_t HplAtm128Timer0AsyncP__Timer0__get(void )
   elapsed = HplAtm128Timer0AsyncP__sim_to_clock(elapsed);
   elapsed = elapsed >> HplAtm128Timer0AsyncP__shiftFromScale();
   rval = (uint8_t )(elapsed & 0xff);
-  sim_log_debug(165U, "HplAtm128Timer0AsyncP", "HplAtm128Timer0AsyncP: Getting timer: %hhu\n", rval);
+  sim_log_debug(162U, "HplAtm128Timer0AsyncP", "HplAtm128Timer0AsyncP: Getting timer: %hhu\n", rval);
   return rval;
 }
 
@@ -15116,7 +15847,7 @@ static Atm128_TIFR_t HplAtm128Timer0AsyncP__Timer0Ctrl__getInterruptFlag(void )
 static uint8_t HplAtm128Timer0AsyncP__Compare__get(void )
 #line 457
 {
-  sim_log_debug(171U, "HplAtm128Timer0AsyncP", "HplAtm128Timer0AsyncP: Getting compare: %hhu\n", * (volatile uint8_t *)&atm128RegFile[sim_node()][0x31]);
+  sim_log_debug(168U, "HplAtm128Timer0AsyncP", "HplAtm128Timer0AsyncP: Getting compare: %hhu\n", * (volatile uint8_t *)&atm128RegFile[sim_node()][0x31]);
   return * (volatile uint8_t *)&atm128RegFile[sim_node()][0x31];
 }
 
@@ -15198,7 +15929,7 @@ static void DistanceVectorRoutingP__inputNeighbor(void )
         if (DistanceVectorRoutingP__routeCount[sim_node()] == 22) {
 
 
-            sim_log_debug(235U, ROUTING_CHANNEL, "Routing table full. Cannot add entry for node: %u\n", neighbors[i]);
+            sim_log_debug(232U, ROUTING_CHANNEL, "Routing table full. Cannot add entry for node: %u\n", neighbors[i]);
           }
         }
 
@@ -15395,18 +16126,18 @@ static void /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__printQueue(v
   int j;
 
 #line 76
-  sim_log_debug(244U, "QueueC", "head <-");
+  sim_log_debug(241U, "QueueC", "head <-");
   for (i = /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__head[sim_node()]; i < /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__head[sim_node()] + /*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__size[sim_node()]; i++) {
-      sim_log_debug_clear(245U, "QueueC", "[");
+      sim_log_debug_clear(242U, "QueueC", "[");
       for (j = 0; j < sizeof(/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue_t ); j++) {
           uint8_t v = ((uint8_t *)&/*DistanceVectorRoutingC.SimpleSendC.QueueC*/QueueC__3__queue[sim_node()][i % 20])[j];
 
 #line 81
-          sim_log_debug_clear(246U, "QueueC", "%0.2hhx", v);
+          sim_log_debug_clear(243U, "QueueC", "%0.2hhx", v);
         }
-      sim_log_debug_clear(247U, "QueueC", "] ");
+      sim_log_debug_clear(244U, "QueueC", "] ");
     }
-  sim_log_debug_clear(248U, "QueueC", "<- tail\n");
+  sim_log_debug_clear(245U, "QueueC", "<- tail\n");
 }
 
 # 38 "lib/modules/SimpleSendP.nc"
@@ -15430,7 +16161,7 @@ static void /*NeighborDiscoveryC.HashmapC*/HashmapC__1__Hashmap__insert(uint32_t
   uint32_t j = 0;
 
   if (k == /*NeighborDiscoveryC.HashmapC*/HashmapC__1__EMPTY_KEY[sim_node()]) {
-      sim_log_debug(218U, HASHMAP_CHANNEL, "[HASHMAP] You cannot insert a key of %d.", /*NeighborDiscoveryC.HashmapC*/HashmapC__1__EMPTY_KEY[sim_node()]);
+      sim_log_debug(215U, HASHMAP_CHANNEL, "[HASHMAP] You cannot insert a key of %d.", /*NeighborDiscoveryC.HashmapC*/HashmapC__1__EMPTY_KEY[sim_node()]);
       return;
     }
 
@@ -15469,9 +16200,9 @@ static void DistanceVectorRoutingP__DistanceVectorRouting__route(pack *message)
   if (__nesc_ntoh_uint16(message->dest.nxdata) == TOS_NODE_ID) {
 
 
-      sim_log_debug(226U, ROUTING_CHANNEL, "Packet has reached destination %d!!!----------------------------------\n", TOS_NODE_ID);
-      sim_log_debug(227U, ROUTING_CHANNEL, "     From node: %d\n", __nesc_ntoh_uint16(message->src.nxdata));
-      sim_log_debug(228U, ROUTING_CHANNEL, "     Payload: %s\n", message->payload);
+      sim_log_debug(223U, ROUTING_CHANNEL, "Packet has reached destination %d!!!----------------------------------\n", TOS_NODE_ID);
+      sim_log_debug(224U, ROUTING_CHANNEL, "     From node: %d\n", __nesc_ntoh_uint16(message->src.nxdata));
+      sim_log_debug(225U, ROUTING_CHANNEL, "     Payload: %s\n", message->payload);
 
       return;
     }
@@ -15482,7 +16213,7 @@ static void DistanceVectorRoutingP__DistanceVectorRouting__route(pack *message)
 
   if (nextHop == 0) {
 
-      sim_log_debug(229U, ROUTING_CHANNEL, "No route to destination. Dropping packet...\n");
+      sim_log_debug(226U, ROUTING_CHANNEL, "No route to destination. Dropping packet...\n");
 
 
       logPack(message);
@@ -15495,7 +16226,7 @@ static void DistanceVectorRoutingP__DistanceVectorRouting__route(pack *message)
       uint16_t cost = DistanceVectorRoutingP__getCost(__nesc_ntoh_uint16(message->dest.nxdata));
 
 #line 141
-      sim_log_debug(230U, ROUTING_CHANNEL, "Routing Packet - src: %d, dest: %d, seq: %d, next hop: %d, cost: %d\n", __nesc_ntoh_uint16(message->src.nxdata), __nesc_ntoh_uint16(message->dest.nxdata), __nesc_ntoh_uint16(message->seq.nxdata), nextHop, cost);
+      sim_log_debug(227U, ROUTING_CHANNEL, "Routing Packet - src: %d, dest: %d, seq: %d, next hop: %d, cost: %d\n", __nesc_ntoh_uint16(message->src.nxdata), __nesc_ntoh_uint16(message->dest.nxdata), __nesc_ntoh_uint16(message->seq.nxdata), nextHop, cost);
 
 
       logPack(message);
@@ -15658,36 +16389,36 @@ static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__send(uint8_t clie
 uint8_t len)
 #line 91
 {
-  if (clientId >= 4) {
+  if (clientId >= 5) {
       return FAIL;
     }
   if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[sim_node()][clientId].msg != (void *)0) {
       return EBUSY;
     }
-  sim_log_debug(178U, "AMQueue", "AMQueue: request to send from %hhu (%p): passed checks\n", clientId, msg);
+  sim_log_debug(175U, "AMQueue", "AMQueue: request to send from %hhu (%p): passed checks\n", clientId, msg);
 
   /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[sim_node()][clientId].msg = msg;
   /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Packet__setPayloadLength(msg, len);
 
-  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] >= 4) {
+  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] >= 5) {
       error_t err;
       am_id_t amId = /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMPacket__type(msg);
       am_addr_t dest = /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMPacket__destination(msg);
 
-      sim_log_debug(179U, "AMQueue", "%s: request to send from %hhu (%p): queue empty\n", __FUNCTION__, clientId, msg);
+      sim_log_debug(176U, "AMQueue", "%s: request to send from %hhu (%p): queue empty\n", __FUNCTION__, clientId, msg);
       /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = clientId;
 
       err = /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(amId, dest, msg, len);
       if (err != SUCCESS) {
-          sim_log_debug(180U, "AMQueue", "%s: underlying send failed.\n", __FUNCTION__);
-          /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = 4;
+          sim_log_debug(177U, "AMQueue", "%s: underlying send failed.\n", __FUNCTION__);
+          /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] = 5;
           /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[sim_node()][clientId].msg = (void *)0;
         }
 
       return err;
     }
   else {
-      sim_log_debug(181U, "AMQueue", "AMQueue: request to send from %hhu (%p): queue not empty\n", clientId, msg);
+      sim_log_debug(178U, "AMQueue", "AMQueue: request to send from %hhu (%p): queue not empty\n", clientId, msg);
     }
   return SUCCESS;
 }
@@ -15784,14 +16515,14 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(am_id_t i
 
 
 
-  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] >= 4) {
+  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] >= 5) {
       return;
     }
   if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[sim_node()][/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()]].msg == msg) {
       /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__sendDone(/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()], msg, err);
     }
   else {
-      sim_log_debug(182U, "PointerBug", "%s received send done for %p, signaling for %p.\n", __FUNCTION__, msg, /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[sim_node()][/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()]].msg);
+      sim_log_debug(179U, "PointerBug", "%s received send done for %p, signaling for %p.\n", __FUNCTION__, msg, /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[sim_node()][/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()]].msg);
     }
 }
 
@@ -15800,7 +16531,7 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__tryToSend(void )
 #line 174
 {
   /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__nextPacket();
-  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] < 4) {
+  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()] < 5) {
       error_t nextErr;
       message_t *nextMsg = /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[sim_node()][/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[sim_node()]].msg;
       am_id_t nextId = /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMPacket__type(nextMsg);
@@ -15822,9 +16553,9 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(ui
 }
 
 # 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
-static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x7fe75ab29940, message_t * msg, error_t error){
+static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x7f2a6a6ca940, message_t * msg, error_t error){
 #line 100
-  switch (arg_0x7fe75ab29940) {
+  switch (arg_0x7f2a6a6ca940) {
 #line 100
     case 0U:
 #line 100
@@ -15850,9 +16581,15 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg
 #line 100
       break;
 #line 100
+    case 4U:
+#line 100
+      /*tcpC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__sendDone(msg, error);
+#line 100
+      break;
+#line 100
     default:
 #line 100
-      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x7fe75ab29940, msg, error);
+      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x7f2a6a6ca940, msg, error);
 #line 100
       break;
 #line 100
@@ -15861,6 +16598,18 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg
 }
 #line 100
 # 38 "lib/modules/SimpleSendP.nc"
+static void /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__postSendTask(void )
+#line 38
+{
+
+
+  if (/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__isRunning() == FALSE) {
+
+      /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__sendTimer__startOneShot(/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__Random__rand16() % 300);
+    }
+}
+
+#line 38
 static void /*TransportC.SimpleSendC.SimpleSendP*/SimpleSendP__3__postSendTask(void )
 #line 38
 {
@@ -16033,13 +16782,13 @@ static void NeighborDiscoveryP__NeighborDiscovery__printAllNeighbors(void )
   uint32_t *mapKeys = NeighborDiscoveryP__MapOfNeighbors__getKeys();
 
 
-  sim_log_debug(202U, NEIGHBOR_CHANNEL, "Printing all the neigbors...\n");
+  sim_log_debug(199U, NEIGHBOR_CHANNEL, "Printing all the neigbors...\n");
   for (; i < NeighborDiscoveryP__MapOfNeighbors__size(); i++) {
 
 
       if (mapKeys[i] != 0) {
 
-          sim_log_debug(203U, NEIGHBOR_CHANNEL, "    %d is a Neighbor\n ", mapKeys[i]);
+          sim_log_debug(200U, NEIGHBOR_CHANNEL, "    %d is a Neighbor\n ", mapKeys[i]);
         }
     }
 }
@@ -16100,13 +16849,13 @@ static void /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128Alar
       uint8_t tifr = (uint8_t )/*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__TimerCtrl__getInterruptFlag().flat;
 
 #line 101
-      sim_log_debug(151U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: TIFR is %hhx\n", tifr);
+      sim_log_debug(148U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: TIFR is %hhx\n", tifr);
       if ((interrupt_in != 0 && interrupt_in < /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__MINDT) || tifr & (1 << OCF0)) {
           if (interrupt_in < /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__MINDT) {
-              sim_log_debug(152U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: under min: %hhu.\n", interrupt_in);
+              sim_log_debug(149U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: under min: %hhu.\n", interrupt_in);
             }
           else {
-              sim_log_debug(153U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: OCF set.\n");
+              sim_log_debug(150U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: OCF set.\n");
             }
           {
 #line 109
@@ -16118,14 +16867,14 @@ static void /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128Alar
 
       if (!/*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__set[sim_node()]) {
           newOcr0 = /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__MAXT;
-          sim_log_debug(154U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: no alarm set, set at max.\n");
+          sim_log_debug(151U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: no alarm set, set at max.\n");
         }
       else 
         {
           uint32_t now = /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__Counter__get();
 
 #line 120
-          sim_log_debug(155U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: now-t0 = %llu, dt = %llu\n", now - /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__t0[sim_node()], /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__dt[sim_node()]);
+          sim_log_debug(152U, "Atm128AlarmAsyncP", "Atm128AlarmAsyncP: now-t0 = %llu, dt = %llu\n", now - /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__t0[sim_node()], /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__dt[sim_node()]);
 
           if ((uint32_t )(now - /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__t0[sim_node()]) >= /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128AlarmAsyncP__0__dt[sim_node()]) 
             {
@@ -16169,7 +16918,7 @@ static void /*AlarmCounterMilliP.Atm128AlarmAsyncC.Atm128AlarmAsyncP*/Atm128Alar
 static void HplAtm128Timer0AsyncP__Compare__set(uint8_t t)
 #line 463
 {
-  sim_log_debug(172U, "HplAtm128Timer0AsyncP", "HplAtm128Timer0AsyncP: Setting compare: %hhu\n", t);
+  sim_log_debug(169U, "HplAtm128Timer0AsyncP", "HplAtm128Timer0AsyncP: Setting compare: %hhu\n", t);
   /* atomic removed: atomic calls only */
 #line 465
   {
@@ -16250,7 +16999,7 @@ static void HplAtm128Timer0AsyncP__configure_overflow(sim_event_t *evt)
   overflowTime += sim_time();
   overflowTime -= (sim_time() - HplAtm128Timer0AsyncP__last_zero()) % (1 << HplAtm128Timer0AsyncP__shiftFromScale());
 
-  sim_log_debug(175U, "HplAtm128Timer0AsyncP", "Scheduling new overflow for %i at time %llu\n", sim_node(), overflowTime);
+  sim_log_debug(172U, "HplAtm128Timer0AsyncP", "Scheduling new overflow for %i at time %llu\n", sim_node(), overflowTime);
 
   evt->time = overflowTime;
 }
@@ -16297,7 +17046,7 @@ static void HplAtm128Timer0AsyncP__configure_compare(sim_event_t *evt)
   phaseOffset %= HplAtm128Timer0AsyncP__clock_to_sim(1 << HplAtm128Timer0AsyncP__shiftFromScale());
   compareTime -= phaseOffset;
 
-  sim_log_debug(164U, "HplAtm128Timer0AsyncP", "Configuring new compare of %i for %i at time %llu  (@ %llu)\n", (int )compareVal, sim_node(), compareTime, sim_time());
+  sim_log_debug(161U, "HplAtm128Timer0AsyncP", "Configuring new compare of %i for %i at time %llu  (@ %llu)\n", (int )compareVal, sim_node(), compareTime, sim_time());
 
   evt->time = compareTime;
 }
@@ -16318,7 +17067,7 @@ static error_t /*CommandHandlerC.PoolC.PoolP*/PoolP__0__Pool__put(/*CommandHandl
         }
       /*CommandHandlerC.PoolC.PoolP*/PoolP__0__queue[sim_node()][emptyIndex] = newVal;
       /*CommandHandlerC.PoolC.PoolP*/PoolP__0__free[sim_node()]++;
-      sim_log_debug(128U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*CommandHandlerC.PoolC.PoolP*/PoolP__0__free[sim_node()]);
+      sim_log_debug(125U, "PoolP", "%s size is %i\n", __FUNCTION__, (int )/*CommandHandlerC.PoolC.PoolP*/PoolP__0__free[sim_node()]);
       return SUCCESS;
     }
 }
@@ -17213,6 +17962,72 @@ static int __nesc_nido_resolve(int __nesc_mote,
 
   /* Module HashmapC__2 */
 
+  /* Module tcpP */
+
+  /* Module SimpleSendP__4 */
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy[__nesc_mote]);
+    return 0;
+  }
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt[__nesc_mote]);
+    return 0;
+  }
+
+  /* Module AMQueueEntryP__4 */
+
+  /* Module PoolP__5 */
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[__nesc_mote]);
+    return 0;
+  }
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__index"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__index[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__index[__nesc_mote]);
+    return 0;
+  }
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__queue"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__queue[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__queue[__nesc_mote]);
+    return 0;
+  }
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool[__nesc_mote]);
+    return 0;
+  }
+
+  /* Module QueueC__5 */
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.QueueC*/QueueC__5__queue"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.QueueC*/QueueC__5__queue[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.QueueC*/QueueC__5__queue[__nesc_mote]);
+    return 0;
+  }
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.QueueC*/QueueC__5__head"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.QueueC*/QueueC__5__head[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.QueueC*/QueueC__5__head[__nesc_mote]);
+    return 0;
+  }
+  if (!strcmp(varname, "/*tcpC.SimpleSendC.QueueC*/QueueC__5__size"))
+  {
+    *addr = (uintptr_t)&/*tcpC.SimpleSendC.QueueC*/QueueC__5__size[__nesc_mote];
+    *size = sizeof(/*tcpC.SimpleSendC.QueueC*/QueueC__5__size[__nesc_mote]);
+    return 0;
+  }
+
+  /* Module HashmapC__3 */
+
   return -1;
 }
 /* Invoke static initialisers for mote '__nesc_mote' */
@@ -17317,7 +18132,7 @@ static void __nesc_nido_initialise(int __nesc_mote)
   /* Module AMQueueEntryP__0 */
 
   /* Module AMQueueImplP__0 */
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[__nesc_mote] = 4;
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__current[__nesc_mote] = 5;
   memset((void *)&/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[__nesc_mote], 0, sizeof /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__queue[__nesc_mote]);
   memset((void *)&/*AMQueueP.AMQueueImplP*/AMQueueImplP__0__cancelMask[__nesc_mote], 0, sizeof /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__cancelMask[__nesc_mote]);
 
@@ -17406,5 +18221,26 @@ static void __nesc_nido_initialise(int __nesc_mote)
   /*TransportC.SimpleSendC.QueueC*/QueueC__4__size[__nesc_mote] = 0;
 
   /* Module HashmapC__2 */
+
+  /* Module tcpP */
+
+  /* Module SimpleSendP__4 */
+  /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__busy[__nesc_mote] = FALSE;
+  memset((void *)&/*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt[__nesc_mote], 0, sizeof /*tcpC.SimpleSendC.SimpleSendP*/SimpleSendP__4__pkt[__nesc_mote]);
+
+  /* Module AMQueueEntryP__4 */
+
+  /* Module PoolP__5 */
+  memset((void *)&/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[__nesc_mote], 0, sizeof /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__free[__nesc_mote]);
+  memset((void *)&/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__index[__nesc_mote], 0, sizeof /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__index[__nesc_mote]);
+  memset((void *)&/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__queue[__nesc_mote], 0, sizeof /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__queue[__nesc_mote]);
+  memset((void *)&/*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool[__nesc_mote], 0, sizeof /*tcpC.SimpleSendC.PoolC.PoolP*/PoolP__5__pool[__nesc_mote]);
+
+  /* Module QueueC__5 */
+  memset((void *)&/*tcpC.SimpleSendC.QueueC*/QueueC__5__queue[__nesc_mote], 0, sizeof /*tcpC.SimpleSendC.QueueC*/QueueC__5__queue[__nesc_mote]);
+  /*tcpC.SimpleSendC.QueueC*/QueueC__5__head[__nesc_mote] = 0;
+  /*tcpC.SimpleSendC.QueueC*/QueueC__5__size[__nesc_mote] = 0;
+
+  /* Module HashmapC__3 */
 
 }
