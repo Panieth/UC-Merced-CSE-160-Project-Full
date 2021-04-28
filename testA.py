@@ -28,14 +28,20 @@ def main():
     otherGoodPort = 99;
 
     s.runTime(300);
+    
+    
+
+    s.clientClose(4, 15, goodMote, goodPort);
+
+    #s.testClient(4, 15, goodMote, goodPort, 150);
+    s.runTime(1);
+    s.runTime(300);
+
     s.testServer(otherGoodMote, otherGoodPort);
+
     s.runTime(60);
 
-    s.testClient(4, 15, goodMote, goodPort, 150);
-    s.runTime(1);
-    s.runTime(100);
 
-    s.clientClose(4, 15, goodMote, goodPort)
 
 
 
