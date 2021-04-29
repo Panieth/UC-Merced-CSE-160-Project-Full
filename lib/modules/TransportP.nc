@@ -2,6 +2,7 @@
 #include "../../includes/channels.h"
 #include "../../includes/protocol.h"
 #include "../../includes/packet.h"
+#include "../../includes/socket.h"
 #include <Timer.h>
 
 //this section declares any global constants 
@@ -271,6 +272,93 @@ implementation{
     *    packet or FAIL if there are errors.
     */
     command error_t Transport.receive(pack* package){
+
+        uint8_t fd;
+
+        //turn the ip packet we are receiving into a tcp packet
+        tcpPacket* tPack = (tcpPacket*) &package->payload;
+
+
+
+        //handle each case depending on the content of the flag 
+        switch(tPack->tcpFlag){
+
+            case DATA:
+
+                //find the socket fd that we need to grab associated content
+                fd = call SocketMapping.get(tPack->destPort);
+
+                //now we have to go over the possible states 
+                
+
+                if(connections[fd - 1].state == SYN_RCVD){
+
+                    //we can print that we have established the connection
+                    dbg(TRANSPORT_CHANNEL, "Connection succesfully established...\n");
+
+                    //update the state accordingly 
+                    connections[fd - 1].state = ESTABLISHED;
+
+                    //return success
+                    return SUCCESS;
+                }
+
+                if(connections[fd - 1].state == ESTABLISHED){
+
+                    //we have succeeded
+                    return SUCCESS;
+
+                }
+
+                break;
+
+            case ACK:
+                
+                //find the socket fd that we need to grab associated content
+                fd = call SocketMapping.get(tPack->destPort);
+
+                break;
+
+            case SYN:
+
+                //find the socket fd that we need to grab associated content
+                fd = call SocketMapping.get(tPack->destPort);
+
+                break;
+
+            case SYNACK:
+
+                //find the socket fd that we need to grab associated content
+                fd = call SocketMapping.get(tPack->destPort);
+
+                break;
+
+            case FIN:
+
+                //find the socket fd that we need to grab associated content
+                fd = call SocketMapping.get(tPack->destPort);
+
+                break;
+
+            case FINACK:
+
+                //find the socket fd that we need to grab associated content
+                fd = call SocketMapping.get(tPack->destPort);
+
+                break;
+
+            default:
+
+                dbg(TRANSPORT_CHANNEL, "Incorrect TCP flag, not supported, ending....\n");
+                //at this point we can deem faulure, flag matched no cases  
+                return FAIL;
+                break;
+
+
+        }
+
+
+        
 
 
     }
