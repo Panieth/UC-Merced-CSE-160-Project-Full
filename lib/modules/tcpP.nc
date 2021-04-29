@@ -26,6 +26,8 @@ module tcpP{
 implementation{
 
     uint8_t accepted[10];
+    uint8_1 serveraddress[2];
+    uint16_t amountData;
 
     //what to do when the timer is fired for server
     event void Timer.fired(){
@@ -48,6 +50,7 @@ implementation{
     //what to do when the timer is fired for client
     event void Timer2.fired(){
         /*
+            if()
         */
     }
 
@@ -74,7 +77,7 @@ implementation{
         //    call Transport.bind(fd, socketAddress);
 
         //    //start the timer 
-        //    call TransportTimer.startOneShot(40000);
+        //    call Timer.startOneShot(40000);
 
         // }
 
@@ -100,7 +103,16 @@ implementation{
         //    //bind the socket to the address
         //    call Transport.bind(fd, socketAddress);
 
-        //    socket_addr_t serverAddress = 
+        //    serveraddress[1] = destination;
+        //    serveraddress[2] = destPort;
+
+        //    insert 3-way handshake here?
+
+        //    if (connections[fd - 1].state = ESTABLISHED){
+        //          call Timer2.startOneShot(40000);
+        //            
+
+        //}
 
         // }
 
