@@ -69,7 +69,10 @@ implementation{
     //a function to print the users connected to a server
     command void ChatApp.printUsers(uint8_t dest){
 
+        //in order to grab the users we will take the keys from the user map
+        uint32_t* users = call userMap.getKeys(); 
 
+        
 
     }
 

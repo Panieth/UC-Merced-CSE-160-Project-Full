@@ -56,6 +56,14 @@ implementation{
 
         }
 
+        //initialize port array to 0
+        for(i = 0; i < MAX_NUM_OF_PORTS; i++){
+
+            //set current port to 0
+            ports[i] = 0;
+
+        }
+
     }
 
     //what to do when the timer is fired
