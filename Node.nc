@@ -164,20 +164,25 @@ implementation{
 
    event void CommandHandler.chatServerConnect(uint8_t *payload){
 
+      call ChatApp.serverConnect(payload);
+
    }
 
    event void CommandHandler.chatBroadcast(uint8_t *payload){
 
+      call ChatApp.broadcast(payload);
 
    }
 
    event void CommandHandler.chatUnicast(uint8_t *payload){
 
+      call ChatApp.unicast(payload);
 
    }
 
    event void CommandHandler.chatPrintUsers(uint8_t *payload){
 
+      call ChatApp.printUsers(payload);
 
    }
 
