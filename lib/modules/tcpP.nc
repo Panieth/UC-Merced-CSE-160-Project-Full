@@ -26,6 +26,10 @@ module tcpP{
 implementation{
 
     uint8_t accepted[10];
+    uint8_t serveraddress[2];
+    uint16_t amountData;
+    uint8_t sequenceNum;
+    uint8_t ackno;
 
     //what to do when the timer is fired for server
     event void Timer.fired(){
@@ -48,6 +52,15 @@ implementation{
     //what to do when the timer is fired for client
     event void Timer2.fired(){
         /*
+            if(SOCKET_BUFFER_SIZE == 0){
+                uint8_t temp[amountData];
+                rcvdBuff = temp;
+                for (i = 0; i < transfer; i++){
+                    rcvdBuff[i] = i;
+                }
+                amountData = amountData - transfer;
+
+            }
         */
     }
 
@@ -59,50 +72,73 @@ implementation{
         //print about the listening
         dbg(TRANSPORT_CHANNEL, "   Node %u is now listening on port %u\n", TOS_NODE_ID, port);
 
+        /*
         //grab a socket if there is one available 
-        // fd = call Transport.socket();
+        fd = call Transport.socket();
 
-        // //if there was a socket available, create the connection
-        // if(*fd != NULL){
+        //if there was a socket available, create the connection
+        if(*fd != NULL){
 
-        //    //create the address for the socket and set it equal to current node
-        //    socket_addr_t socketAddress;
-        //    socketAddress.addr = (nx_uint8_t) TOS_NODE_ID; 
-        //    socketAddress.port = port;
+           //create the address for the socket and set it equal to current node
+           socket_addr_t socketAddress;
+           socketAddress.addr = (nx_uint8_t) TOS_NODE_ID; 
+           socketAddress.port = port;
 
-        //    //bind the socket to that address 
-        //    call Transport.bind(fd, socketAddress);
+           //bind the socket to that address 
+           call Transport.bind(fd, socketAddress);
 
-        //    //start the timer 
-        //    call TransportTimer.startOneShot(40000);
+           listen for ping with sequenceNum = 1
+           send ping to client with sequenceNum = sequenceNum + 1, ackno = 8, flag = SYN_SENT
+           listen for ping with ackno = 9;
+           set flag = ESTABLISHED;
 
-        // }
+
+
+           //start the timer 
+           call Timer.startOneShot(40000);
+
+        }
+        */
 
 
     }
 
     //a function to perform a client connection test
     command void tcp.testClient(uint8_t srcPort, uint8_t destination, uint8_t destPort, uint16_t num_bytes_to_transfer){
-
+        
         //print about potential connection being created
         dbg(TRANSPORT_CHANNEL, "   Node %u is creating a connection on port %u to port %u on node %u, and will transfer %u bytes\n",TOS_NODE_ID, srcPort, destPort, destination, num_bytes_to_transfer);
+        /*
+        grab a socket if there is one available
+        fd = call Transport.socket();
 
-        //grab a socket if there is one available
-        // fd = call Transport.socket();
+        //if there was a socket available then proceed
+        
+        if(fd != NULL){
 
-        // //if there was a socket available then proceed
-        // if(fd != NULL){
+           //grab the socket adddress to be the current node ID
+           socket_addr_t socketAddress;
+           socketAddress->port = (nx_uint8_t) TOS_NODE_ID; 
 
-        //    //grab the socket adddress to be the current node ID
-        //    socket_addr_t socketAddress;
-        //    socketAddress->port = (nx_uint8_t) TOS_NODE_ID; 
+           //bind the socket to the address
+           call Transport.bind(fd, socketAddress);
 
-        //    //bind the socket to the address
-        //    call Transport.bind(fd, socketAddress);
+           serveraddress[1] = destination;
+           serveraddress[2] = destPort;
 
-        //    socket_addr_t serverAddress = 
+           //insert 3-way handshake here
+           ping server with packet sequenceNum = 1 , flag = SYN_SENT
+           listen for packet with ackno = 2, sequenceNum = 8, flag = SYN_RCVD
+           ping server with ackno = 9, flag = SYN_RCVD
+        
+           if (connections[fd - 1].state = ESTABLISHED){
+                 call Timer2.startOneShot(40000);
+                   
 
-        // }
+        }
+
+        }
+        */
 
     }
 
@@ -112,6 +148,8 @@ implementation{
         //print about the impending connection close
         dbg(TRANSPORT_CHANNEL, "  Node %u is closing the connection on port %u to port %u at node %u\n", TOS_NODE_ID, srcPort, destPort, destination);
 
+        //call the release function in transport
+        call Transport.release((socket_t)srcPort);
 
     }
 

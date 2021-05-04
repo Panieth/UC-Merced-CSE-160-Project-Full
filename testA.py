@@ -31,11 +31,11 @@ def main():
     
     
 
-    s.clientClose(4, 15, goodMote, goodPort);
+    
 
-    #s.testClient(4, 15, goodMote, goodPort, 150);
+    s.testClient(4, 15, goodMote, goodPort, 150);
     s.runTime(1);
-    s.runTime(300);
+    s.runTime(150);
 
     s.testServer(otherGoodMote, otherGoodPort);
 

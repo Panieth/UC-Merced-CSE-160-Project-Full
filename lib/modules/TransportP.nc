@@ -258,6 +258,28 @@ implementation{
     */
     command uint16_t Transport.write(socket_t fd, uint8_t *buff, uint16_t bufflen){
 
+        //a variable to keep track of the total number of bytes we have written so far
+        uint16_t totalBytesWritten = 0; 
+
+        //once again we will ensure that the socket is valid
+        if(fd > MAX_NUM_OF_SOCKETS || fd == 0){
+
+            //if the socket is invalid then we cannot write
+            return 0;
+
+        }
+
+        //iterate over the potential bytes written 
+        while(totalBytesWritten < SOCKET_BUFFER_SIZE){
+
+
+            //increment the bytes written
+            totalBytesWritten++;
+
+        }
+
+
+        return totalBytesWritten;
 
     }
 
@@ -382,6 +404,37 @@ implementation{
     */
     command uint16_t Transport.read(socket_t fd, uint8_t *buff, uint16_t bufflen){
 
+        uint16_t bytesRead;
+
+        //once again we will ensure that the socket is valid
+        if(fd > MAX_NUM_OF_SOCKETS || fd == 0){
+
+            //if fd is greater than the maximum possible sockets or it is
+            //equal to zero then the socket number is not valid
+            return 0;
+
+        }
+
+        //iterate over buffer length
+        while(bytesRead < bufflen){
+
+            //update the last read we did 
+            //ensure it is within the range 
+            if(connections[fd - 1].lastRead >= SOCKET_BUFFER_SIZE){
+
+                //if it is out of range set last read to 0
+                connections[fd - 1].lastRead = 0;
+
+            }
+
+            //if still valid 
+            connections[fd - 1].lastRead++;
+
+
+        }
+
+        //return the bytes we read
+        return bytesRead;
 
     }
 
@@ -401,6 +454,24 @@ implementation{
     */
     command error_t Transport.connect(socket_t fd, socket_addr_t * addr){
 
+               //once again we will ensure that the socket is valid
+        if(fd > MAX_NUM_OF_SOCKETS || fd == 0){
+
+            //if fd is greater than the maximum possible sockets or it is
+            //equal to zero then the socket number is not valid
+            return FAIL;
+
+        }
+
+        //add the destination address to the socket info
+        connections[fd - 1].dest.addr = addr->addr;
+        connections[fd - 1].dest.port = addr->port;
+
+        //add socket to the socket map
+        call SocketMapping.insert(addr->addr, fd);
+
+        //at this point we have succeeded
+        return SUCCESS;
 
     }
 
@@ -417,6 +488,9 @@ implementation{
     */
     command error_t Transport.close(socket_t fd){
 
+        call Transport.release(fd);
+
+        return SUCCESS;
 
     }
 
