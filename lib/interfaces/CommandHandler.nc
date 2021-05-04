@@ -12,8 +12,8 @@ interface CommandHandler{
    event void setAppClient();
    event void printMessage(uint8_t *payload);
    //funtions for client application
-   event void chatServerConnect(uint8_t *payload);
-   event void chatBroadcast(uint8_t *payload);
-   event void chatUnicast(uint8_t *payload);
-   event void chatPrintUsers(uint8_t *payload);
+   event void chatServerConnect(uint8_t dest);
+   event void chatBroadcast(uint8_t dest, uint8_t *message);
+   event void chatUnicast(uint8_t dest, uint8_t *message);
+   event void chatPrintUsers(uint8_t dest);
 }

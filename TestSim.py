@@ -18,6 +18,12 @@ class TestSim:
     CMD_TEST_SERVER = 5
     CMD_KILL = 6
 
+    #commands for chat application
+    CMD_CHAT_CONNECT = 10
+	CMD_CHAT_BROADCAST = 11
+	CMD_CHAT_UNICAST = 12
+	CMD_CHAT_USERS = 13
+
     # CHANNELS - see includes/channels.h
     COMMAND_CHANNEL="command";
     GENERAL_CHANNEL="general";
@@ -145,6 +151,19 @@ class TestSim:
 
     def clientClose(self, client_addr, srcPort, destination, destPort):
         self.sendCMD(self.CMD_KILL, client_addr, "{0}{1}{2}".format(chr(srcPort), chr(destination), chr(destPort)));
+
+    #commands for chat application
+    def chatServerConnect(self, destination):
+        self.sendCMD(self.CMD_CHAT_CONNECT, destination);
+
+    def chatBroadcast(self, destination, message):
+        self.sendCMD(self.CMD_CHAT_BROADCAST, destination, message);
+    
+    def chatUnicast(self, destination):
+        self.sendCMD(self.CMD_CHAT_UNICAST, destination, message);
+
+    def chatPrintUsers(self, destination):
+        self.sendCMD(self.CMD_CHAT_USERS, destination);
         
 
 def main():

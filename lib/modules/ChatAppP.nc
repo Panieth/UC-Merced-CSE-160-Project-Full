@@ -46,28 +46,28 @@ implementation{
     //main functions provided as an interface to other files
 
     //a function to connect to the server
-    command void ChatApp.serverConnect(uint8_t* message){
+    command void ChatApp.serverConnect(uint8_t dest){
 
 
 
     }
 
     //a function to broadcast a message
-    command void ChatApp.broadcast(uint8_t* message){
+    command void ChatApp.broadcast(uint8_t dest, uint8_t *message){
 
 
 
     }
 
     //a function to unicast a message
-    command void ChatApp.unicast(uint8_t* message){
+    command void ChatApp.unicast(uint8_t dest, uint8_t *message){
 
 
 
     }
 
     //a function to print the users connected to a server
-    command void ChatApp.printUsers(uint8_t* message){
+    command void ChatApp.printUsers(uint8_t dest){
 
 
 

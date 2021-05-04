@@ -162,27 +162,31 @@ implementation{
 
    event void CommandHandler.setAppClient(){}
 
-   event void CommandHandler.chatServerConnect(uint8_t *payload){
+   event void CommandHandler.chatServerConnect(uint8_t dest){
 
-      call ChatApp.serverConnect(payload);
-
-   }
-
-   event void CommandHandler.chatBroadcast(uint8_t *payload){
-
-      call ChatApp.broadcast(payload);
+      //call relevant chat application function
+      call ChatApp.serverConnect(dest);
 
    }
 
-   event void CommandHandler.chatUnicast(uint8_t *payload){
+   event void CommandHandler.chatBroadcast(uint8_t dest, uint8_t *message){
 
-      call ChatApp.unicast(payload);
+      //call relevant chat application function
+      call ChatApp.broadcast(dest, message);
 
    }
 
-   event void CommandHandler.chatPrintUsers(uint8_t *payload){
+   event void CommandHandler.chatUnicast(uint8_t dest, uint8_t *message){
 
-      call ChatApp.printUsers(payload);
+      //call relevant chat application function
+      call ChatApp.unicast(dest, message);
+
+   }
+
+   event void CommandHandler.chatPrintUsers(uint8_t dest){
+
+      //call relevant chat application function
+      call ChatApp.printUsers(dest);
 
    }
 

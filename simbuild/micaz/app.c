@@ -797,7 +797,7 @@ extern void *malloc(size_t __size) __attribute((__leaf__)) __attribute((__nothro
 #line 483
 extern void free(void *__ptr) __attribute((__leaf__)) __attribute((__nothrow__)) ;
 #line 742
-typedef int (*__compar_fn_t)(const void *arg_0x7fa218f99020, const void *arg_0x7fa218f99320);
+typedef int (*__compar_fn_t)(const void *arg_0x7f4cb93b6020, const void *arg_0x7f4cb93b6320);
 #line 780
 __extension__ 
 #line 797
@@ -818,7 +818,7 @@ extern double fabs(double __x) __attribute((__leaf__)) __attribute((__nothrow__)
 
 extern double floor(double __x) __attribute((__leaf__)) __attribute((__nothrow__)) __attribute((const)) ;
 #line 250
-extern double erfc(double arg_0x7fa218f115e0) __attribute((__leaf__)) __attribute((__nothrow__)) ;
+extern double erfc(double arg_0x7f4cb932e5e0) __attribute((__leaf__)) __attribute((__nothrow__)) ;
 #line 326
 __extension__ 
 
@@ -1221,8 +1221,8 @@ typedef struct hashtable hashtable_t;
 #line 78
 struct hashtable *
 create_hashtable(unsigned int minsize, 
-unsigned int (*hashfunction)(void *arg_0x7fa218cb43a0), 
-int (*key_eq_fn)(void *arg_0x7fa218cb4b70, void *arg_0x7fa218cb4e30));
+unsigned int (*hashfunction)(void *arg_0x7f4cb90d13a0), 
+int (*key_eq_fn)(void *arg_0x7f4cb90d1b70, void *arg_0x7f4cb90d1e30));
 #line 103
 #line 102
 int 
@@ -1838,7 +1838,7 @@ struct tm;
 
 struct tm;
 # 46 "/opt/tinyos-main/tos/lib/tossim/randomlib.h"
-static inline void RandomInitialise(int arg_0x7fa218aa1c00, int arg_0x7fa218aa1e80);
+static inline void RandomInitialise(int arg_0x7f4cb8ebec00, int arg_0x7f4cb8ebee80);
 static double RandomUniform(void );
 # 51 "/opt/tinyos-main/tos/lib/tossim/sim_noise.c"
 int numCase1 = 0;
@@ -4365,11 +4365,11 @@ static error_t PlatformC__Init__init(void );
 # 67 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static error_t SimSchedulerBasicP__TaskBasic__postTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7fa218975020);
+uint8_t arg_0x7f4cb8d92020);
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SimSchedulerBasicP__TaskBasic__default__runTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7fa218975020);
+uint8_t arg_0x7f4cb8d92020);
 # 57 "/opt/tinyos-main/tos/interfaces/Scheduler.nc"
 static void SimSchedulerBasicP__Scheduler__init(void );
 
@@ -4412,7 +4412,7 @@ static long long int SimMoteP__SimMote__getStartTime(void );
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t TossimActiveMessageC__AMSend__send(
 # 47 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fa2187a7c70, 
+am_id_t arg_0x7f4cb8bc4c70, 
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -4435,7 +4435,7 @@ message_t *
 
 TossimActiveMessageC__Snoop__default__receive(
 # 49 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fa21878da50, 
+am_id_t arg_0x7f4cb8baaa50, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4482,7 +4482,7 @@ message_t *
 
 TossimActiveMessageC__Receive__default__receive(
 # 48 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fa21878ee30, 
+am_id_t arg_0x7f4cb8babe30, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -4615,7 +4615,7 @@ static void Node__CommandHandler__printLinkState(void );
 
 
 
-static void Node__CommandHandler__chatServerConnect(uint8_t *payload);
+static void Node__CommandHandler__chatServerConnect(uint8_t dest);
 #line 4
 static void Node__CommandHandler__printNeighbors(void );
 
@@ -4634,7 +4634,7 @@ static void Node__CommandHandler__clientClose(uint8_t srcPort, uint8_t destinati
 
 
 
-static void Node__CommandHandler__chatBroadcast(uint8_t *payload);
+static void Node__CommandHandler__chatBroadcast(uint8_t dest, uint8_t *message);
 #line 8
 static void Node__CommandHandler__setTestServer(uint8_t port);
 #line 5
@@ -4642,8 +4642,8 @@ static void Node__CommandHandler__printRouteTable(void );
 #line 3
 static void Node__CommandHandler__ping(uint16_t destination, uint8_t *payload);
 #line 17
-static void Node__CommandHandler__chatUnicast(uint8_t *payload);
-static void Node__CommandHandler__chatPrintUsers(uint8_t *payload);
+static void Node__CommandHandler__chatUnicast(uint8_t dest, uint8_t *message);
+static void Node__CommandHandler__chatPrintUsers(uint8_t dest);
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void CommandHandlerP__processCommand__runTask(void );
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
@@ -4781,19 +4781,19 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__f
 #line 83
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fa2180df950);
+uint8_t arg_0x7f4cb84fc950);
 # 98 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isOneShot(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fa2180df950);
+uint8_t arg_0x7f4cb84fc950);
 # 92 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isRunning(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fa2180df950);
+uint8_t arg_0x7f4cb84fc950);
 # 64 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startPeriodic(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fa2180df950, 
+uint8_t arg_0x7f4cb84fc950, 
 # 64 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 
@@ -4806,7 +4806,7 @@ uint32_t dt);
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fa2180df950, 
+uint8_t arg_0x7f4cb84fc950, 
 # 73 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 uint32_t dt);
 # 82 "/opt/tinyos-main/tos/lib/timer/Counter.nc"
@@ -4841,7 +4841,7 @@ error_t error);
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(
 # 48 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x7fa21802cb60, 
+am_id_t arg_0x7f4cb8448b60, 
 # 103 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -4854,7 +4854,7 @@ error_t error);
 # 75 "/opt/tinyos-main/tos/interfaces/Send.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__send(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7fa21802d940, 
+uint8_t arg_0x7f4cb8449940, 
 # 67 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -4868,7 +4868,7 @@ uint8_t len);
 #line 100
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7fa21802d940, 
+uint8_t arg_0x7f4cb8449940, 
 # 96 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -5242,15 +5242,15 @@ static
 #line 50
 static bool /*tcpC.SimpleSendC.QueueC*/QueueC__5__Queue__empty(void );
 # 17 "lib/interfaces/ChatApp.nc"
-static void ChatAppP__ChatApp__unicast(uint8_t *message);
+static void ChatAppP__ChatApp__unicast(uint8_t dest, uint8_t *message);
 
 
-static void ChatAppP__ChatApp__printUsers(uint8_t *message);
+static void ChatAppP__ChatApp__printUsers(uint8_t dest);
 #line 11
-static void ChatAppP__ChatApp__serverConnect(uint8_t *message);
+static void ChatAppP__ChatApp__serverConnect(uint8_t dest);
 
 
-static void ChatAppP__ChatApp__broadcast(uint8_t *message);
+static void ChatAppP__ChatApp__broadcast(uint8_t dest, uint8_t *message);
 # 83 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
 static void ChatAppP__Timer__fired(void );
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
@@ -5338,7 +5338,7 @@ int sim_main_start_mote(void )   ;
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
 static void SimSchedulerBasicP__TaskBasic__runTask(
 # 49 "/opt/tinyos-main/tos/lib/tossim/SimSchedulerBasicP.nc"
-uint8_t arg_0x7fa218975020);
+uint8_t arg_0x7f4cb8d92020);
 
 
 
@@ -5526,7 +5526,7 @@ static am_addr_t TossimActiveMessageC__amAddress(void );
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static void TossimActiveMessageC__AMSend__sendDone(
 # 47 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fa2187a7c70, 
+am_id_t arg_0x7f4cb8bc4c70, 
 # 103 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -5545,7 +5545,7 @@ message_t *
 
 TossimActiveMessageC__Snoop__receive(
 # 49 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fa21878da50, 
+am_id_t arg_0x7f4cb8baaa50, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5564,7 +5564,7 @@ message_t *
 
 TossimActiveMessageC__Receive__receive(
 # 48 "/opt/tinyos-main/tos/lib/tossim/TossimActiveMessageC.nc"
-am_id_t arg_0x7fa21878ee30, 
+am_id_t arg_0x7f4cb8babe30, 
 # 71 "/opt/tinyos-main/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5945,15 +5945,15 @@ static inline am_addr_t ActiveMessageAddressC__amAddress(void );
 # 104 "/opt/tinyos-main/tos/interfaces/SplitControl.nc"
 static error_t Node__AMControl__start(void );
 # 17 "lib/interfaces/ChatApp.nc"
-static void Node__ChatApp__unicast(uint8_t *message);
+static void Node__ChatApp__unicast(uint8_t dest, uint8_t *message);
 
 
-static void Node__ChatApp__printUsers(uint8_t *message);
+static void Node__ChatApp__printUsers(uint8_t dest);
 #line 11
-static void Node__ChatApp__serverConnect(uint8_t *message);
+static void Node__ChatApp__serverConnect(uint8_t dest);
 
 
-static void Node__ChatApp__broadcast(uint8_t *message);
+static void Node__ChatApp__broadcast(uint8_t dest, uint8_t *message);
 # 9 "lib/interfaces/DistanceVectorRouting.nc"
 static error_t Node__DistanceVectorRouting__begin(void );
 static void Node__DistanceVectorRouting__sendPing(uint16_t destinationNode, uint8_t *payload);
@@ -6049,25 +6049,25 @@ static inline void Node__CommandHandler__clientClose(uint8_t srcPort, uint8_t de
 
 
 
-static inline void Node__CommandHandler__chatServerConnect(uint8_t *payload);
+static inline void Node__CommandHandler__chatServerConnect(uint8_t dest);
 
 
 
 
 
-static inline void Node__CommandHandler__chatBroadcast(uint8_t *payload);
+static inline void Node__CommandHandler__chatBroadcast(uint8_t dest, uint8_t *message);
 
 
 
 
 
-static inline void Node__CommandHandler__chatUnicast(uint8_t *payload);
+static inline void Node__CommandHandler__chatUnicast(uint8_t dest, uint8_t *message);
 
 
 
 
 
-static inline void Node__CommandHandler__chatPrintUsers(uint8_t *payload);
+static inline void Node__CommandHandler__chatPrintUsers(uint8_t dest);
 # 97 "/opt/tinyos-main/tos/interfaces/Pool.nc"
 static 
 #line 94
@@ -6119,7 +6119,7 @@ static void CommandHandlerP__CommandHandler__printLinkState(void );
 
 
 
-static void CommandHandlerP__CommandHandler__chatServerConnect(uint8_t *payload);
+static void CommandHandlerP__CommandHandler__chatServerConnect(uint8_t dest);
 #line 4
 static void CommandHandlerP__CommandHandler__printNeighbors(void );
 
@@ -6138,7 +6138,7 @@ static void CommandHandlerP__CommandHandler__clientClose(uint8_t srcPort, uint8_
 
 
 
-static void CommandHandlerP__CommandHandler__chatBroadcast(uint8_t *payload);
+static void CommandHandlerP__CommandHandler__chatBroadcast(uint8_t dest, uint8_t *message);
 #line 8
 static void CommandHandlerP__CommandHandler__setTestServer(uint8_t port);
 #line 5
@@ -6146,8 +6146,8 @@ static void CommandHandlerP__CommandHandler__printRouteTable(void );
 #line 3
 static void CommandHandlerP__CommandHandler__ping(uint16_t destination, uint8_t *payload);
 #line 17
-static void CommandHandlerP__CommandHandler__chatUnicast(uint8_t *payload);
-static void CommandHandlerP__CommandHandler__chatPrintUsers(uint8_t *payload);
+static void CommandHandlerP__CommandHandler__chatUnicast(uint8_t dest, uint8_t *message);
+static void CommandHandlerP__CommandHandler__chatPrintUsers(uint8_t dest);
 # 22 "lib/modules/CommandHandlerP.nc"
 enum CommandHandlerP____nesc_unnamed4345 {
 #line 22
@@ -6616,7 +6616,7 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__s
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/opt/tinyos-main/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x7fa2180df950);
+uint8_t arg_0x7f4cb84fc950);
 #line 71
 enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4349 {
 #line 71
@@ -6762,7 +6762,7 @@ static inline void /*FloodingC.SimpleSendC.AMSenderC.SenderC.AMQueueEntryP*/AMQu
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(
 # 48 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x7fa21802cb60, 
+am_id_t arg_0x7f4cb8448b60, 
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -6779,7 +6779,7 @@ uint8_t len);
 # 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(
 # 46 "/opt/tinyos-main/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x7fa21802d940, 
+uint8_t arg_0x7f4cb8449940, 
 # 96 "/opt/tinyos-main/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -7910,28 +7910,28 @@ static inline void ChatAppP__Timer__fired(void );
 
 
 
-static inline void ChatAppP__ChatApp__serverConnect(uint8_t *message);
+static inline void ChatAppP__ChatApp__serverConnect(uint8_t dest);
 
 
 
 
 
 
-static inline void ChatAppP__ChatApp__broadcast(uint8_t *message);
+static inline void ChatAppP__ChatApp__broadcast(uint8_t dest, uint8_t *message);
 
 
 
 
 
 
-static inline void ChatAppP__ChatApp__unicast(uint8_t *message);
+static inline void ChatAppP__ChatApp__unicast(uint8_t dest, uint8_t *message);
 
 
 
 
 
 
-static inline void ChatAppP__ChatApp__printUsers(uint8_t *message);
+static inline void ChatAppP__ChatApp__printUsers(uint8_t dest);
 # 89 "/opt/tinyos-main/tos/interfaces/Pool.nc"
 static error_t /*ChatAppC.SimpleSendC.SimpleSendP*/SimpleSendP__5__Pool__put(
 #line 85
@@ -8948,13 +8948,13 @@ static inline message_t *TossimActiveMessageC__Receive__default__receive(am_id_t
 }
 
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7fa21878ee30, message_t * msg, void * payload, uint8_t len){
+inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7f4cb8babe30, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x7fa21878ee30) {
+  switch (arg_0x7f4cb8babe30) {
 #line 78
     case 6:
 #line 78
@@ -8970,7 +8970,7 @@ inline static message_t * TossimActiveMessageC__Receive__receive(am_id_t arg_0x7
 #line 78
     default:
 #line 78
-      __nesc_result = TossimActiveMessageC__Receive__default__receive(arg_0x7fa21878ee30, msg, payload, len);
+      __nesc_result = TossimActiveMessageC__Receive__default__receive(arg_0x7f4cb8babe30, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -9577,13 +9577,13 @@ static inline message_t *TossimActiveMessageC__Snoop__default__receive(am_id_t i
 }
 
 # 78 "/opt/tinyos-main/tos/interfaces/Receive.nc"
-inline static message_t * TossimActiveMessageC__Snoop__receive(am_id_t arg_0x7fa21878da50, message_t * msg, void * payload, uint8_t len){
+inline static message_t * TossimActiveMessageC__Snoop__receive(am_id_t arg_0x7f4cb8baaa50, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = TossimActiveMessageC__Snoop__default__receive(arg_0x7fa21878da50, msg, payload, len);
+    __nesc_result = TossimActiveMessageC__Snoop__default__receive(arg_0x7f4cb8baaa50, msg, payload, len);
 #line 78
 
 #line 78
@@ -9775,9 +9775,9 @@ static __inline  int8_t __nesc_hton_int8(void * target, int8_t value)
 }
 
 # 110 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
-inline static void TossimActiveMessageC__AMSend__sendDone(am_id_t arg_0x7fa2187a7c70, message_t * msg, error_t error){
+inline static void TossimActiveMessageC__AMSend__sendDone(am_id_t arg_0x7f4cb8bc4c70, message_t * msg, error_t error){
 #line 110
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x7fa2187a7c70, msg, error);
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x7f4cb8bc4c70, msg, error);
 #line 110
 }
 #line 110
@@ -9881,114 +9881,114 @@ inline static error_t CommandHandlerP__Pool__put(CommandHandlerP__Pool__t * newV
 }
 #line 89
 # 70 "lib/modules/ChatAppP.nc"
-static inline void ChatAppP__ChatApp__printUsers(uint8_t *message)
+static inline void ChatAppP__ChatApp__printUsers(uint8_t dest)
 #line 70
 {
 }
 
 # 20 "lib/interfaces/ChatApp.nc"
-inline static void Node__ChatApp__printUsers(uint8_t *message){
+inline static void Node__ChatApp__printUsers(uint8_t dest){
 #line 20
-  ChatAppP__ChatApp__printUsers(message);
+  ChatAppP__ChatApp__printUsers(dest);
 #line 20
 }
 #line 20
 # 183 "Node.nc"
-static inline void Node__CommandHandler__chatPrintUsers(uint8_t *payload)
+static inline void Node__CommandHandler__chatPrintUsers(uint8_t dest)
 #line 183
 {
 
-  Node__ChatApp__printUsers(payload);
+  Node__ChatApp__printUsers(dest);
 }
 
 # 18 "lib/interfaces/CommandHandler.nc"
-inline static void CommandHandlerP__CommandHandler__chatPrintUsers(uint8_t *payload){
+inline static void CommandHandlerP__CommandHandler__chatPrintUsers(uint8_t dest){
 #line 18
-  Node__CommandHandler__chatPrintUsers(payload);
+  Node__CommandHandler__chatPrintUsers(dest);
 #line 18
 }
 #line 18
 # 63 "lib/modules/ChatAppP.nc"
-static inline void ChatAppP__ChatApp__unicast(uint8_t *message)
+static inline void ChatAppP__ChatApp__unicast(uint8_t dest, uint8_t *message)
 #line 63
 {
 }
 
 # 17 "lib/interfaces/ChatApp.nc"
-inline static void Node__ChatApp__unicast(uint8_t *message){
+inline static void Node__ChatApp__unicast(uint8_t dest, uint8_t *message){
 #line 17
-  ChatAppP__ChatApp__unicast(message);
+  ChatAppP__ChatApp__unicast(dest, message);
 #line 17
 }
 #line 17
 # 177 "Node.nc"
-static inline void Node__CommandHandler__chatUnicast(uint8_t *payload)
+static inline void Node__CommandHandler__chatUnicast(uint8_t dest, uint8_t *message)
 #line 177
 {
 
-  Node__ChatApp__unicast(payload);
+  Node__ChatApp__unicast(dest, message);
 }
 
 # 17 "lib/interfaces/CommandHandler.nc"
-inline static void CommandHandlerP__CommandHandler__chatUnicast(uint8_t *payload){
+inline static void CommandHandlerP__CommandHandler__chatUnicast(uint8_t dest, uint8_t *message){
 #line 17
-  Node__CommandHandler__chatUnicast(payload);
+  Node__CommandHandler__chatUnicast(dest, message);
 #line 17
 }
 #line 17
 # 56 "lib/modules/ChatAppP.nc"
-static inline void ChatAppP__ChatApp__broadcast(uint8_t *message)
+static inline void ChatAppP__ChatApp__broadcast(uint8_t dest, uint8_t *message)
 #line 56
 {
 }
 
 # 14 "lib/interfaces/ChatApp.nc"
-inline static void Node__ChatApp__broadcast(uint8_t *message){
+inline static void Node__ChatApp__broadcast(uint8_t dest, uint8_t *message){
 #line 14
-  ChatAppP__ChatApp__broadcast(message);
+  ChatAppP__ChatApp__broadcast(dest, message);
 #line 14
 }
 #line 14
 # 171 "Node.nc"
-static inline void Node__CommandHandler__chatBroadcast(uint8_t *payload)
+static inline void Node__CommandHandler__chatBroadcast(uint8_t dest, uint8_t *message)
 #line 171
 {
 
-  Node__ChatApp__broadcast(payload);
+  Node__ChatApp__broadcast(dest, message);
 }
 
 # 16 "lib/interfaces/CommandHandler.nc"
-inline static void CommandHandlerP__CommandHandler__chatBroadcast(uint8_t *payload){
+inline static void CommandHandlerP__CommandHandler__chatBroadcast(uint8_t dest, uint8_t *message){
 #line 16
-  Node__CommandHandler__chatBroadcast(payload);
+  Node__CommandHandler__chatBroadcast(dest, message);
 #line 16
 }
 #line 16
 # 49 "lib/modules/ChatAppP.nc"
-static inline void ChatAppP__ChatApp__serverConnect(uint8_t *message)
+static inline void ChatAppP__ChatApp__serverConnect(uint8_t dest)
 #line 49
 {
 }
 
 # 11 "lib/interfaces/ChatApp.nc"
-inline static void Node__ChatApp__serverConnect(uint8_t *message){
+inline static void Node__ChatApp__serverConnect(uint8_t dest){
 #line 11
-  ChatAppP__ChatApp__serverConnect(message);
+  ChatAppP__ChatApp__serverConnect(dest);
 #line 11
 }
 #line 11
 # 165 "Node.nc"
-static inline void Node__CommandHandler__chatServerConnect(uint8_t *payload)
+static inline void Node__CommandHandler__chatServerConnect(uint8_t dest)
 #line 165
 {
 
-  Node__ChatApp__serverConnect(payload);
+  Node__ChatApp__serverConnect(dest);
 }
 
 # 15 "lib/interfaces/CommandHandler.nc"
-inline static void CommandHandlerP__CommandHandler__chatServerConnect(uint8_t *payload){
+inline static void CommandHandlerP__CommandHandler__chatServerConnect(uint8_t dest){
 #line 15
-  Node__CommandHandler__chatServerConnect(payload);
+  Node__CommandHandler__chatServerConnect(dest);
 #line 15
 }
 #line 15
@@ -10409,22 +10409,22 @@ static inline void CommandHandlerP__processCommand__runTask(void )
 
           case CMD_CHAT_CONNECT: 
             sim_log_debug(121U, COMMAND_CHANNEL, "Command Type: Chat Server - Connect\n");
-          CommandHandlerP__CommandHandler__chatServerConnect(&buff[0]);
+          CommandHandlerP__CommandHandler__chatServerConnect(buff[0]);
           break;
 
           case CMD_CHAT_BROADCAST: 
             sim_log_debug(122U, COMMAND_CHANNEL, "Command Type: Chat - Broadcast\n");
-          CommandHandlerP__CommandHandler__chatBroadcast(&buff[0]);
+          CommandHandlerP__CommandHandler__chatBroadcast(buff[0], &buff[1]);
           break;
 
           case CMD_CHAT_UNICAST: 
             sim_log_debug(123U, COMMAND_CHANNEL, "Command Type: Chat - Unicast\n");
-          CommandHandlerP__CommandHandler__chatUnicast(&buff[0]);
+          CommandHandlerP__CommandHandler__chatUnicast(buff[0], &buff[1]);
           break;
 
           case CMD_CHAT_USERS: 
             sim_log_debug(124U, COMMAND_CHANNEL, "Command Type: Chat - Print Users\n");
-          CommandHandlerP__CommandHandler__chatPrintUsers(&buff[0]);
+          CommandHandlerP__CommandHandler__chatPrintUsers(buff[0]);
           break;
 
           default: 
@@ -12288,9 +12288,9 @@ static inline void SimSchedulerBasicP__TaskBasic__default__runTask(uint8_t id)
 }
 
 # 75 "/opt/tinyos-main/tos/interfaces/TaskBasic.nc"
-inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7fa218975020){
+inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7f4cb8d92020){
 #line 75
-  switch (arg_0x7fa218975020) {
+  switch (arg_0x7f4cb8d92020) {
 #line 75
     case TossimPacketModelC__startDoneTask:
 #line 75
@@ -12384,7 +12384,7 @@ inline static void SimSchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x7fa21897
 #line 75
     default:
 #line 75
-      SimSchedulerBasicP__TaskBasic__default__runTask(arg_0x7fa218975020);
+      SimSchedulerBasicP__TaskBasic__default__runTask(arg_0x7f4cb8d92020);
 #line 75
       break;
 #line 75
@@ -12444,13 +12444,13 @@ inline static am_addr_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMPacket__dest
 }
 #line 78
 # 80 "/opt/tinyos-main/tos/interfaces/AMSend.nc"
-inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x7fa21802cb60, am_addr_t addr, message_t * msg, uint8_t len){
+inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x7f4cb8448b60, am_addr_t addr, message_t * msg, uint8_t len){
 #line 80
   unsigned char __nesc_result;
 #line 80
 
 #line 80
-  __nesc_result = TossimActiveMessageC__AMSend__send(arg_0x7fa21802cb60, addr, msg, len);
+  __nesc_result = TossimActiveMessageC__AMSend__send(arg_0x7f4cb8448b60, addr, msg, len);
 #line 80
 
 #line 80
@@ -14000,9 +14000,9 @@ static inline void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 }
 
 # 83 "/opt/tinyos-main/tos/lib/timer/Timer.nc"
-inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x7fa2180df950){
+inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x7f4cb84fc950){
 #line 83
-  switch (arg_0x7fa2180df950) {
+  switch (arg_0x7f4cb84fc950) {
 #line 83
     case 0U:
 #line 83
@@ -14078,7 +14078,7 @@ inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 #line 83
     default:
 #line 83
-      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x7fa2180df950);
+      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x7f4cb84fc950);
 #line 83
       break;
 #line 83
@@ -17444,9 +17444,9 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(ui
 }
 
 # 100 "/opt/tinyos-main/tos/interfaces/Send.nc"
-static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x7fa21802d940, message_t * msg, error_t error){
+static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x7f4cb8449940, message_t * msg, error_t error){
 #line 100
-  switch (arg_0x7fa21802d940) {
+  switch (arg_0x7f4cb8449940) {
 #line 100
     case 0U:
 #line 100
@@ -17486,7 +17486,7 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg
 #line 100
     default:
 #line 100
-      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x7fa21802d940, msg, error);
+      /*AMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x7f4cb8449940, msg, error);
 #line 100
       break;
 #line 100
