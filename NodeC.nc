@@ -46,4 +46,7 @@ implementation {
 
     components tcpC;
     Node.tcp -> tcpC;
+
+    components ChatAppC;
+    Node.ChatApp -> ChatAppC;
 }

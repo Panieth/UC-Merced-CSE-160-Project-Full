@@ -18,7 +18,13 @@ enum{
 	CMD_TEST_SERVER=5,
 	CMD_KILL=6,
 	CMD_PRINT_MESSAGE=7,
-	CMD_ERROR=9
+	CMD_ERROR=9,
+
+	//parameters for chat application
+	CMD_CHAT_CONNECT = 10,
+	CMD_CHAT_BROADCAST = 11,
+	CMD_CHAT_UNICAST = 12,
+	CMD_CHAT_USERS = 13
 };
 
 enum{

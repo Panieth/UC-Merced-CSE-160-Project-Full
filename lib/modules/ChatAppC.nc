@@ -19,22 +19,22 @@ implementation {
     ChatApp = ChatAppP;
     
     components RandomC as Random;
-    TransportP.Random -> Random;
+    ChatAppP.Random -> Random;
 
     components new TimerMilliC() as Timer;
-    TransportP.Timer -> Timer;
+    ChatAppP.Timer -> Timer;
 
     components new SimpleSendC(AM_PACK);
-    TransportP.Sender -> SimpleSendC;
+    ChatAppP.Sender -> SimpleSendC;
 
     components new HashmapC(uint8_t, 20) as userMap;
-    TransportP.userMap -> userMap;
+    ChatAppP.userMap -> userMap;
 
     //include stuff needed from previous projects
     components DistanceVectorRoutingC;
-    TransportP.DistanceVectorRouting -> DistanceVectorRoutingC;
+    ChatAppP.DistanceVectorRouting -> DistanceVectorRoutingC;
 
     components NeighborDiscoveryC;
-    TransportP.NeighborDiscovery -> NeighborDiscoveryC;
+    ChatAppP.NeighborDiscovery -> NeighborDiscoveryC;
 
 }

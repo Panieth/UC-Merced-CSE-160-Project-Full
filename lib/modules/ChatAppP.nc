@@ -36,7 +36,7 @@ implementation{
     }
 
     //what to do when the timer is fired
-    event void ChatApp.fired() {
+    event void Timer.fired() {
         
 
 
@@ -44,6 +44,34 @@ implementation{
 
 
     //main functions provided as an interface to other files
+
+    //a function to connect to the server
+    command void ChatApp.serverConnect(uint8_t* message){
+
+
+
+    }
+
+    //a function to broadcast a message
+    command void ChatApp.broadcast(uint8_t* message){
+
+
+
+    }
+
+    //a function to unicast a message
+    command void ChatApp.unicast(uint8_t* message){
+
+
+
+    }
+
+    //a function to print the users connected to a server
+    command void ChatApp.printUsers(uint8_t* message){
+
+
+
+    }
 
 
 

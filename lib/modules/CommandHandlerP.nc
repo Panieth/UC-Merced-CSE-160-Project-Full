@@ -87,6 +87,26 @@ implementation{
                 dbg(COMMAND_CHANNEL, "Command Type: Print Message\n");
                 signal CommandHandler.printMessage(&buff[0]);
                 break;
+                
+            case CMD_CHAT_CONNECT:
+                dbg(COMMAND_CHANNEL, "Command Type: Chat Server - Connect\n");
+                signal CommandHandler.chatServerConnect(&buff[0]);
+                break;
+
+            case CMD_CHAT_BROADCAST:
+                dbg(COMMAND_CHANNEL, "Command Type: Chat - Broadcast\n");
+                signal CommandHandler.chatBroadcast(&buff[0]);
+                break;
+
+            case CMD_CHAT_UNICAST:
+                dbg(COMMAND_CHANNEL, "Command Type: Chat - Unicast\n");
+                signal CommandHandler.chatUnicast(&buff[0]);
+                break;
+
+            case CMD_CHAT_USERS:
+                dbg(COMMAND_CHANNEL, "Command Type: Chat - Print Users\n");
+                signal CommandHandler.chatPrintUsers(&buff[0]);
+                break;
 
             default:
                 dbg(COMMAND_CHANNEL, "CMD_ERROR: \"%d\" does not match any known commands.\n", msg->id);

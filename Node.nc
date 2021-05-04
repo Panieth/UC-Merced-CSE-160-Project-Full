@@ -30,6 +30,7 @@ module Node{
    uses interface DistanceVectorRouting as DistanceVectorRouting;
    uses interface Transport as Transport; 
    uses interface tcp as tcp;
+   uses interface ChatApp as ChatApp;
 
 }
 
@@ -160,6 +161,26 @@ implementation{
    event void CommandHandler.setAppServer(){}
 
    event void CommandHandler.setAppClient(){}
+
+   event void CommandHandler.chatServerConnect(uint8_t *payload){
+
+   }
+
+   event void CommandHandler.chatBroadcast(uint8_t *payload){
+
+
+   }
+
+   event void CommandHandler.chatUnicast(uint8_t *payload){
+
+
+   }
+
+   event void CommandHandler.chatPrintUsers(uint8_t *payload){
+
+
+   }
+
 
    void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t protocol, uint16_t seq, uint8_t* payload, uint8_t length){
       Package->src = src;
