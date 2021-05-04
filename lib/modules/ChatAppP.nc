@@ -72,7 +72,24 @@ implementation{
         //in order to grab the users we will take the keys from the user map
         uint32_t* users = call userMap.getKeys(); 
 
-        
+        /*
+        //a packet to send the users to the client that requested them
+        tcpPack userPacketToSend;
+
+        //set the source and dest to the correct values
+        userPacketToSend.destPort = dest;
+        userPacketToSend.srcPort = TOS_NODE_ID;
+
+        //now set the payload to be the user list we got
+        memcpy(userPacketToSend.tcpPayload, users, 225); //since this is the number of connections
+
+
+        //send the packet containing the user information
+        sendPing(dest, userPacketToSend);
+
+        dbg(TRANSPORT_CHANNEL, "Sending users\n");
+
+        */
 
     }
 
