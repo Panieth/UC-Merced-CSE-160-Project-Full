@@ -1,0 +1,60 @@
+#include "../../includes/DVR.h"
+#include "../../includes/channels.h"
+#include "../../includes/protocol.h"
+#include "../../includes/packet.h"
+#include "../../includes/socket.h"
+#include <Timer.h>
+
+//this section declares any global constants 
+
+module ChatAppP{
+
+    //declare interface being provided 
+    provides interface ChatApp;
+
+    //declare any interfaces used 
+    uses interface Random as Random;
+    uses interface Timer<TMilli> as Timer;
+    uses interface SimpleSend as Sender;
+    uses interface NeighborDiscovery as NeighborDiscovery;
+    uses interface DistanceVectorRouting as DistanceVectorRouting;
+    uses interface Hashmap<uint8_t> as userMap;
+
+}
+
+implementation{
+
+    //declarations for helper functions to be used by commands
+    void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t protocol, uint16_t seq, void* payload, uint8_t length);
+    
+
+    //a function to set up and begin the Transport layer
+    command void ChatApp.begin(){
+
+
+
+    }
+
+    //what to do when the timer is fired
+    event void ChatApp.fired() {
+        
+
+
+    }
+
+
+    //main functions provided as an interface to other files
+
+
+
+    //a function to make a packet, same as one given for project 1
+    void makePack(pack *Package, uint16_t src, uint16_t dest, uint16_t TTL, uint16_t protocol, uint16_t seq, void* payload, uint8_t length) {
+        Package->src = src;
+        Package->dest = dest;
+        Package->TTL = TTL;
+        Package->seq = seq;
+        Package->protocol = protocol;
+        memcpy(Package->payload, payload, length);
+    } 
+
+}
