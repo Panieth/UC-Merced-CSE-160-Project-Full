@@ -31,14 +31,16 @@ implementation{
     //a function to set up and begin the Transport layer
     command void ChatApp.begin(){
 
-
+        // start the timer 
+        call Timer.startOneShot(1024 * 60);
 
     }
 
     //what to do when the timer is fired
     event void Timer.fired() {
         
-
+        //whenever the timer is fired just restart it 
+        call Timer.startOneShot(1024 * 60);
 
     }
 
@@ -48,6 +50,9 @@ implementation{
     //a function to connect to the server
     command void ChatApp.serverConnect(uint8_t dest){
 
+        //the server will always start on node 1, thus we will establish two connections
+        //to node 1
+        
 
 
     }
@@ -55,7 +60,42 @@ implementation{
     //a function to broadcast a message
     command void ChatApp.broadcast(uint8_t dest, uint8_t *message){
 
+        //variables to iterate 
+        uint16_t i;
 
+        //a variable to store number of users
+        uint16_t numUsers;
+
+        //this is the packet we will send to every user
+        tcpPack messagePack;
+        
+        //stores the current user we are on
+        uint16_t currentUserId;
+
+        //to broadcast the message we have to first get the keys to the user map
+        //this will result in a list of users 
+        uint32_t* users = call userMap.getKeys(); 
+
+        //also get the number of users from the usermap
+        numUsers = call userMap.size();
+
+        //configure the source of the packet
+        messagePack.srcPort = TOS_NODE_ID;
+
+        //copy the message we want to send into the packet
+        memcpy(messagePack.tcpPayload, message, 225);
+
+
+        //now iterate over every single user and send them the message
+        for(i = 0; i < numUsers; i++){
+
+            //get the current user destination id from the userMap
+            currentUserId = call userMap.get(users[i]);
+
+            //now we can send this tcp packet to the relevant user
+            call commandHandler.ping(currentUserId, messagePack);
+
+        }
 
     }
 
