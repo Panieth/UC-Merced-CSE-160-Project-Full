@@ -92,6 +92,9 @@ implementation{
             //get the current user destination id from the userMap
             currentUserId = call userMap.get(users[i]);
 
+            //configure the destination of the packet
+            messagePack.destPort = currentUserId;
+
             //now we can send this tcp packet to the relevant user
             call commandHandler.ping(currentUserId, messagePack);
 
@@ -102,7 +105,26 @@ implementation{
     //a function to unicast a message
     command void ChatApp.unicast(uint8_t dest, uint8_t *message){
 
+        //this is the packet we will send to every user
+        tcpPack messagePack;
+        
+        //stores the id of the user we will unicast to
+        uint16_t userId;
 
+        //configure the source of the packet
+        messagePack.srcPort = TOS_NODE_ID;
+
+        //copy the message we want to send into the packet
+        memcpy(messagePack.tcpPayload, message, 225);
+        
+        //get the current user destination id from the userMap
+        currentUserId = call userMap.get(dest);
+
+        //configure the destination of the packet
+        messagePack.destPort = currentUserId;
+
+        //now we can send this tcp packet to the relevant user
+        call commandHandler.ping(currentUserId, messagePack);
 
     }
 
