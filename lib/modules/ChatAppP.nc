@@ -39,8 +39,17 @@ implementation{
     //what to do when the timer is fired
     event void Timer.fired() {
         
-        //whenever the timer is fired just restart it 
-        call Timer.startOneShot(1024 * 60);
+        while(true){
+
+            // start the timer 
+            if (buffer != 0){
+                call Timer.startOneShot(1024 * 60);
+            } else {
+                call tcp.closeClient;
+                break;
+            }
+        }
+        
 
     }
 
@@ -52,6 +61,31 @@ implementation{
 
         //the server will always start on node 1, thus we will establish two connections
         //to node 1
+
+        //create a socket for the connection
+        unit8_t socketC = call Transport.socket;
+
+        //initialize our desired address/port
+        socket_addr_t client;
+        client.addr = dest;
+        client.port = 41;
+
+        //connect and listen on correct port
+        call Transport.connect(socketC, client);
+
+        //server hello command
+        //make tcp pack
+        tcpPack helloPack;
+
+        //get source port
+        helloPack.srcPort = clienr.port;
+
+        //send hello message
+        uint32_t hmessage;
+        hmessage = (uint32_t)("hello" + UID + " " + dest);
+
+        //call timer to kill connection if no information comes
+        call timer.fired;
         
 
 
